@@ -3,83 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website of Wei Wang (王尉)</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Wei Wang (王尉) - Personal Website</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f3;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(90deg, #005f99, #4a90e2); /* Lighter gradient from dark to light blue */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        section {
+            margin-bottom: 15px; /* Reduced margin between sections */
+            padding: 15px;
+            transition: background 0.3s;
+        }
+        section:hover {
+            background: #f9f9f9;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+        ol {
+            padding-left: 20px; /* Indentation for ordered lists */
+        }
+        li {
+            margin: 5px 0; /* Spacing between list items */
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: #f2f9f9;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Personal Website of Wei Wang (王尉)</h1>
-        <nav>
-            <ul>
-                <li><a href="#about" title="About Me">About Me</a></li>
-                <li><a href="#education" title="Education">Education</a></li>
-                <li><a href="#publications" title="Publications">Publications</a></li>
-                <li><a href="#preprints" title="Preprints">Preprints</a></li>
-                <li><a href="#teaching" title="Teaching">Teaching</a></li>
-                <li><a href="#notes" title="Notes">Notes</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <hr> <!-- This is the partition line -->
+<header>
+    <h1>Wei WANG (王尉)</h1>
+    <p>Welcome to my webpage!</p>
+</header>
 
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am currently a Ph.D. candidate at the <a href="http://english.math.pku.edu.cn/" target="_blank" rel="nofollow">School of Mathematical Sciences</a>, Peking University. </p>
-            <p>My research interests include: Geometric variational problems, Liquid crystal models, Harmonic maps, Elliptic equations, Parabolic equations, and Harmonic Heat flows.</p>
-            <p>Email: <a href="mailto:2201110024@stu.pku.edu.cn" title="Email Wei Wang">2201110024@stu.pku.edu.cn</a></p>
-        </section>
+<div class="container">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am currently a Ph.D. candidate at the <a href="http://english.math.pku.edu.cn/" target="_blank" rel="nofollow">School of Mathematical Sciences</a>, Peking University.</p>
+        <ul>
+            <li><strong>Research Interests:</strong> Geometric variational problems, Liquid crystal models, Harmonic maps, Elliptic equations, Parabolic equations, and Harmonic heat flows.</li>
+            <li><strong>Email:</strong> <a href="mailto:2201110024@stu.pku.edu.cn">2201110024@stu.pku.edu.cn</a></li>
+        </ul>
+    </section>
 
-
-    <hr> <!-- This is the partition line -->
-
-
-        <section id="education">
-            <h2>Education</h2>
-            <ul>
+    <section id="education">
+        <h2>Education</h2>
+        <ul>
                 <li>B.S. in Mathematics and Applied Mathematics, Zhejiang University, 2018.09~2022.06, 
                                  Advisor: Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</li>
                 <li>Summer Research Program, The Hong Kong University of Science and Technology, 2021.06~2021.09, 
                                  Advisor: Assoc. Prof. <a href="https://www.math.hkust.edu.hk/~tianlingjin" rel="nofollow">Tianling Jin</a>.</li>
-                <li>Ph.D. in Theoretical Mathematics, Peking University, 2022.09~, 
+                <li>Ph.D. in Theoretical Mathematics, Peking University, 2022.09~present, 
                                  Advisor: Prof. <a href="http://english.math.pku.edu.cn/peoplefaculty/128.html" rel="nofollow">Zhifei Zhang</a>.</li>
             </ul>
-        </section>
+    </section>
 
-    <hr> <!-- This is the partition line -->
-
-        <section id="publications">
+    <section id="publications">
             <h2>Publications</h2>
-            <ul>
+            <ol>
                 <li>W. Wang and T. Zhang, "Homogenization theory of elliptic system with lower order terms for dimension two," <em>Communications on Pure and Applied Analysis</em>, 2022. 
                         <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" target="_blank" rel="nofollow">journal</a> 
                         <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>.</li>
                 <li>W. Wang, "Uniform estimates of resolvents in homogenization theory of elliptic systems," <em>Journal of Differential Equations</em>, 2023. 
                         <a href="https://doi.org/10.1016/j.jde.2023.06.015" target="_blank" rel="nofollow">journal</a> 
                         <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>.</li>
-            </ul>
+            </ol>
         </section>
 
-    <hr> <!-- This is the partition line -->
 
-        <section id="preprints">
+    <section id="preprints">
             <h2>Preprints</h2>
-            <ul>
+            <ol>
                 <li>R.L. Frank, T. Jin and W. Wang, "On the sharp constants in the regional fractional Sobolev inequalities," <em>arXiv preprint arXiv:2403.00357</em>. 
                          <a href="https://arxiv.org/abs/2403.00357" target="_blank" rel="nofollow">arXiv</a>.</li>
                 <li>W. Wang and Z. Zhang, "Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers," <em>arXiv preprint arXiv:2404.00677</em>. 
                          <a href="https://arxiv.org/abs/2404.00677" target="_blank" rel="nofollow">arXiv</a>.</li>
                 <li>H. Fu, W. Wang, and Z. Zhang, "Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations," <em>arXiv preprint arXiv: arXiv:2408.06726</em>. 
                          <a href="https://arxiv.org/abs/2408.06726" target="_blank" rel="nofollow">arXiv</a>.</li>
-            </ul>
+            </ol>
         </section>
 
-      <hr> <!-- This is the partition line -->
 
-        <section id="teaching">
+    <section id="teaching">
             <h2>Teaching</h2>
-            <ul>
+            <ol>
                 <li>Advanced Mathematics (C) (I), Fall, 2022. Teaching Assistant. Lecturer: Prof. Zhengdong Wang.</li>
                 <li>Functional Analysis (1), Spring, 2023. Teaching Assistant. Lecturer: Prof. Zhifei Zhang.</li>
                 <li><a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" target="_blank" rel="nofollow">Harmonic Analysis</a>, 
@@ -87,25 +125,14 @@
                 <li>Advanced Mathematics (B) (II), Spring, 2024. Teaching Assistant. Lecturer: Prof. Xufeng Liu.</li>
                 <li><a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" target="_blank" rel="nofollow">Advanced Mathematics (A) (I)</a>, 
                                 Fall, 2024. Teaching Assistant. Lecturer: Assoc. Prof. Jinbiao Wu.</li>
-            </ul>
+            </ol>
         </section>
-    </main>
 
-    <hr> <!-- This is the partition line -->
+</div>
 
-        <section id="Notes">
-            <h2>Notes</h2>
-            <ul>
-                <li>Reading notes of "Lectures on Elliptic Free Boundary Problems" delivered by Fanghua Lin.   
-                        <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" target="_blank" rel="nofollow">pdf</a>. </li>
-            </ul>
-        </section>
-    </main>
+<footer>
+    <p>&copy; Wei Wang, 2024.</p>
+</footer>
 
-
-
-    <footer>
-        <p>&copy; 2024 Personal Website</p>
-    </footer>
 </body>
 </html>
