@@ -4,251 +4,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wei WANG (王尉) - Personal Website</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Academic Personal Homepage</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.5;
-            margin: 0;
+            margin: 0; /* 去除 body 本身的外边距，让淡蓝背景铺满页面 */
             padding: 0;
-            background-color: #ffffff;
+            background-color: white;
         }
 
         header {
-            color: #35424a;
-            padding: 10px 20px;
-            text-align: left;
+            background: linear-gradient(to bottom, #bbdefb, white);
+            text-align: center;
+            padding: 20px 0;
+            /* 如果想调整 header 左右方向的内边距，修改这里的值 */
+            /* 例如：padding: 20px 50px; 这里 50px 就是左右内边距 */
         }
 
-        main {
-            padding: 0 25px;
-            margin: 0;
-            max-width: 1500px;
+        nav {
+            background: linear-gradient(to bottom, #e3f2fd, white);
+            text-align: center;
+            padding: 20px 0;
+            /* 如果想调整 nav 左右方向的内边距，修改这里的值 */
+            /* 例如：padding: 20px 50px; 这里 50px 就是左右内边距 */
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: bold;
         }
 
         section {
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: #000000;
-            margin: 0;
-            padding: 0;
-        }
-
-        .abstract {
             display: none;
-            margin: 10px 0;
-            padding: 10px;
-            background: none;
+            /* 调整文字部分的左右外边距，修改这里的值 */
+            /* 例如：margin: 0 100px; 这里 100px 就是左右外边距 */
+            margin: 0 200px; 
+            padding: 20px;
+             hyphens: auto; 
+            -webkit-hyphens: auto; /* 兼容 Safari 浏览器 */
+            -moz-hyphens: auto;    /* 兼容 Firefox 浏览器 */
         }
 
-        .paper-title {
-            cursor: pointer;
-            color: #007BFF;
-            text-decoration: underline;
+       section p, section h2, section li {
+            /* 调整正文中段落、标题、列表项文字的间距，修改这里的值 */
+            /* 例如：letter-spacing: 2px; 这里 2px 就是字符间距 */
+            letter-spacing: 0.5px; 
+        }
+        
+        #home {
+            display: block;
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ccc;
-            width: calc(100% + 40px); /* Adjusted for consistent width */
-            margin-left: -20px;
-            margin-right: -20px;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+        #about-me-content {
+            display: flex;
+            align-items: center;
+        }
+
+        #about-me-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        #about-me-image {
+            width: 200px;
+            height: auto;
         }
     </style>
 </head>
 
-
 <body>
     <header>
         <h1>Wei WANG (王尉)</h1>
-        <p>Welcome to my webpage!</p>
+        <h2>Welcome to my Personal Webpage!</h2>
     </header>
-<hr>
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>
-                I am currently a Ph.D. candidate majoring in Theoretical Mathematics under the supervision of Prof. 
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('publications')">Research</a>
+        <a href="#" onclick="showSection('talks')">Talks and Presentations</a>
+        <a href="#" onclick="showSection('teaching')">Teaching Experiences</a>
+        <a href="#" onclick="showSection('notes')">Notes and Explanatory Papers</a>
+    </nav>
+
+    <section id="home">
+        <div id="about-me-content">
+            <div id="about-me-text">
+                <h2>About Me</h2>
+                <p>I am currently a Ph.D. candidate majoring in Theoretical Mathematics under the supervision of Prof. 
                 <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> in the School of Mathematical Sciences at 
                 <a href="http://english.math.pku.edu.cn/" target="_blank" rel="nofollow">Peking University</a>. 
                 Before this, I obtained my Bachelor's degree in Mathematics and Applied Mathematics in the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" target="_blank" rel="nofollow">Zhejiang University</a> in 2022. My B.S. advisor is Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>. 
-                Here is my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf" rel="nofollow">CV</a>.
-            </p>
-            <ul>
-                <li><strong>Research Interests:</strong> Geometric variational problems, homogenization theory, elliptic and parabolic equations.</li>
-                <li><strong>Email:</strong> <a href="mailto:2201110024@stu.pku.edu.cn">2201110024@stu.pku.edu.cn</a></li>
-            </ul>
-        </section>
-<hr>
-        <section>
-            <h2>Preprints and Publications</h2>
-            <ol>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract6')">Fine Structure of Rupture Set for Semilinear Elliptic Equation with Singular Nonlinearity</span><br>
-                    Wei Wang and Zhifei Zhang. <em>arXiv preprint arXiv:2411.16048</em>. 
-                    <a href="https://arxiv.org/abs/2411.16048" target="_blank" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract6">In this paper, we study the stationary solutions of semilinear elliptic equation with singular nonlinearity 
-                        $$
-                        \Delta u=u^{-p}+f,\,\,u\geq 0\quad\text{in }\Omega\subset\mathbb{R}^n,
-                        $$
-                        where \( n\geq 2 \), \( p>1 \), \( \Omega \) is a bounded domain, and \( f\in L^q(\Omega) \) with \( \frac{1}{2}+\frac{1}{2p}<\frac{q}{n} \). We establish a sharp estimate for the Minkowski content of the rupture set \( \{u=0\} \) and demonstrate that this set is \( (n-2) \)-rectifiable. For this, we examine the stratification of the rupture set based on the symmetry properties of tangent functions, leading to the proof of \( k \)-rectifiability for each \( k \)-stratum. As a significant byproduct of our analysis, we improve the integrability of \( D^ju \) with \( j\in\mathbb{Z}_+ \) to the optimal Lorentz space \( L^{\frac{2(p+1)}{j(p+1)-2},\infty} \), under the assumption that \( D^{j-1}f \) is bounded. As an application of our results in the static case of the equation, for a class of suitable weak solutions to the three-dimensional evolutional problem
-                        $$
-                        \partial_tu=\Delta u-u^{-p},\,\,u\geq 0\quad\text{in }(\Omega\subset\mathbb{R}^3)\times(0,T),
-                        $$
-                        where \( p>3 \) and \( T>0 \), we show that \( \{u(\cdot,t)=0\} \) is \( 1 \)-rectifiable for a.e. \( t\in(0,T) \).
-                    </div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract5')">Quantitative Stratification and Sharp Regularity Estimates for Supercritical Semilinear Elliptic Equations</span><br>
-                    Haotong Fu, Wei Wang, and Zhifei Zhang. <em>arXiv preprint arXiv:2408.06726</em>. 
-                    <a href="https://arxiv.org/abs/2408.06726" target="_blank" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract5">In this paper, we investigate the interior regularity theory for stationary solutions of the supercritical semilinear elliptic equation
-                        $$
-                        -\Delta u=|u|^{p-1}u\quad\text{in }\Omega,\quad p>\frac{n+2}{n-2},
-                        $$
-                        where \( \Omega\subset\mathbb{R}^n \) is a bounded domain with \( n\geq 3 \). Our primary focus is on structures of the stratification for the singular sets. We define the \( k \)-th stratification \( S^k(u) \) of \( u \) based on the tangent functions and tangent measures. We show that \( S^k(u) \) is \( k \)-rectifiable and establish estimates for volumes associated with points, which have lower bounds on the regular scales. These estimates enable us to derive sharp interior estimates for the solutions. Specifically, if \( \alpha_p=\frac{2(p+1)}{p-1} \) is not an integer, then for any \( j\in\mathbb{Z}_{\geq 0} \), we have
-                        $$
-                        D^ju\in L_{\text{loc}}^{q_j,\infty}(\Omega).
-                        $$
-                        Precisely, for any \( \Omega'\subset\subset\Omega \),
-                        $$
-                        \sup\{\lambda>0:\lambda^{q_j}\mathcal{L}^n(\{x\in\Omega':|D^ju(x)|>\lambda\})\}<+\infty,
-                        $$
-                        where \( \mathcal{L}^n(\cdot) \) is the \( n \)-dimensional Lebesgue measure, and
-                        $$
-                        q_j=\frac{(p-1)(\lfloor\alpha_p\rfloor+1)}{2+j(p-1)},
-                        $$
-                        with \( \lfloor\alpha_p\rfloor \) being the integer part of \( \alpha_p \). The proofs of these results rely on Reifenberg-type theorems developed by A. Naber and D. Valtorta to study the stratification of harmonic maps.
-                    </div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract4')">Landau-de Gennes Model with Sextic Potentials: Asymptotic Behavior of Minimizers</span><br>
-                    Wei Wang and Zhifei Zhang. <em>arXiv preprint arXiv:2404.00677</em>.
-                    <a href="https://arxiv.org/abs/2404.00677" target="_blank" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract4">We study a class of Landau-de Gennes energy functionals with a sextic bulk energy density in a three-dimensional domain. We examine the asymptotic behavior of uniformly bounded minimizers in two distinct scenarios: one where their energy remains uniformly bounded and another where it logarithmically diverges as a function of the elastic constant. In the first case, we show that up to a subsequence, the minimizers converge to a locally minimizing harmonic map in both the \( H_{\text{loc}}^1 \) and \( C_{\text{loc}}^j, j\in \mathbb{Z}_+ \) norms within compact subsets that are distant from the singularities of the limit. For the second case, we establish the existence of a closed set denoted as \( \mathcal{S}_{\text{line}} \). This set has a finite length and consists of finite segments of lines locally such that the energy of minimizers is locally uniformly bounded away from it. This work solves an open question raised by Canevari (ARMA, 223 (2017), 591-676) concerning point and line defects in the Landau-de Gennes model with sextic potentials.</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract3')">On the Sharp Constants in the Regional Fractional Sobolev Inequalities</span><br>
-                    Rupert L. Frank, Wei Wang, and Tianling Jin. <em>arXiv preprint arXiv:2403.00357</em>. To appear on <em>Minimax Theory and its Applications</em>.
-                    <a href="https://arxiv.org/abs/2403.00357" target="_blank" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract3">In this paper, we study the sharp constants in fractional Sobolev inequalities associated with the regional fractional Laplacian in domains.</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract2')">Uniform Estimates of Resolvents in Homogenization Theory of Elliptic Systems</span><br>
-                    Wei Wang.<em>Journal of Differential Equations</em>, 370 (2023): 1-65.
-                    <a href="https://doi.org/10.1016/j.jde.2023.06.015" target="_blank" rel="nofollow">journal</a> 
-                    <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract2">In this paper, we study the estimates of resolvents \( R(\lambda,\mathcal{L}_{\varepsilon})=(\mathcal{L}_{\varepsilon}-\lambda I)^{-1} \), where 
-$$
-\mathcal{L}_{\varepsilon}=-\operatorname{div}(A(x/\varepsilon)\nabla)
-$$ 
-is a family of second elliptic operators with symmetric, periodic, and oscillating coefficients defined on a bounded domain \( \Omega \) with \( \varepsilon>0 \). For \( p\in(1,+\infty) \), we will establish uniform \( L^p\to L^p \), \( L^p\to W_0^{1,p} \), \( W^{-1,p}\to L^p \) and \( W^{-1,p}\to W_0^{1,p} \) estimates by using the real variable method. Meanwhile, we use Green functions for operators \( \mathcal{L}_{\varepsilon}-\lambda I \) to study the asymptotic behavior of \( R(\lambda,\mathcal{L}_{\varepsilon}) \) and obtain convergence estimates in \( L^p\to L^p \), \( L^p\to W_0^{1,p} \) norm.</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('abstract1')">Homogenization Theory of Elliptic System with Lower Order Terms for Dimension Two</span><br>
-                    Wei Wang and Ting Zhang. <em>Communications on Pure and Applied Analysis</em>, 22.3 (2023): 787-824.
-                    <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" target="_blank" rel="nofollow">journal</a> 
-                    <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>.
-                    <div class="abstract" id="abstract1">In this paper, we consider the homogenization problem for generalized elliptic systems 
-                        $$
-                        \mathcal{L}_{\varepsilon}=-\operatorname{div}(A(x/\varepsilon)\nabla+V(x/\varepsilon))+B(x/\varepsilon)\nabla+c(x/\varepsilon)+\lambda I
-                        $$
-                        with dimension two. Precisely, we will establish the \( W^{1,p} \) estimates, Hölder estimates, Lipschitz estimates and \( L^p \) convergence results for \( \mathcal{L}_{\varepsilon} \) with dimension two. The operator \( \mathcal{L}_{\varepsilon} \) has been studied by Qiang Xu with dimension \( d\geq 3 \) in (JMAA, 438 (2016), 1574-1600 & JDE, 261 (2016), 4368-4423) and the case \( d=2 \) remains unsolved. As a byproduct, we will construct the Green functions for \( \mathcal{L}_{\varepsilon} \) with \( d=2 \) and their convergence rates.</div>
-                </li>
-            </ol>
-        </section>
-<hr>
-        <section>
-            <h2>Notes and Explanatory Papers</h2>
-            <ul>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('note4')">A Review of the Lin-Wang Bubble Analysis in the Study of the Generalized Ginzburg-Landau Model</span>.
-                    <a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" target="_blank" rel="nofollow">pdf</a>.
-                    <div class="abstract" id="note4">In the reading report, we concisely review the blow-up result for the generalized static Ginzburg-Landau model discussed in the renowned paper (CAG, 7 (1999), 397-429). We employ a straightforward argument from (Ann. of Math. (2), 149 (1999), 785-829) to modify the proof of the main theorem presented in the paper by Lin and Wang. The generalized Ginzburg-Landau model is a nonlinear variational model with several specialized structures. These properties enable us to conduct more explicit analysis and apply geometric measure theory, which differs from the primarily topological methods introduced in the course "Nonlinear Analysis" this semester.
-</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('note3')">Studying Notes of the Ergodic Theory (in Chinese)</span>.
-                    <a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" target="_blank" rel="nofollow">pdf</a>.
-                    <div class="abstract" id="note3">This note is from the course "Ergodic Theory" delivered by Prof. Shaobo Gan.</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('note2')">Reading Notes of a Short Proof of the Schoen-Uhlenbeck Partial Regularity Theory for Harmonic Maps</span>.
-                    <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" target="_blank" rel="nofollow">pdf</a>.
-                    <div class="abstract" id="note2">Harmonic maps are nonlinear extensions of harmonic functions. They are critical points of Dirichlet energy functionals between Riemannian manifolds. There are abundant materials in the study of harmonic maps. (JDG, 17 (1982), 307-335) by Schoen and Uhlenbeck is one of the most important works on harmonic maps. However, the proofs in this paper are complicated and technical and are not easy to read. Recently, in (SCM, 47 (2017), 1199-1206), Lin gave brief proofs for the main results by Schoen and Uhlenbeck. Due to limited spaces, the paper by Lin's lacks of details. In this paper, we will complete the details and review some classical and recent results in harmonic maps.</div>
-                </li>
-                <li>
-                    <span class="paper-title" onclick="toggleAbstract('note1')">Reading Notes of "Lectures on Elliptic Free Boundary Problems" by Fanghua Lin</span>.
-                    <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" target="_blank" rel="nofollow">pdf</a>.
-                    <div class="abstract" id="note1">Elliptic equations with free boundary is of great importance in mathematics and physics. There is a famous lecture note by Prof. Fanghua Lin on this topic, named "Lectures on Elliptic Free Boundary Problems." This lecture note is rich in content and is an introductory reading material for learning the free boundary theory of elliptic equations. Because this note covers many aspects of theory and is limited in length, there are many omissions in detail. In the Fall 2022, we studied this lecture note in a seminar at Peking University. We have supplemented the proof details for most of this note.</div>
-                </li>
-            </ul>
-        </section>
-<hr>    
-    <section>
-        <h2>Posters and Slides</h2>
+                Here is my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf" rel="nofollow">CV</a>. (2025.02.12)<br><br>
+
+My profiles on <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a>, and <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a>.
+
+</p>
+              
+              <h2>Contact Me</h2>
+
+<b>E-mail:</b> 2201110024(at)stu.pku.edu.cn<br>
+
+<b>Address:</b> Room 314 of 20th Building, Peking University, No.5 Yiheyuan Road, Haidian District, Beijing, 100871, P.R. China,
+
+<h2>Analysis Seminars</h2>
+
+I am co-organizing a series of long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University on topics related to partial differential equations and geometric measure theory.  
+               
+            </div>
+            <img id="about-me-image" src="https://github.com/LuisYanka/weiwang.github.io/raw/master/images/wwprofile.png"
+                alt="Your Photo">
+      </div>
+
+
+    </section>
+
+    <section id="talks">
+        <h2>2024</h2>
+<ul>
+  <li>Year-End Seminar of PDEs Group, Peking University, Beijing, P.R.China, 2024/12/29. 
+        <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" target="_blank" rel="nofollow">slides</a>
+  </li>
+  <li>Seminar on Geometric Measure Theory and PDEs, Wuhan University, Wuhan, Hubei, P.R.China, 2024/12/3.</li>
+  <li>Graduate Research Exhibition in Theoretic Mathematics, Peking University, Beijing, P.R.China, 2024/4/12. 
+        <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" target="_blank" rel="nofollow">poster</a>
+  </li>
+</ul>
+  
+<h2>2022</h2>
+<ul>
+  <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, P.R.China, 2022/8/2.</li>
+</ul>
+    </section>
+
+    <section id="teaching">
+        <h2>Peking University</h2>
+<ul>
+  <li>
+    Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025.
+    <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" target="_blank" rel="nofollow">Lecture notes</a> 
+  </li>
+  <li>
+    Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024.
+       <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" target="_blank" rel="nofollow">Lecture notes</a> 
+       <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" target="_blank" rel="nofollow">Answers for finals of Fall 2022 and Fall 2023</a> 
+  </li>
+  <li>
+    Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024.
+  </li>
+  <li>
+    Teaching Assistant, Harmonic Analysis, Fall 2023.
+       <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" target="_blank" rel="nofollow">Answers for homeworks</a>
+  </li>
+  <li>
+    Teaching Assistant, Functional Analysis (I), Spring 2023.
+  </li>
+  <li>
+    Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022.
+  </li>
+</ul>
+
+<h2>Zhejiang University</h2>
+<ul>
+  <li>
+    Teaching Assistant, Mathematical Analysis (II), Spring 2022.
+  </li>
+  <li>
+    Teaching Assistant, Mathematical Analysis (I), Fall 2021.
+  </li>
+</ul>
+    </section>
+
+    <section id="publications">
+        <h2>Research Interests</h2>
+<ul>
+<li><b>Research areas:</b> geometric variational problems, elliptic equations, and parabolic equations.</li>
+<li><b>Some specific topics:</b> homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, and nonlocal Laplacian operators.</li>
+</ul>
+
+<h2>Published Papers</h2>
+<ol>
+   <li>Uniform estimates of resolvents in homogenization theory of elliptic systems.<br>
+       Wei Wang, <em>Journal of Differential Equations</em>, 370 (2023), 1-65. 
+                    <a href="https://doi.org/10.1016/j.jde.2023.06.015" target="_blank" rel="nofollow">DOI</a> 
+                    <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>
+   </li>
+   <li>Homogenization theory of elliptic system with lower order terms for dimension two.</span><br>
+                    Wei Wang and Ting Zhang, <em>Communications on Pure and Applied Analysis</em>, 22 (2023), 787-824.
+                    <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" target="_blank" rel="nofollow">DOI</a> 
+                    <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>
+   </li> 
+</ol>
+
+<h2>Preprints</h2>
+<ol>
+   <li>Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity. <br>
+                    Wei Wang and Zhifei Zhang, <em>arXiv preprint arXiv:2411.16048</em>. 
+                    <a href="https://arxiv.org/abs/2411.16048" target="_blank" rel="nofollow">arXiv</a>
+   </li> 
+   <li>Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations. <br>
+                    Haotong Fu, Wei Wang, and Zhifei Zhang, <em>arXiv preprint arXiv:2408.06726</em>. 
+                    <a href="https://arxiv.org/abs/2408.06726" target="_blank" rel="nofollow">arXiv</a>
+   </li> 
+   <li>Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers. <br>
+                    Wei Wang and Zhifei Zhang, <em>arXiv preprint arXiv:2404.00677</em>.
+                    <a href="https://arxiv.org/abs/2404.00677" target="_blank" rel="nofollow">arXiv</a>
+   </li>
+  <li>On the sharp constants in the regional fractional Sobolev inequalities. <br>
+                    Rupert L. Frank, Tianling Jin, and Wei Wang, <em>arXiv preprint arXiv:2403.00357</em>. 
+                    <a href="https://arxiv.org/abs/2403.00357" target="_blank" rel="nofollow">arXiv</a> <br>
+                    To appear on <em>Partial Differential Equations and Applications</em>.
+   </li>
+</ol>
+
+
+    </section>
+
+    <section id="notes">
         <ul>
             <li>
-                <span class="paper-title" onclick="toggleAbstract('poster2')">Semilinear Elliptic Equation with Singular Nonlinearity: Regularity and Singularity</span>.
-                <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" target="_blank" rel="nofollow">pdf</a>.
-                <div class="abstract" id="poster2">This is the slide for the talk in the seminar on analysis and PDEs at Peking University. Dec. 2024.</div>
+                A review of the Lin-Wang bubble analysis in the study of the generalized Ginzburg-Landau model.
+                    <a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" target="_blank" rel="nofollow">pdf</a>
             </li>
             <li>
-                <span class="paper-title" onclick="toggleAbstract('poster1')">Landau-de Gennes Model with Sextic Potentials: Asymptotic Behavior of Minimizers</span>.
-                <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" target="_blank" rel="nofollow">pdf</a>.
-                <div class="abstract" id="poster1">This is the poster for the graduate research exhibition of the School of Mathematics at Peking University. Apr. 2024. </div>
+                Studying notes of the ergodic theory (in Chinese).
+                    <a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" target="_blank" rel="nofollow">pdf</a>
             </li>
-        </ul>
+            <li>
+                Reading notes of a short proof of the Schoen-Uhlenbeck partial regularity theory for harmonic maps.
+                    <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" target="_blank" rel="nofollow">pdf</a>
+            </li>
+            <li>
+                Reading notes of "Lectures on Elliptic Free Boundary Problems" by Fanghua Lin.
+                    <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" target="_blank" rel="nofollow">pdf</a>
+            </li>
+      </ul>
     </section>
- <hr>   
-    <section>
-        <h2>Teaching Experiences</h2>
-        <ul>
-             <li>Teaching Assistant, Advanced Mathematics (B) (II). Spring 2025 (PKU).</li>
-             <li>Teaching Assistant, Advanced Mathematics (A) (I). Fall 2024 (PKU).
-                        <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" target="_blank" rel="nofollow">Lecture notes</a>, 
-                        <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" target="_blank" rel="nofollow">Finals of Fall 2022 and Fall 2023</a>.</li>
-             <li>Teaching Assistant, Advanced Mathematics (B) (II). Spring 2024 (PKU).</li>
-             <li>Teaching Assistant, Harmonic Analysis. Fall 2023 (PKU).
-                        <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" target="_blank" rel="nofollow">HW answers</a>.</li>
-             <li>Teaching Assistant, Functional Analysis (I). Spring 2023 (PKU).</li>
-             <li>Teaching Assistant, Advanced Mathematics (C) (I). Fall 2022 (PKU).</li>
-             <li>Teaching Assistant, Mathematical Analysis (II). Spring 2022 (ZJU).</li>
-             <li>Teaching Assistant, Mathematical Analysis (I). Fall 2021 (ZJU).</li>
-        </ul>
-    </section>
- <hr>  
-    <section>
-        <h2>Seminars</h2>
-        <ul>
-             <li><a href="https://luisyanka.github.io/GMT/" target="_blank" rel="nofollow">Geometric Measure Theory seminars at Peking University</a>.</li>
-        </ul>
 
-    </section>
-  <hr>  
-     <section>
-     <h2>Some Links</h2>
-        <ul>
-            <li><a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" target="_blank" rel="nofollow">Personal page on Google Scholar</a>.</li>
-            <li><a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" target="_blank" rel="nofollow">Personal page on MathSciNet</a>.</li>
-        </ul>
-    </section>
-</main>
-
-<script>
-    function toggleAbstract(id) {
-        const abstractDiv = document.getElementById(id);
-        abstractDiv.style.display = abstractDiv.style.display === 'block' ? 'none' : 'block';
-    }
-</script>
-
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+    </script>
 </body>
+
 </html>
