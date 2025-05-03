@@ -1,173 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 设置字符编码为UTF-8，支持多语言显示 -->
     <meta charset="UTF-8">
+    <!-- 确保页面在移动设备上自适应，初始缩放比例为1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wei Wang - Academic Homepage</title>
+    <!-- 页面标题，显示在浏览器标签页 -->
+    <title>Seminars of Analysis and Geometric Measure Theory</title>
+    <!-- 加载 MathJax 用于渲染 LaTeX 数学公式 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <style>
-        /* 设置页面主体样式，确保整体布局和背景统一 */
+        /* 全局样式 */
         body {
-            line-height: 1.6; /* 设置行高为字体大小的1.6倍，增加文本可读性 */
-            margin: 0; /* 移除默认外边距，确保内容贴合页面边缘 */
-            font-family: Arial, sans-serif; /* 设置默认字体为Arial或系统无衬线字体 */
-            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 设置从浅蓝到稍深蓝的渐变背景 */
-            min-height: 100vh; /* 确保页面高度至少占满整个视口 */
+            line-height: 1.6; /* 设置行高为1.6倍，增强文本可读性 */
+            margin: 0; /* 移除默认外边距 */
+            font-family: Arial, sans-serif; /* 使用Arial字体，备选无衬线字体 */
+            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 从浅蓝到深蓝的渐变背景 */
+            min-height: 100vh; /* 确保背景覆盖整个视口高度 */
         }
-        /* 定义包裹导航和内容的容器，使用flex布局 */
         .wrapper {
-            display: flex; /* 使用flexbox布局，使侧边栏和内容区域水平排列 */
+            display: flex; /* 使用flex布局，使侧边栏和内容区域水平排列 */
         }
-        /* 设置侧边栏导航样式 */
+        /* 侧边栏导航样式 */
         .sidebar {
-            width: 200px; /* 设置侧边栏固定宽度为200像素 */
-            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 与主体背景一致的渐变背景 */
-            position: fixed; /* 固定定位，使侧边栏随页面滚动保持可见 */
-            height: 100vh; /* 侧边栏高度占满整个视口 */
-            padding-top: 20px; /* 上内边距20像素，留出空间放置标题 */
-            overflow-y: auto; /* 内容超出时启用垂直滚动条 */
-            border-right: 1px solid #a3c9ff; /* 添加右侧1像素浅蓝边框，区分侧边栏和内容 */
+            width: 200px; /* 侧边栏固定宽度 */
+            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 与页面背景一致的渐变 */
+            position: fixed; /* 固定定位，侧边栏随页面滚动保持可见 */
+            height: 100vh; /* 侧边栏高度占满视口 */
+            padding-top: 20px; /* 顶部内边距 */
+            overflow-y: auto; /* 内容超长时启用垂直滚动 */
+            border-right: 1px solid #a3c9ff; /* 右侧添加浅蓝边框分隔 */
         }
-        /* 设置侧边栏标题样式 */
         .sidebar h2 {
-            color: #333; /* 标题文本颜色为深灰色 */
-            text-align: center; /* 标题居中对齐 */
-            margin-bottom: 20px; /* 下外边距20像素，间隔标题与导航链接 */
-            font-size: 1.2em; /* 字体大小为1.2倍默认大小 */
+            color: #333; /* 标题文字颜色为深灰 */
+            text-align: center; /* 标题居中 */
+            margin-bottom: 20px; /* 底部外边距 */
+            font-size: 1.2em; /* 标题字体大小 */
         }
-        /* 设置侧边栏导航列表样式 */
         .sidebar ul {
-            list-style: none; /* 移除列表默认的项目符号 */
-            padding: 0; /* 移除列表默认内边距 */
+            list-style: none; /* 移除列表默认样式 */
+            padding: 0; /* 移除内边距 */
         }
-        /* 设置导航列表项样式 */
         .sidebar li {
-            margin: 10px 0; /* 上下外边距10像素，增加列表项间距 */
+            margin: 10px 0; /* 列表项上下外边距 */
         }
-        /* 设置导航链接样式 */
         .sidebar a {
-            color: #1a3c66; /* 链接文本颜色为深蓝色 */
-            text-decoration: none; /* 移除链接默认下划线 */
-            display: block; /* 使链接占满整个列表项，增加点击区域 */
-            padding: 10px 20px; /* 内边距：上下10像素，左右20像素 */
-            transition: background 0.3s, color 0.3s; /* 背景和颜色变化过渡效果，持续0.3秒 */
+            color: #1a3c66; /* 链接文字颜色为深蓝色 */
+            text-decoration: none; /* 移除链接下划线 */
+            display: block; /* 链接占满整行，方便点击 */
+            padding: 10px 20px; /* 链接内边距 */
+            transition: background 0.3s, color 0.3s; /* 背景和文字颜色过渡效果 */
         }
-        /* 设置导航链接悬停效果 */
         .sidebar a:hover {
-            background: #a3c9ff; /* 悬停时背景变为浅蓝色 */
-            color: #fff; /* 文本颜色变为白色 */
+            background: #a3c9ff; /* 鼠标悬停时背景变为浅蓝色 */
+            color: #fff; /* 文字变为白色 */
         }
-        /* 设置当前激活的导航链接样式 */
         .sidebar a.active {
-            background: #2e5c99; /* 激活时背景为深蓝色 */
-            color: white; /* 文本颜色为白色 */
-            font-weight: bold; /* 字体加粗 */
+            background: #2e5c99; /* 当前激活链接的背景为深蓝色 */
+            color: white; /* 文字为白色 */
+            font-weight: bold; /* 加粗文字 */
         }
-        /* 设置主内容区域样式 */
+        /* 主内容区域样式 */
         .content {
-            margin-left: 200px; /* 左外边距与侧边栏宽度一致，避免内容被覆盖 */
-            padding: 20px; /* 内容区域内边距20像素 */
-            width: calc(100% - 200px); /* 宽度为视口宽度减去侧边栏宽度 */
+            margin-left: 200px; /* 为侧边栏预留空间 */
+            padding: 20px; /* 内容区域内边距 */
+            width: calc(100% - 200px); /* 内容宽度为视口宽度减去侧边栏宽度 */
         }
-        /* 设置页眉样式 */
         header {
-            color: #333; /* 文本颜色为深灰色 */
-            padding: 20px; /* 内边距20像素 */
-            text-align: center; /* 文本居中对齐 */
-            border-bottom: 1px solid #a3c9ff; /* 添加1像素浅蓝下边框，区分页眉和内容 */
-            margin-bottom: 20px; /* 下外边距20像素，间隔页眉与内容 */
+            color: #333; /* 页眉文字颜色为深灰 */
+            padding: 20px; /* 页眉内边距 */
+            text-align: center; /* 文字居中 */
+            border-bottom: 1px solid #a3c9ff; /* 底部添加浅蓝边框分隔 */
+            margin-bottom: 20px; /* 底部外边距 */
         }
-        /* 设置内容容器样式 */
         .container {
-            width: 90%; /* 容器宽度为视口的90% */
-            max-width: 1200px; /* 最大宽度1200像素，限制内容过宽 */
+            width: 90%; /* 内容容器宽度为视口的90% */
+            max-width: 1200px; /* 最大宽度限制为1200像素 */
             margin: 0 auto; /* 水平居中 */
         }
-        /* 设置一级和二级标题样式 */
         h1, h2 {
-            color: #333; /* 标题颜色为深灰色 */
+            color: #333; /* 标题颜色为深灰 */
         }
-        /* 设置三级标题样式 */
-        h3 {
-            font-size: 18px; /* 字体大小18像素 */
-            font-weight: 500; /* 字体粗细为中等 */
-            color: #333; /* 文本颜色为深灰色 */
-            margin: 16px 0 10px; /* 外边距：上16像素，下10像素 */
-        }
-        /* 设置section默认样式 */
         section {
-            margin-bottom: 30px; /* 下外边距30像素，间隔各部分 */
-            padding: 15px; /* 内边距15像素 */
-            display: none; /* 默认隐藏所有section */
+            margin-bottom: 30px; /* 各部分之间的底部外边距 */
+            padding: 15px; /* 部分内边距 */
+            display: none; /* 默认隐藏所有部分 */
         }
-        /* 设置激活的section显示 */
         section.active {
-            display: block; /* 激活的section显示为块级元素 */
+            display: block; /* 显示当前激活的部分 */
         }
-        /* 设置段落和列表项样式 */
-        p, li {
-            font-size: 16px; /* 字体大小16像素 */
-            color: #3c4043; /* 文本颜色为中灰色 */
-            margin-bottom: 10px; /* 下外边距10像素 */
-            line-height: 1.3; /* 行高为字体大小的1.3倍 */
+        section a {
+            color: #1558d6; /* 部分内链接颜色为蓝色 */
+            text-decoration: none; /* 移除链接下划线 */
         }
-        /* 设置无序和有序列表样式 */
-        ul, ol {
-            margin-left: 20px; /* 左外边距20像素，缩进列表 */
-            margin-bottom: 16px; /* 下外边距16像素 */
+        section a:hover {
+            text-decoration: underline; /* 鼠标悬停时添加下划线 */
         }
-        /* 设置表格样式 */
         table {
             width: 100%; /* 表格宽度占满容器 */
-            border-collapse: collapse; /* 边框合并，移除单元格间隙 */
-            margin: 20px 0; /* 上下外边距20像素 */
+            border-collapse: collapse; /* 合并边框 */
+            margin: 20px 0; /* 上下外边距 */
         }
-        /* 设置表格单元格样式 */
         th, td {
-            padding: 10px; /* 内边距10像素 */
-            border: 1px solid #ddd; /* 1像素浅灰色边框 */
-            text-align: left; /* 文本左对齐 */
+            padding: 10px; /* 表格单元格内边距 */
+            border: 1px solid #ddd; /* 单元格边框为浅灰色 */
+            text-align: left; /* 文字左对齐 */
             vertical-align: top; /* 内容顶部对齐 */
         }
-        /* 设置表格标题单元格样式 */
         th {
-            background-color: #f2f2f2; /* 背景色为浅灰色 */
-            color: black; /* 文本颜色为黑色 */
-            font-weight: bold; /* 字体加粗 */
+            background-color: #f2f2f2; /* 表头背景为浅灰色 */
+            color: black; /* 表头文字为黑色 */
+            font-weight: bold; /* 表头文字加粗 */
         }
-        /* 设置表格、段落和列表中的链接样式 */
-        td a, p a, li a {
-            text-decoration: none; /* 移除链接默认下划线 */
+        td a {
+            text-decoration: none; /* 表格内链接无下划线 */
             color: blue; /* 链接颜色为蓝色 */
         }
-        /* 设置链接的各种状态样式 */
-        td a:visited, td a:hover, td a:active,
-        p a:visited, p a:hover, p a:active,
-        li a:visited, li a:hover, li a:active {
-            color: blue; /* 确保链接在访问、悬停、激活状态下保持蓝色 */
-            text-decoration: underline; /* 悬停或激活时添加下划线 */
+        td a:hover {
+            text-decoration: underline; /* 鼠标悬停时添加下划线 */
         }
-        /* 响应式设计：针对屏幕宽度小于600像素的设备 */
-        @media (max-width: 600px) {
-            .sidebar {
-                width: 100%; /* 侧边栏宽度占满视口 */
-                height: auto; /* 高度自适应内容 */
-                position: static; /* 取消固定定位，变为正常流布局 */
-                border-right: none; /* 移除右侧边框 */
-                border-bottom: 1px solid #a3c9ff; /* 添加底部边框 */
-            }
-            .content {
-                margin-left: 0; /* 移除左外边距 */
-                width: 100%; /* 内容区域宽度占满视口 */
-            }
-            .container {
-                padding: 16px 12px; /* 内边距调整：上下16像素，左右12像素 */
-            }
-            header h1 {
-                font-size: 22px; /* 页眉标题字体大小减小到22像素 */
-            }
-            .sidebar a {
-                font-size: 14px; /* 导航链接字体大小减小到14像素 */
-            }
+        /* 论文标题样式 */
+        .paper-title {
+            cursor: pointer; /* 鼠标悬停时显示手型光标 */
+            color: #1558d6; /* 标题颜色与链接一致 */
+            text-decoration: none; /* 无下划线 */
+            font-weight: bold; /* 加粗标题 */
+        }
+        .paper-title:hover {
+            text-decoration: underline; /* 悬停时添加下划线 */
+        }
+        /* 摘要样式 */
+        .abstract {
+            display: none; /* 默认隐藏摘要 */
+            margin-top: 10px; /* 顶部外边距 */
+            padding: 10px; /* 内边距 */
+            background: #d9e8ff; /* 稍深的淡蓝色背景，更自然地融入渐变 */
+            border-left: 3px solid #a3c9ff; /* 左侧蓝色边框 */
+            font-size: 0.95em; /* 字体稍小 */
+            color: #000; /* 文字颜色为黑色 */
+            word-break: break-word; /* 允许单词在边界处折断 */
+            hyphens: auto; /* 自动添加连字符 */
+        }
+        .abstract.active {
+            display: block; /* 显示激活的摘要 */
         }
     </style>
 </head>
@@ -211,48 +186,95 @@
                         <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations.</li>
                         <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators.</li>
                     </ul>
-                    <h2>Published Papers</h2>
-                    <ol>
-                        <li>
-                            Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                            On the sharp constants in the regional fractional Sobolev inequalities<br>
-                            <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">Partial Differential Equations and Applications, <b>6</b> (2025), 1-20</a> <br>
-                            <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv preprint arXiv: 2403.00357</a><br>
-                        </li>
-                        <li>
-                            Wei Wang<br>
-                            Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
-                            <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">Journal of Differential Equations, <b>370</b> (2023), 1-65</a><br>
-                            <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv preprint arXiv: 2211.14614</a>
-                        </li>
-                        <li>
-                            Wei Wang, Ting Zhang<br>
-                            Homogenization theory of elliptic system with lower order terms for dimension two<br>
-                            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824</a><br>
-                            <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv preprint arXiv: 2210.06329</a>
-                        </li>
-                    </ol>
-                    <h2>Preprints</h2>
+                    <h2>Publications</h2>
+(click on each title of the paper to show the abstract)
                     <ol>
                         <li>
                             Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                            Stratification and rectifiability of harmonic map flows via tangent measures<br>
+                            <span class="paper-title" data-abstract-id="pre1-abstract">Stratification and rectifiability of harmonic map flows via tangent measures</span><br>
                             <a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv preprint arXiv: 2504.14880</a>
+                            <div id="pre1-abstract" class="abstract">
+                                In this paper, we investigate the stratification theory for suitable solutions of harmonic map flows based on the spatial symmetry of tangent measures. Generally, suitable solutions are a category of solutions that satisfy both the localized energy inequality and the monotonicity formula. Building on the modifications and adjustments of quantitative stratifications and Reifenberg-rectifiable theory by Naber and Valtorta, we confirm that each stratum in our model is rectifiable. We also establish an estimate for the Minkowski content of the singular set at each time slice, demonstrating that the singular set is rectifiable and that our results strengthen previous findings, which were limited to almost every time slice. Furthermore, under certain assumptions about the target manifolds that exclude specific tangent flows and measures, our analysis achieves substantial improvements in the regularity of suitable solutions for harmonic map flows.
+                            </div>
+                        </li>
+                        <li>
+                            Rupert L. Frank, Tianling Jin, Wei Wang<br>
+                            <span class="paper-title" data-abstract-id="pub1-abstract">On the sharp constants in the regional fractional Sobolev inequalities</span><br>
+                            <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">Partial Differential Equations and Applications, <b>6</b> (2025), 1-20</a><br>
+                            <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv preprint arXiv: 2403.00357</a>
+                            <div id="pub1-abstract" class="abstract">
+                                In this paper, we study the sharp constants in fractional Sobolev inequalities associated with the regional fractional Laplacian in domains.
+                            </div>
                         </li>
                         <li>
                             Wei Wang, Zhifei Zhang<br>
-                            Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
+                            <span class="paper-title" data-abstract-id="pre2-abstract">Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity</span><br>
                             <a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv preprint arXiv: 2411.16048</a>
+                            <div id="pre2-abstract" class="abstract">
+                                In this paper, we study the stationary solutions of semilinear elliptic equation with singular nonlinearity
+\[
+\Delta u=u^{-p}+f, u \geq 0 \quad \text { in } \Omega \subset \mathbb{R}^n,
+\]
+where \(n \geq 2, p>1, \Omega\) is a bounded domain, and \(f \in L^q(\Omega)\) with \(\frac{1}{2}+\frac{1}{2 p}<\frac{q}{n}\). We establish a sharp estimate for the Minkowski content of the rupture set \(\{u=0\}\) and demonstrate that this set is \((n-2)\)-rectifiable. For this, we examine the stratification of the rupture set based on the symmetry properties of tangent functions, leading to the proof of \(k\)-rectifiability for each \(k\)-stratum. As a significant byproduct of our analysis, we improve the integrability of \(D^j u\) with \(j \in \mathbb{Z}_{+}\) to the optimal Lorentz space \(L^{\frac{2(p+1)}{j(p+1)-2}, \infty}\), under the assumption that \(D^{j-1} f\) is bounded. As an application of our results in the static case of the equation, for a class of suitable weak solutions to the three-dimensional evolutional problem
+\[
+\partial_t u=\Delta u-u^{-p}, u \geq 0 \quad \text { in }\left(\Omega \subset \mathbb{R}^3\right) \times(0, T),
+\]
+where \(p>3\) and \(T>0\), we show that \(\{u(\cdot, t)=0\}\) is 1-rectifiable for a.e. \(t \in(0, T)\).
+                            </div>
                         </li>
                         <li>
                             Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                            Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
+                            <span class="paper-title" data-abstract-id="pre3-abstract">Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations</span><br>
                             <a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv preprint arXiv: 2408.06726</a>
+                            <div id="pre3-abstract" class="abstract">
+                                In this paper, we investigate the interior regularity theory for stationary solutions of the supercritical nonlinear elliptic equation
+\[
+-\Delta u=|u|^{p-1} u \quad \text { in } \Omega, \quad p>\frac{n+2}{n-2},
+\]
+where \(\Omega \subset \mathbb{R}^n\) is a bounded domain with \(n \geq 3\). Our primary focus is on the structure of stratification for the singular sets. We define the \(k\)-th stratification \(S^k(u)\) of \(u\) based on the tangent functions and measures. We show that the Hausdorff dimension of \(S^k(u)\) is at most \(k\) and \(S^k(u)\) is \(k\)-rectifiable, and establish estimates for volumes associated with points that have lower bounds on the regular scales. These estimates enable us to derive sharp interior estimates for the solutions. Specifically, if \(\alpha_p=\frac{2(p+1)}{p-1}\) is not an integer, then for any \(j \in \mathbb{Z}_{\geq 0}\), we have
+\[
+D^j u \in L_{\operatorname{loc}}^{q_j,\infty}(\Omega),
+\]
+which implies that for any \(\Omega^{\prime} \subset \subset \Omega\),
+\[
+\sup \left\{\lambda>0: \lambda^{q_j} \mathcal{L}^n\left(\left\{x \in \Omega^{\prime}:\left|D^j u(x)\right|>\lambda\right\}\right)\right\}<+\infty,
+\]
+where $\mathcal{L}^n(\cdot)$ is the $n$-dimensional Lebesgue measure, and
+\[
+q_j=\frac{(p-1)\left(\left\lfloor\alpha_p\right\rfloor+1\right)}{2+j(p-1)},
+\]
+with \(\left\lfloor\alpha_p\right\rfloor\) being the integer part of \(\alpha_p\). The proofs of these results rely on Reifenberg-type theorems developed by A . Naber and D . Valtorta to study the stratification of harmonic maps.
+                            </div>
                         </li>
                         <li>
                             Wei Wang, Zhifei Zhang<br>
-                            Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
+                            <span class="paper-title" data-abstract-id="pre4-abstract">Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers</span><br>
                             <a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv preprint arXiv: 2404.00677</a>
+                            <div id="pre4-abstract" class="abstract">
+                                We study a class of Landau-de Gennes energy functionals with a sextic bulk energy density in a three-dimensional domain. We examine the asymptotic behavior of uniformly bounded minimizers in two distinct scenarios: one where their energy remains uniformly bounded, and another where it logarithmically diverges as a function of the elastic constant. In the first case, we show that up to a subsequence, the minimizers converge to a locally minimizing harmonic map in both the \(H_{\mathrm{loc}}^1\) and \(C_{\text {loc }}^j, j \in \mathbb{Z}_{+}\) norms within compact subsets that are distant from the singularities of the limit. For the second case, we establish the existence of a closed set denoted as \(\mathcal{S}_{\mathrm{line}} \). This set has finite length and consists of finite segments of lines locally such that the energy of minimizers are locally uniformly bounded away from it. This work solves an open question raised by Canevari (ARMA, 223 (2017), 591-676), specifically concerning point and line defects in the Landau-de Gennes model with sextic potentials.
+                            </div>
+                        </li>
+                        <li>
+                            Wei Wang<br>
+                            <span class="paper-title" data-abstract-id="pub2-abstract">Uniform estimates of resolvents in homogenization theory of elliptic systems</span><br>
+                            <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">Journal of Differential Equations, <b>370</b> (2023), 1-65</a><br>
+                            <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv preprint arXiv: 2211.14614</a>
+                            <div id="pub2-abstract" class="abstract">
+                                In this paper, we study the estimates of resolvents \(R\left(\lambda, \mathscr{L}_{\varepsilon}\right)=\left(\mathscr{L}_{\varepsilon}-\lambda I\right)^{-1}\), where \(\mathscr{L}_{\varepsilon}=-\operatorname{div}(A(x / \varepsilon) \nabla)\) is a family of second elliptic operators with symmetric, periodic and oscillating coefficients defined on a bounded domain \(\Omega\) with \(\varepsilon>0\). For \(1<p<\infty\), we will establish uniform \(L^p \rightarrow L^p, L^p \rightarrow W_0^{1, p}, W^{-1, p} \rightarrow L^p\) and \(W^{-1, p} \rightarrow W_0^{1, p}\) estimates by using the real variable method. Meanwhile, we use Green functions for operators \(\mathscr{L}_{\varepsilon}-\lambda I\) to study the asymptotic behavior of \(R\left(\lambda, \mathscr{L}_{\varepsilon}\right)\) and obtain convergence estimates in \(L^p \rightarrow L^p, L^p \rightarrow W_0^{1, p}\) norm.
+                            </div>
+                        </li>
+                        <li>
+                            Wei Wang, Ting Zhang<br>
+                            <span class="paper-title" data-abstract-id="pub3-abstract">Homogenization theory of elliptic system with lower order terms for dimension two</span><br>
+                            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">Communications on Pure and Applied Analysis, <b>22</b> (2023), 787-824</a><br>
+                            <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv preprint arXiv: 2210.06329</a>
+                            <div id="pub3-abstract" class="abstract">
+                                In this paper, we consider the homogenization problem for generalized elliptic systems
+\[
+\mathcal{L}_{\varepsilon}=-\operatorname{div}[A(x / \varepsilon) \nabla+V(x / \varepsilon)]+B(x / \varepsilon) \nabla+c(x / \varepsilon)+\lambda I
+\]
+with dimension two. Precisely, we will establish the \(W^{1, p}\) estimates, Hölder estimates, Lipschitz estimates and \(L^p\) convergence results for \(\mathcal{L}_{\varepsilon}\) with dimension two. The operator \(\mathcal{L}_{\varepsilon}\) has been studied by Qiang Xu with dimension \(d \geq 3\) in [22,23] and the case \(d=2\) is remained unsolved. As a byproduct, we will construct the Green functions for \(\mathcal{L}_{\varepsilon}\) with \(d=2\) and their convergence rates.
+                            </div>
                         </li>
                     </ol>
                 </section>
@@ -289,6 +311,7 @@
     </div>
 
     <script>
+        // 侧边栏导航点击事件
         document.querySelectorAll('.sidebar a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -308,6 +331,22 @@
                     top: targetSection.offsetTop - 100,
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // 论文标题点击事件，切换摘要显示
+        document.querySelectorAll('.paper-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const abstractId = title.getAttribute('data-abstract-id');
+                const abstract = document.getElementById(abstractId);
+
+                // 切换当前摘要的显示状态，允许多个摘要同时显示
+                abstract.classList.toggle('active');
+
+                // 触发 MathJax 重新渲染
+                if (typeof MathJax !== 'undefined') {
+                    MathJax.typesetPromise([abstract]).catch(err => console.log('MathJax typesetting failed: ', err));
+                }
             });
         });
     </script>
