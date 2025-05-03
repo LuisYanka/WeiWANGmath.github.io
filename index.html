@@ -1,266 +1,319 @@
-<!DOCTYPE html> <!-- 声明文档类型为 HTML5 -->
-<html lang="en"> <!-- 设置文档语言为英语 -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- 设置字符编码为 UTF-8，确保支持多语言 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 设置响应式视口，确保网页在不同设备上适配 -->
-    <title>Wei Wang - Academic Homepage</title> <!-- 网页标题，显示在浏览器标签栏 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wei Wang - Academic Homepage</title>
     <style>
-        /* 全局样式 */
-        * {
-            box-sizing: border-box; /* 设置盒模型为 border-box，宽度和高度包括内边距和边框 */
-            margin: 0; /* 移除所有元素的默认外边距 */
-            padding: 0; /* 移除所有元素的默认内边距 */
-        }
-
-        /* 页面主体样式 */
+        /* 设置页面主体样式，确保整体布局和背景统一 */
         body {
-            font-family: Arial, sans-serif; /* 设置默认字体为 Arial 或系统默认无衬线字体 */
-            background: linear-gradient(to bottom, #e8f0fe, #fff); /* 背景从浅蓝到白色渐变 */
-            color: #202124; /* 默认文本颜色为深灰色 */
-            min-height: 100vh; /* 确保页面高度至少占满视口 */
+            line-height: 1.6; /* 设置行高为字体大小的1.6倍，增加文本可读性 */
+            margin: 0; /* 移除默认外边距，确保内容贴合页面边缘 */
+            font-family: Arial, sans-serif; /* 设置默认字体为Arial或系统无衬线字体 */
+            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 设置从浅蓝到稍深蓝的渐变背景 */
+            min-height: 100vh; /* 确保页面高度至少占满整个视口 */
         }
-
-        /* 页眉样式 */
+        /* 定义包裹导航和内容的容器，使用flex布局 */
+        .wrapper {
+            display: flex; /* 使用flexbox布局，使侧边栏和内容区域水平排列 */
+        }
+        /* 设置侧边栏导航样式 */
+        .sidebar {
+            width: 200px; /* 设置侧边栏固定宽度为200像素 */
+            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 与主体背景一致的渐变背景 */
+            position: fixed; /* 固定定位，使侧边栏随页面滚动保持可见 */
+            height: 100vh; /* 侧边栏高度占满整个视口 */
+            padding-top: 20px; /* 上内边距20像素，留出空间放置标题 */
+            overflow-y: auto; /* 内容超出时启用垂直滚动条 */
+            border-right: 1px solid #a3c9ff; /* 添加右侧1像素浅蓝边框，区分侧边栏和内容 */
+        }
+        /* 设置侧边栏标题样式 */
+        .sidebar h2 {
+            color: #333; /* 标题文本颜色为深灰色 */
+            text-align: center; /* 标题居中对齐 */
+            margin-bottom: 20px; /* 下外边距20像素，间隔标题与导航链接 */
+            font-size: 1.2em; /* 字体大小为1.2倍默认大小 */
+        }
+        /* 设置侧边栏导航列表样式 */
+        .sidebar ul {
+            list-style: none; /* 移除列表默认的项目符号 */
+            padding: 0; /* 移除列表默认内边距 */
+        }
+        /* 设置导航列表项样式 */
+        .sidebar li {
+            margin: 10px 0; /* 上下外边距10像素，增加列表项间距 */
+        }
+        /* 设置导航链接样式 */
+        .sidebar a {
+            color: #1a3c66; /* 链接文本颜色为深蓝色 */
+            text-decoration: none; /* 移除链接默认下划线 */
+            display: block; /* 使链接占满整个列表项，增加点击区域 */
+            padding: 10px 20px; /* 内边距：上下10像素，左右20像素 */
+            transition: background 0.3s, color 0.3s; /* 背景和颜色变化过渡效果，持续0.3秒 */
+        }
+        /* 设置导航链接悬停效果 */
+        .sidebar a:hover {
+            background: #a3c9ff; /* 悬停时背景变为浅蓝色 */
+            color: #fff; /* 文本颜色变为白色 */
+        }
+        /* 设置当前激活的导航链接样式 */
+        .sidebar a.active {
+            background: #2e5c99; /* 激活时背景为深蓝色 */
+            color: white; /* 文本颜色为白色 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        /* 设置主内容区域样式 */
+        .content {
+            margin-left: 200px; /* 左外边距与侧边栏宽度一致，避免内容被覆盖 */
+            padding: 20px; /* 内容区域内边距20像素 */
+            width: calc(100% - 200px); /* 宽度为视口宽度减去侧边栏宽度 */
+        }
+        /* 设置页眉样式 */
         header {
-            background: linear-gradient(to bottom, #d2e3fc, #e8f0fe); /* 页眉背景从浅蓝到更浅的蓝色渐变 */
-            padding: 16px 20px; /* 设置内边距：上下 16px，左右 20px */
-            display: flex; /* 使用 Flexbox 布局 */
-            justify-content: space-between; /* 子元素水平分布在两端 */
-            align-items: center; /* 子元素垂直居中 */
-            border-bottom: 1px solid #e8eaed; /* 添加 1px 浅灰色下边框 */
+            color: #333; /* 文本颜色为深灰色 */
+            padding: 20px; /* 内边距20像素 */
+            text-align: center; /* 文本居中对齐 */
+            border-bottom: 1px solid #a3c9ff; /* 添加1像素浅蓝下边框，区分页眉和内容 */
+            margin-bottom: 20px; /* 下外边距20像素，间隔页眉与内容 */
         }
-
-        /* 页眉中的主标题样式 */
-        header h1 {
-            font-size: 26px; /* 字体大小为 26px */
-            font-weight: 500; /* 字体粗细为中等 */
-            line-height: 1.5; /* 行高为字体大小的 1.5 倍 */
-        }
-
-        /* 页眉中的副标题样式 */
-        header h2 {
-            font-size: 16px; /* 字体大小为 16px */
-            font-weight: 400; /* 字体粗细为正常 */
-            color: #5f6368; /* 文本颜色为浅灰色 */
-            margin-top: 4px; /* 上外边距为 4px */
-            line-height: 1.5; /* 行高为字体大小的 1.5 倍 */
-        }
-
-        /* 导航栏样式 */
-        nav {
-            display: flex; /* 使用 Flexbox 布局 */
-            gap: 16px; /* 导航链接之间间隔 16px */
-        }
-
-        /* 导航链接样式 */
-        nav a {
-            font-size: 16px; /* 字体大小为 16px */
-            font-weight: 400; /* 字体粗细为正常 */
-            color: #1a0dab; /* 文本颜色为蓝色（常见链接颜色） */
-            text-decoration: none; /* 移除默认下划线 */
-            transition: color 0.2s; /* 颜色变化过渡效果，持续 0.2 秒 */
-            line-height: 1.4; /* 行高为字体大小的 1.4 倍 */
-        }
-
-        /* 导航链接悬停效果 */
-        nav a:hover {
-            color: #1558d6; /* 悬停时颜色变为更深的蓝色 */
-            text-decoration: underline; /* 添加下划线 */
-        }
-
-        /* 当前激活的导航链接样式 */
-        nav a.active {
-            font-weight: 500; /* 字体粗细为中等 */
-            color: #1558d6; /* 颜色为深蓝色 */
-        }
-
-        /* 内容容器样式 */
+        /* 设置内容容器样式 */
         .container {
-            max-width: 1400px; /* 最大宽度为 1400px */
-            margin-left: 20px; /* 水平居左 margin 20px*/
-            padding: 0; /* 内边距：0*/
+            width: 90%; /* 容器宽度为视口的90% */
+            max-width: 1200px; /* 最大宽度1200像素，限制内容过宽 */
+            margin: 0 auto; /* 水平居中 */
         }
-
-        /* 各部分默认隐藏 */
-        section {
-            display: none; /* 默认隐藏所有 section 元素 */
+        /* 设置一级和二级标题样式 */
+        h1, h2 {
+            color: #333; /* 标题颜色为深灰色 */
         }
-
-        /* 激活的部分显示 */
-        section.active {
-            display: block; /* 激活的 section 显示为块级元素 */
-        }
-
-        /* 各部分的二级标题样式 */
-        section h2 {
-            font-size: 20px; /* 字体大小为 20px */
-            font-weight: 700; /* 字体粗细为粗体 */
-            color: #202124; /* 文本颜色为深灰色 */
-            margin: 20px 0 12px; /* 外边距：上 20px，下 12px */
-            line-height: 1.4; /* 行高为字体大小的 1.4 倍 */
-        }
-
-        /* 各部分的三级标题样式 */
-        section h3 {
-            font-size: 18px; /* 字体大小为 18px */
+        /* 设置三级标题样式 */
+        h3 {
+            font-size: 18px; /* 字体大小18像素 */
             font-weight: 500; /* 字体粗细为中等 */
-            color: #202124; /* 文本颜色为深灰色 */
-            margin: 16px 0 10px; /* 外边距：上 16px，下 10px */
-            line-height: 1.4; /* 行高为字体大小的 1.4 倍 */
+            color: #333; /* 文本颜色为深灰色 */
+            margin: 16px 0 10px; /* 外边距：上16像素，下10像素 */
         }
-
-        /* 段落和列表项样式 */
-        section p, section li {
-            font-size: 16px; /* 字体大小为 16px */
+        /* 设置section默认样式 */
+        section {
+            margin-bottom: 30px; /* 下外边距30像素，间隔各部分 */
+            padding: 15px; /* 内边距15像素 */
+            display: none; /* 默认隐藏所有section */
+        }
+        /* 设置激活的section显示 */
+        section.active {
+            display: block; /* 激活的section显示为块级元素 */
+        }
+        /* 设置段落和列表项样式 */
+        p, li {
+            font-size: 16px; /* 字体大小16像素 */
             color: #3c4043; /* 文本颜色为中灰色 */
-            margin-bottom: 10px; /* 下外边距为 10px */
-            line-height: 1.3; /* 行高为字体大小的 1.3 倍 */
+            margin-bottom: 10px; /* 下外边距10像素 */
+            line-height: 1.3; /* 行高为字体大小的1.3倍 */
         }
-
-        /* 无序和有序列表样式 */
-        section ul, section ol {
-            margin-left: 20px; /* 左外边距为 20px（缩进） */
-            margin-bottom: 16px; /* 下外边距为 16px */
+        /* 设置无序和有序列表样式 */
+        ul, ol {
+            margin-left: 20px; /* 左外边距20像素，缩进列表 */
+            margin-bottom: 16px; /* 下外边距16像素 */
         }
-
-        /* 部分内的链接样式 */
-        section a {
-            color: #1a0dab; /* 文本颜色为蓝色 */
-            text-decoration: none; /* 移除默认下划线 */
+        /* 设置表格样式 */
+        table {
+            width: 100%; /* 表格宽度占满容器 */
+            border-collapse: collapse; /* 边框合并，移除单元格间隙 */
+            margin: 20px 0; /* 上下外边距20像素 */
         }
-
-        /* 部分内链接悬停效果 */
-        section a:hover {
-            text-decoration: underline; /* 悬停时添加下划线 */
+        /* 设置表格单元格样式 */
+        th, td {
+            padding: 10px; /* 内边距10像素 */
+            border: 1px solid #ddd; /* 1像素浅灰色边框 */
+            text-align: left; /* 文本左对齐 */
+            vertical-align: top; /* 内容顶部对齐 */
         }
-
-        /* 响应式设计：针对屏幕宽度小于 600px 的设备 */
+        /* 设置表格标题单元格样式 */
+        th {
+            background-color: #f2f2f2; /* 背景色为浅灰色 */
+            color: black; /* 文本颜色为黑色 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        /* 设置表格、段落和列表中的链接样式 */
+        td a, p a, li a {
+            text-decoration: none; /* 移除链接默认下划线 */
+            color: blue; /* 链接颜色为蓝色 */
+        }
+        /* 设置链接的各种状态样式 */
+        td a:visited, td a:hover, td a:active,
+        p a:visited, p a:hover, p a:active,
+        li a:visited, li a:hover, li a:active {
+            color: blue; /* 确保链接在访问、悬停、激活状态下保持蓝色 */
+            text-decoration: underline; /* 悬停或激活时添加下划线 */
+        }
+        /* 响应式设计：针对屏幕宽度小于600像素的设备 */
         @media (max-width: 600px) {
-            header {
-                flex-direction: column; /* 页眉元素垂直排列 */
-                align-items: flex-start; /* 子元素左对齐 */
-                padding: 12px 16px; /* 内边距调整为上下 12px，左右 16px */
+            .sidebar {
+                width: 100%; /* 侧边栏宽度占满视口 */
+                height: auto; /* 高度自适应内容 */
+                position: static; /* 取消固定定位，变为正常流布局 */
+                border-right: none; /* 移除右侧边框 */
+                border-bottom: 1px solid #a3c9ff; /* 添加底部边框 */
             }
-
-            header h1 {
-                font-size: 22px; /* 字体大小减小到 22px */
+            .content {
+                margin-left: 0; /* 移除左外边距 */
+                width: 100%; /* 内容区域宽度占满视口 */
             }
-
-            header h2 {
-                font-size: 14px; /* 字体大小减小到 14px */
-            }
-
-            nav {
-                gap: 12px; /* 导航链接间距减小到 12px */
-                margin-top: 8px; /* 上外边距为 8px */
-            }
-
-            nav a {
-                font-size: 14px; /* 字体大小减小到 14px */
-            }
-
             .container {
-                padding: 16px 12px 16px 8px; /* 内边距调整：上 16px，右 12px，下 16px，左 8px */
+                padding: 16px 12px; /* 内边距调整：上下16像素，左右12像素 */
+            }
+            header h1 {
+                font-size: 22px; /* 页眉标题字体大小减小到22像素 */
+            }
+            .sidebar a {
+                font-size: 14px; /* 导航链接字体大小减小到14像素 */
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div>
-
-            <h1>Wei Wang (王尉)</h1>
-            <h2>Ph.D. Candidate in Theoretical Mathematics</h2>
-        </div>
-        <nav>
-            <a href="#" onclick="showSection('home')" class="active">Home</a>
-            <a href="#" onclick="showSection('publications')">Research</a>
-            <a href="#" onclick="showSection('talks')">Talks</a>
-            <a href="#" onclick="showSection('teaching')">Teaching</a>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#publications">Research</a></li>
+                <li><a href="#talks">Talks</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+            </ul>
         </nav>
-    </header>
-    <div class="container">
 
-        <section id="home" class="active">
-            <h2>About Me</h2>
-            <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" target="_blank" rel="nofollow">Peking University</a>.</p>
-            <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" target="_blank" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
-            <p>View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf" rel="nofollow">CV</a> (Last updated: Apr. 26, 2025).</p>
-            <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a></p>
-            <h2>Contact</h2>
-            <p>Room 314, 20th Building<br>
-               Peking University<br>
-               No. 5 Yiheyuan Road, Haidian District<br>
-               Beijing, 100871, P.R. China</p>
-            <p><b>Email:</b> 2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
-            <h2>Analysis Seminars</h2>
-            <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
-        </section>
+        <div class="content">
+            <header>
+                <h1>Wei Wang (王尉)</h1>
+                <p>Ph.D. Candidate in Theoretical Mathematics</p>
+            </header>
 
-        <section id="talks">
-            <h2>Talks and Presentations</h2>
-            <ul>
-                <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025. <a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" target="_blank" rel="nofollow">Poster</a></li>
-                <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024. <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" target="_blank" rel="nofollow">Slides</a></li>
-                <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024. <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" target="_blank" rel="nofollow">Poster</a></li>
-                <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022.</li>
-            </ul>
-        </section>
+            <div class="container">
+                <section id="home" class="active">
+                    <h2>About Me</h2>
+                    <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
+                    <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
+                    <p>View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf" rel="nofollow">CV</a> (Last updated: Apr. 26, 2025).</p>
+                    <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a></p>
+                    <h2>Contact</h2>
+                    <p>Room 314, 20th Building<br>
+                       Peking University<br>
+                       No. 5 Yiheyuan Road, Haidian District<br>
+                       Beijing, 100871, P.R. China</p>
+                    <p><b>Email:</b> 2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
+                    <h2>Analysis Seminars</h2>
+                    <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
+                </section>
 
-        <section id="teaching">
-            <h2>Teaching Experience</h2>
-            <h3>Peking University</h3>
-            <ul>
-                <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025. <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" target="_blank" rel="nofollow">Lecture Notes</a></li>
-                <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024. <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" target="_blank" rel="nofollow">Lecture Notes</a> | <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" target="_blank" rel="nofollow">Finals Answers (2022-2023)</a></li>
-                <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024.</li>
-                <li>Teaching Assistant, Harmonic Analysis, Fall 2023. <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" target="_blank" rel="nofollow">Homework Solutions</a></li>
-                <li>Teaching Assistant, Functional Analysis (I), Spring 2023.</li>
-                <li>Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022.</li>
-            </ul>
-            <h3>Zhejiang University</h3>
-            <ul>
-                <li>Teaching Assistant, Mathematical Analysis (II), Spring 2022.</li>
-                <li>Teaching Assistant, Mathematical Analysis (I), Fall 2021.</li>
-            </ul>
-        </section>
+                <section id="publications">
+                    <h2>Research Interests</h2>
+                    <ul>
+                        <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations.</li>
+                        <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators.</li>
+                    </ul>
+                    <h2>Published Papers</h2>
+                    <ol>
+                        <li>
+                            Rupert L. Frank, Tianling Jin, and Wei Wang<br>
+                            On the sharp constants in the regional fractional Sobolev inequalities<br>
+                            <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20<br>
+                            <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv</a>
+                        </li>
+                        <li>
+                            Wei Wang<br>
+                            Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
+                            <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65<br>
+                            <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>
+                        </li>
+                        <li>
+                            Wei Wang and Ting Zhang<br>
+                            Homogenization theory of elliptic system with lower order terms for dimension two<br>
+                            <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824<br>
+                            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>
+                        </li>
+                    </ol>
+                    <h2>Preprints</h2>
+                    <ol>
+                        <li>
+                            Haotong Fu, Wei Wang, Ke Wu, and Zhifei Zhang<br>
+                            Stratification and rectifiability of harmonic map flows via tangent measures<br>
+                            <em>arXiv preprint arXiv:2504.14880</em><br>
+                            <a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv</a>
+                        </li>
+                        <li>
+                            Wei Wang and Zhifei Zhang<br>
+                            Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
+                            <em>arXiv preprint arXiv:2411.16048</em><br>
+                            <a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv</a>
+                        </li>
+                        <li>
+                            Haotong Fu, Wei Wang, and Zhifei Zhang<br>
+                            Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
+                            <em>arXiv preprint arXiv:2408.06726</em><br>
+                            <a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv</a>
+                        </li>
+                        <li>
+                            Wei Wang and Zhifei Zhang<br>
+                            Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
+                            <em>arXiv preprint arXiv:2404.00677</em><br>
+                            <a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv</a>
+                        </li>
+                    </ol>
+                </section>
 
-        <section id="publications">
-            <h2>Research Interests</h2>
-            <ul>
-                <li><b>Areas:</b> Geometric variational problems, elliptic equations, parabolic equations.</li>
-                <li><b>Topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators.</li>
-            </ul>
-            <h2>Published Papers</h2>
-            <ol>
-                <li>On the sharp constants in the regional fractional Sobolev inequalities, (with Rupert L. Frank and tianling Jin), <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20. <a href="https://doi.org/10.1007/s42985-025-00317-2" target="_blank" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv</a></li>
-                <li>Uniform estimates of resolvents in homogenization theory of elliptic systems, <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65. <a href="https://doi.org/10.1016/j.jde.2023.06.015" target="_blank" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a></li>
-                <li>Homogenization theory of elliptic system with lower order terms for dimension two, (with Ting Zhang), <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824. <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" target="_blank" rel="nofollow">DOI</a> | <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a></li>
-            </ol>
-            <h2>Preprints</h2>
-            <ol>
-                <li>Stratification and rectifiability of harmonic map flows via tangent measures, (with Haotong Fu, Ke Wu, and Zhifei Zhang), <em>arXiv preprint arXiv:2504.14880</em>. <a href="https://arxiv.org/abs/2504.14880" target="_blank" rel="nofollow">arXiv</a></li>
-                <li>Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity, (with Zhifei Zhang), <em>arXiv preprint arXiv:2411.16048</em>. <a href="https://arxiv.org/abs/2411.16048" target="_blank" rel="nofollow">arXiv</a></li>
-                <li>Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations, (with Haotong Fu and Zhifei Zhang), <em>arXiv preprint arXiv:2408.06726</em>. <a href="https://arxiv.org/abs/2408.06726" target="_blank" rel="nofollow">arXiv</a></li>
-                <li>Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers, (with Zhifei Zhang), <em>arXiv preprint arXiv:2404.00677</em>. <a href="https://arxiv.org/abs/2404.00677" target="_blank" rel="nofollow">arXiv</a></li>
-            </ol>
-        </section>
+                <section id="talks">
+                    <h2>Talks and Presentations</h2>
+                    <ul>
+                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025. <a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow">Poster</a></li>
+                        <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024. <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow">Slides</a></li>
+                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024. <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow">Poster</a></li>
+                        <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022.</li>
+                    </ul>
+                </section>
 
-
+                <section id="teaching">
+                    <h2>Teaching and Teaching Assistant Experience</h2>
+                    <h3>Peking University</h3>
+                    <ul>
+                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025. <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" rel="nofollow">Lecture Notes</a></li>
+                        <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024. <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" rel="nofollow">Lecture Notes</a> | <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" rel="nofollow">Finals Answers (2022-2023)</a></li>
+                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024.</li>
+                        <li>Teaching Assistant, Harmonic Analysis, Fall 2023. <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" rel="nofollow">Homework Solutions</a></li>
+                        <li>Teaching Assistant, Functional Analysis (I), Spring 2023.</li>
+                        <li>Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022.</li>
+                    </ul>
+                    <h3>Zhejiang University</h3>
+                    <ul>
+                        <li>Teaching Assistant, Mathematical Analysis (II), Spring 2022.</li>
+                        <li>Teaching Assistant, Mathematical Analysis (I), Fall 2021.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
     </div>
+
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                targetSection.classList.add('active');
+
+                document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
             });
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(sectionId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
+        });
     </script>
 </body>
 </html>
