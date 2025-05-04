@@ -120,31 +120,6 @@
         td a:hover {
             text-decoration: underline; /* 鼠标悬停时添加下划线 */
         }
-        /* 论文标题样式 */
-        .paper-title {
-            cursor: pointer; /* 鼠标悬停时显示手型光标 */
-            color: #1558d6; /* 标题颜色与链接一致 */
-            text-decoration: none; /* 无下划线 */
-            font-weight: bold; /* 加粗标题 */
-        }
-        .paper-title:hover {
-            text-decoration: underline; /* 悬停时添加下划线 */
-        }
-        /* 摘要样式 */
-        .abstract {
-            display: none; /* 默认隐藏摘要 */
-            margin-top: 10px; /* 顶部外边距 */
-            padding: 10px; /* 内边距 */
-            background: #d9e8ff; /* 稍深的淡蓝色背景，更自然地融入渐变 */
-            border-left: 3px solid #a3c9ff; /* 左侧蓝色边框 */
-            font-size: 0.95em; /* 字体稍小 */
-            color: #000; /* 文字颜色为黑色 */
-            word-break: break-word; /* 允许单词在边界处折断 */
-            hyphens: auto; /* 自动添加连字符 */
-        }
-        .abstract.active {
-            display: block; /* 显示激活的摘要 */
-        }
     </style>
 </head>
 <body>
@@ -188,94 +163,44 @@
                         <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators.</li>
                     </ul>
                     <h2>Publications</h2>
-(click on each title of the paper to show the abstract)
                     <ol>
                         <li>
                             Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                            <span class="paper-title" data-abstract-id="pre1-abstract">Stratification and rectifiability of harmonic map flows via tangent measures</span><br>
+                            Stratification and rectifiability of harmonic map flows via tangent measures<br>
                             <a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv preprint arXiv: 2504.14880</a>
-                            <div id="pre1-abstract" class="abstract">
-                                In this paper, we investigate the stratification theory for suitable solutions of harmonic map flows based on the spatial symmetry of tangent measures. Generally, suitable solutions are a category of solutions that satisfy both the localized energy inequality and the monotonicity formula. Building on the modifications and adjustments of quantitative stratifications and Reifenberg-rectifiable theory by Naber and Valtorta, we confirm that each stratum in our model is rectifiable. We also establish an estimate for the Minkowski content of the singular set at each time slice, demonstrating that the singular set is rectifiable and that our results strengthen previous findings, which were limited to almost every time slice. Furthermore, under certain assumptions about the target manifolds that exclude specific tangent flows and measures, our analysis achieves substantial improvements in the regularity of suitable solutions for harmonic map flows.
-                            </div>
                         </li>
                         <li>
                             Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                            <span class="paper-title" data-abstract-id="pub1-abstract">On the sharp constants in the regional fractional Sobolev inequalities</span><br>
+                            On the sharp constants in the regional fractional Sobolev inequalities<br>
                             <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">Partial Differential Equations and Applications, <b>6</b> (2025), 1-20</a><br>
                             <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv preprint arXiv: 2403.00357</a>
-                            <div id="pub1-abstract" class="abstract">
-                                In this paper, we study the sharp constants in fractional Sobolev inequalities associated with the regional fractional Laplacian in domains.
-                            </div>
                         </li>
                         <li>
                             Wei Wang, Zhifei Zhang<br>
-                            <span class="paper-title" data-abstract-id="pre2-abstract">Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity</span><br>
+                            Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
                             <a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv preprint arXiv: 2411.16048</a>
-                            <div id="pre2-abstract" class="abstract">
-                                In this paper, we study the stationary solutions of semilinear elliptic equation with singular nonlinearity
-\[
-\Delta u=u^{-p}+f, u \geq 0 \quad \text { in } \Omega \subset \mathbb{R}^n,
-\]
-where \(n \geq 2, p>1, \Omega\) is a bounded domain, and \(f \in L^q(\Omega)\) with \(\frac{1}{2}+\frac{1}{2 p}<\frac{q}{n}\). We establish a sharp estimate for the Minkowski content of the rupture set \(\{u=0\}\) and demonstrate that this set is \((n-2)\)-rectifiable. For this, we examine the stratification of the rupture set based on the symmetry properties of tangent functions, leading to the proof of \(k\)-rectifiability for each \(k\)-stratum. As a significant byproduct of our analysis, we improve the integrability of \(D^j u\) with \(j \in \mathbb{Z}_{+}\) to the optimal Lorentz space \(L^{\frac{2(p+1)}{j(p+1)-2}, \infty}\), under the assumption that \(D^{j-1} f\) is bounded. As an application of our results in the static case of the equation, for a class of suitable weak solutions to the three-dimensional evolutional problem
-\[
-\partial_t u=\Delta u-u^{-p}, u \geq 0 \quad \text { in }\left(\Omega \subset \mathbb{R}^3\right) \times(0, T),
-\]
-where \(p>3\) and \(T>0\), we show that \(\{u(\cdot, t)=0\}\) is 1-rectifiable for a.e. \(t \in(0, T)\).
-                            </div>
                         </li>
                         <li>
                             Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                            <span class="paper-title" data-abstract-id="pre3-abstract">Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations</span><br>
+                            Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
                             <a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv preprint arXiv: 2408.06726</a>
-                            <div id="pre3-abstract" class="abstract">
-                                In this paper, we investigate the interior regularity theory for stationary solutions of the supercritical nonlinear elliptic equation
-\[
--\Delta u=|u|^{p-1} u \quad \text { in } \Omega, \quad p>\frac{n+2}{n-2},
-\]
-where \(\Omega \subset \mathbb{R}^n\) is a bounded domain with \(n \geq 3\). Our primary focus is on the structure of stratification for the singular sets. We define the \(k\)-th stratification \(S^k(u)\) of \(u\) based on the tangent functions and measures. We show that the Hausdorff dimension of \(S^k(u)\) is at most \(k\) and \(S^k(u)\) is \(k\)-rectifiable, and establish estimates for volumes associated with points that have lower bounds on the regular scales. These estimates enable us to derive sharp interior estimates for the solutions. Specifically, if \(\alpha_p=\frac{2(p+1)}{p-1}\) is not an integer, then for any \(j \in \mathbb{Z}_{\geq 0}\), we have
-\[
-D^j u \in L_{\operatorname{loc}}^{q_j,\infty}(\Omega),
-\]
-which implies that for any \(\Omega^{\prime} \subset \subset \Omega\),
-\[
-\sup \left\{\lambda>0: \lambda^{q_j} \mathcal{L}^n\left(\left\{x \in \Omega^{\prime}:\left|D^j u(x)\right|>\lambda\right\}\right)\right\}<+\infty,
-\]
-where $\mathcal{L}^n(\cdot)$ is the $n$-dimensional Lebesgue measure, and
-\[
-q_j=\frac{(p-1)\left(\left\lfloor\alpha_p\right\rfloor+1\right)}{2+j(p-1)},
-\]
-with \(\left\lfloor\alpha_p\right\rfloor\) being the integer part of \(\alpha_p\). The proofs of these results rely on Reifenberg-type theorems developed by A . Naber and D . Valtorta to study the stratification of harmonic maps.
-                            </div>
                         </li>
                         <li>
                             Wei Wang, Zhifei Zhang<br>
-                            <span class="paper-title" data-abstract-id="pre4-abstract">Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers</span><br>
+                            Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
                             <a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv preprint arXiv: 2404.00677</a>
-                            <div id="pre4-abstract" class="abstract">
-                                We study a class of Landau-de Gennes energy functionals with a sextic bulk energy density in a three-dimensional domain. We examine the asymptotic behavior of uniformly bounded minimizers in two distinct scenarios: one where their energy remains uniformly bounded, and another where it logarithmically diverges as a function of the elastic constant. In the first case, we show that up to a subsequence, the minimizers converge to a locally minimizing harmonic map in both the \(H_{\mathrm{loc}}^1\) and \(C_{\mathrm{loc}}^j, j \in \mathbb{Z}_{+}\) norms within compact subsets that are distant from the singularities of the limit. For the second case, we establish the existence of a closed set denoted as \(\mathcal{S}_{\mathrm{line}} \). This set has finite length and consists of finite segments of lines locally such that the energy of minimizers are locally uniformly bounded away from it. This work solves an open question raised by Canevari (ARMA, 223 (2017), 591-676), specifically concerning point and line defects in the Landau-de Gennes model with sextic potentials.
-                            </div>
                         </li>
                         <li>
                             Wei Wang<br>
-                            <span class="paper-title" data-abstract-id="pub2-abstract">Uniform estimates of resolvents in homogenization theory of elliptic systems</span><br>
+                            Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
                             <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">Journal of Differential Equations, <b>370</b> (2023), 1-65</a><br>
                             <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv preprint arXiv: 2211.14614</a>
-                            <div id="pub2-abstract" class="abstract">
-                                In this paper, we study the estimates of resolvents \(R\left(\lambda, \mathcal{L}_{\varepsilon}\right)=\left(\mathcal{L}_{\varepsilon}-\lambda I\right)^{-1}\), where \(\mathcal{L}_{\varepsilon}=-\operatorname{div}(A(x / \varepsilon) \nabla)\) is a family of second elliptic operators with symmetric, periodic and oscillating coefficients defined on a bounded domain \(\Omega\) with \(\varepsilon>0\). For \( 1 < p<\infty\),  we will establish uniform \(L^p \rightarrow L^p\), \(L^p \rightarrow W_0^{1, p}\), \(W^{-1, p} \rightarrow L^p\), and \(W^{-1, p} \rightarrow W_0^{1, p}\) estimates by using the real variable method. Meanwhile, we use Green functions for operators \(\mathcal{L}_{\varepsilon}-\lambda I\) to study the asymptotic behavior of \(R\left(\lambda, \mathcal{L}_{\varepsilon}\right)\) and obtain convergence estimates in \(L^p \rightarrow L^p\), \(L^p \rightarrow W_0^{1, p}\) norm.
-                            </div>
                         </li>
                         <li>
                             Wei Wang, Ting Zhang<br>
-                            <span class="paper-title" data-abstract-id="pub3-abstract">Homogenization theory of elliptic system with lower order terms for dimension two</span><br>
+                            Homogenization theory of elliptic system with lower order terms for dimension two<br>
                             <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">Communications on Pure and Applied Analysis, <b>22</b> (2023), 787-824</a><br>
                             <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv preprint arXiv: 2210.06329</a>
-                            <div id="pub3-abstract" class="abstract">
-                                In this paper, we consider the homogenization problem for generalized elliptic systems
-\[
-\mathcal{L}_{\varepsilon}=-\operatorname{div}[A(x / \varepsilon) \nabla+V(x / \varepsilon)]+B(x / \varepsilon) \nabla+c(x / \varepsilon)+\lambda I
-\]
-with dimension two. Precisely, we will establish the \(W^{1, p}\) estimates, Hölder estimates, Lipschitz estimates and \(L^p\) convergence results for \(\mathcal{L}_{\varepsilon}\) with dimension two. The operator \(\mathcal{L}_{\varepsilon}\) has been studied by Qiang Xu with dimension \(d \geq 3\) in [22,23] and the case \(d=2\) is remained unsolved. As a byproduct, we will construct the Green functions for \(\mathcal{L}_{\varepsilon}\) with \(d=2\) and their convergence rates.
-                            </div>
                         </li>
                     </ol>
                 </section>
@@ -291,7 +216,6 @@ with dimension two. Precisely, we will establish the \(W^{1, p}\) estimates, Hö
                 </section>
 
                 <section id="teaching">
-                    <h2>Teaching and Teaching Assistant Experience</h2>
                     <h3>Peking University</h3>
                     <ul>
                         <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025. <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" rel="nofollow">Lecture Notes</a></li>
@@ -332,22 +256,6 @@ with dimension two. Precisely, we will establish the \(W^{1, p}\) estimates, Hö
                     top: targetSection.offsetTop - 100,
                     behavior: 'smooth'
                 });
-            });
-        });
-
-        // 论文标题点击事件，切换摘要显示
-        document.querySelectorAll('.paper-title').forEach(title => {
-            title.addEventListener('click', () => {
-                const abstractId = title.getAttribute('data-abstract-id');
-                const abstract = document.getElementById(abstractId);
-
-                // 切换当前摘要的显示状态，允许多个摘要同时显示
-                abstract.classList.toggle('active');
-
-                // 触发 MathJax 重新渲染
-                if (typeof MathJax !== 'undefined') {
-                    MathJax.typesetPromise([abstract]).catch(err => console.log('MathJax typesetting failed: ', err));
-                }
             });
         });
     </script>
