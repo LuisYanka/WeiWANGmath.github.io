@@ -1,150 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 设置字符编码为UTF-8，支持多语言显示 -->
     <meta charset="UTF-8">
-    <!-- 确保页面在移动设备上自适应，初始缩放比例为1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 页面标题，显示在浏览器标签页 -->
     <title>Wei Wang's Homepage</title>
-    <!-- 加载 MathJax 用于渲染 LaTeX 数学公式 -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <style>
-        /* 全局样式 */
+        :root {
+            --primary-color: #333;
+            --link-color: #1a3c66;
+            --hover-bg: #a3c9ff;
+            --active-bg: #2e5c99;
+            --border-color: #a3c9ff;
+            --table-border: #ddd;
+            --gradient-start: #e6f3ff;
+            --gradient-end: #b3d9ff;
+        }
+
         body {
-            line-height: 1.6; /* 设置行高为1.6倍，增强文本可读性 */
-            margin: 0; /* 移除默认外边距 */
-            font-family: Arial, sans-serif; /* 使用Arial字体，备选无衬线字体 */
-            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 从浅蓝到深蓝的渐变背景 */
-            min-height: 100vh; /* 确保背景覆盖整个视口高度 */
+            line-height: 1.6;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            min-height: 100vh;
+            color: var(--primary-color);
         }
+
         .wrapper {
-            display: flex; /* 使用flex布局，使侧边栏和内容区域水平排列 */
+            display: flex;
         }
-        /* 侧边栏导航样式 */
+
         .sidebar {
-            width: 200px; /* 侧边栏固定宽度 */
-            background: linear-gradient(to bottom, #e6f3ff, #b3d9ff); /* 与页面背景一致的渐变 */
-            position: fixed; /* 固定定位，侧边栏随页面滚动保持可见 */
-            height: 100vh; /* 侧边栏高度占满视口 */
-            padding-top: 20px; /* 顶部内边距 */
-            overflow-y: auto; /* 内容超长时启用垂直滚动 */
-            border-right: 1px solid #a3c9ff; /* 右侧添加浅蓝边框分隔 */
+            width: 200px;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            position: fixed;
+            height: 100vh;
+            padding-top: 20px;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+            transition: transform 0.3s ease-in-out;
         }
+
         .sidebar h2 {
-            color: #333; /* 标题文字颜色为深灰 */
-            text-align: center; /* 标题居中 */
-            margin-bottom: 20px; /* 底部外边距 */
-            font-size: 1.2em; /* 标题字体大小 */
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
         }
+
         .sidebar ul {
-            list-style: none; /* 移除列表默认样式 */
-            padding: 0; /* 移除内边距 */
+            list-style: none;
+            padding: 0;
         }
+
         .sidebar li {
-            margin: 10px 0; /* 列表项上下外边距 */
+            margin: 10px 0;
         }
+
         .sidebar a {
-            color: #1a3c66; /* 链接文字颜色为深蓝色 */
-            text-decoration: none; /* 移除链接下划线 */
-            display: block; /* 链接占满整行，方便点击 */
-            padding: 10px 20px; /* 链接内边距 */
-            transition: background 0.3s, color 0.3s; /* 背景和文字颜色过渡效果 */
+            color: var(--link-color);
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            transition: background 0.3s, color 0.3s;
         }
+
         .sidebar a:hover {
-            background: #a3c9ff; /* 鼠标悬停时背景变为浅蓝色 */
-            color: #fff; /* 文字变为白色 */
+            background: var(--hover-bg);
+            color: #fff;
         }
+
         .sidebar a.active {
-            background: #2e5c99; /* 当前激活链接的背景为深蓝色 */
-            color: white; /* 文字为白色 */
-            font-weight: bold; /* 加粗文字 */
+            background: var(--active-bg);
+            color: white;
+            font-weight: bold;
         }
-        /* 主内容区域样式 */
+
         .content {
-            margin-left: 200px; /* 为侧边栏预留空间 */
-            padding: 20px; /* 内容区域内边距 */
-            width: calc(100% - 200px); /* 内容宽度为视口宽度减去侧边栏宽度 */
+            margin-left: 200px;
+            padding: 20px;
+            width: calc(100% - 200px);
         }
+
         header {
-            color: #333; /* 页眉文字颜色为深灰 */
-            padding: 20px; /* 页眉内边距 */
-            text-align: left; /* 文字居左 */
-            margin-left: 20px; /* 左部外边距 */
-            border-bottom: 1px solid #a3c9ff; /* 底部添加浅蓝边框分隔 */
-            margin-bottom: 20px; /* 底部外边距 */
+            color: var(--primary-color);
+            padding: 20px;
+            text-align: left;
+            margin-left: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #ddd;
+            object-fit: cover;
+        }
+
         .container {
-            width: 90%; /* 内容容器宽度为视口的90% */
-            max-width: 1200px; /* 最大宽度限制为1200像素 */
-            margin-left: 20px; /* 左部外边距 */
+            width: 90%;
+            max-width: 1200px;
+            margin-left: 20px;
         }
-        h1, h2 {
-            color: #333; /* 标题颜色为深灰 */
+
+        h1, h2, h3 {
+            color: var(--primary-color);
         }
+
         section {
-            margin-bottom: 30px; /* 各部分之间的底部外边距 */
-            padding: 15px; /* 部分内边距 */
-            display: none; /* 默认隐藏所有部分 */
+            margin-bottom: 30px;
+            padding: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
         }
+
         section.active {
-            display: block; /* 显示当前激活的部分 */
+            display: block;
         }
+
         section a {
-            color: #1558d6; /* 部分内链接颜色为蓝色 */
-            text-decoration: none; /* 移除链接下划线 */
+            color: #1558d6;
+            text-decoration: none;
         }
+
         section a:hover {
-            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+            text-decoration: underline;
         }
+
         table {
-            width: 100%; /* 表格宽度占满容器 */
-            border-collapse: collapse; /* 合并边框 */
-            margin: 20px 0; /* 上下外边距 */
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
+
         th, td {
-            padding: 10px; /* 表格单元格内边距 */
-            border: 1px solid #ddd; /* 单元格边框为浅灰色 */
-            text-align: left; /* 文字左对齐 */
-            vertical-align: top; /* 内容顶部对齐 */
+            padding: 10px;
+            border:1px solid var(--table-border);
+            text-align: left;
+            vertical-align: top;
         }
+
         th {
-            background-color: #f2f2f2; /* 表头背景为浅灰色 */
-            color: black; /* 表头文字为黑色 */
-            font-weight: bold; /* 表头文字加粗 */
+            background-color: #f2f2f2;
+            color: black;
+            font-weight: bold;
         }
+
         td a {
-            text-decoration: none; /* 表格内链接无下划线 */
-            color: blue; /* 链接颜色为蓝色 */
+            text-decoration: none;
+            color: blue;
         }
+
         td a:hover {
-            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--active-bg);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 250px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
     <div class="wrapper">
-        <nav class="sidebar">
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#home" class="active" aria-current="page">Home</a></li>
                 <li><a href="#publications">Research</a></li>
                 <li><a href="#talks">Talks</a></li>
                 <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#notes">Notes</a></li>
+                <li><a href="#miscellanea">Miscellanea</a></li>
             </ul>
         </nav>
 
-        <div class="content">
+        <div class="content" role="main">
             <header>
-                <h1>Wei WANG (王尉)</h1>
-                <p>Ph.D. Candidate in Theoretical Mathematics</p>
+                <div>
+                    <h1>Wei WANG (王尉)</h1>
+                    <p>Ph.D. Candidate in Theoretical Mathematics</p>
+                </div>
             </header>
 
             <div class="container">
-                <section id="home" class="active">
-                    <h2>About Me</h2>
+                <section id="home" class="active" aria-labelledby="home-heading">
+                    <h2 id="home-heading">About Me</h2>
                     <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
                     <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
-                    <p>View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf" rel="nofollow">CV</a> (Last updated: Apr. 26, 2025).</p>
+                    <p>View my full <a href="https://drive.google.com/file/d/1pfqYRoakfLS1Uc-UOzC0sCiSf5RdakK5/view?usp=sharing" rel="nofollow">CV</a> (Last updated: Apr. 26, 2025).</p>
                     <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a></p>
                     <h2>Contact</h2>
                     <p>Room 314, 20th Building<br>
@@ -156,8 +243,8 @@
                     <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
                 </section>
 
-                <section id="publications">
-                    <h2>Research Interests</h2>
+                <section id="publications" aria-labelledby="publications-heading">
+                    <h2 id="publications-heading">Research Interests</h2>
                     <ul>
                         <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
                         <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
@@ -205,23 +292,23 @@
                     </ol>
                 </section>
 
-                <section id="talks">
-                    <h2>Talks and Presentations</h2>
+                <section id="talks" aria-labelledby="talks-heading">
+                    <h2 id="talks-heading">Talks and Presentations</h2>
                     <ul>
-                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025 <a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow">Poster</a></li>
-                        <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024 <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow">Slides</a></li>
-                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024 <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow">Poster</a></li>
+                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025, <a href="https://drive.google.com/file/d/1dL0pLTnuV3ALqo7U0noU52EprLhsAnzz/view" rel="nofollow">Poster</a></li>
+                        <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024, <a href="https://drive.google.com/file/d/1PI2wVVxWFLjukVqMzIA49HdPf1WCBYcB/view?usp=sharing" rel="nofollow">Slides</a></li>
+                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024, <a href="https://drive.google.com/file/d/12UetDQy4wOjhT7MWGxutDTDjMqexMtub/view?usp=sharing" rel="nofollow">Poster</a></li>
                         <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
                     </ul>
                 </section>
 
-                <section id="teaching">
-                    <h3>Peking University</h3>
+                <section id="teaching" aria-labelledby="teaching-heading">
+                    <h3 id="teaching-heading">Peking University</h3>
                     <ul>
-                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025 <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" rel="nofollow">Lecture Notes</a></li>
-                        <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024 <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" rel="nofollow">Lecture Notes</a> | <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" rel="nofollow">Finals Answers (2022-2023)</a></li>
+                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025, <a href="https://drive.google.com/file/d/1WINcsh5ZAsS5dapqAWcflRyQyJpgQAPa/view?usp=sharing" rel="nofollow">Lecture Notes</a></li>
+                        <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024, <a href="https://drive.google.com/file/d/1dnJBGP6obeo1HWRfG9k-ODzSG64hxH-C/view?usp=sharing" rel="nofollow">Lecture Notes</a> | <a href="https://drive.google.com/file/d/1ZIqVZweUzkwmrC7X7fgqjIf_achtQSsx/view?usp=sharing" rel="nofollow">Finals Answers (2022-2023)</a></li>
                         <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024</li>
-                        <li>Teaching Assistant, Harmonic Analysis, Fall 2023 <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" rel="nofollow">Homework Solutions</a></li>
+                        <li>Teaching Assistant, Harmonic Analysis, Fall 2023 <a href="https://drive.google.com/file/d/1vub3caXLdsMoCcTJ-hkXciNtG3GrIigx/view?usp=sharing" rel="nofollow">Homework Solutions</a></li>
                         <li>Teaching Assistant, Functional Analysis (I), Spring 2023</li>
                         <li>Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022</li>
                     </ul>
@@ -231,33 +318,85 @@
                         <li>Teaching Assistant, Mathematical Analysis (I), Fall 2021</li>
                     </ul>
                 </section>
+
+                <section id="notes" aria-labelledby="notes-heading">
+                    <h2 id="notes-heading">Notes and Expository Papers</h2>
+                    <ul>
+                        <li>Notes on bubbling analysis of Ginzburg-Landau model, <a href="https://drive.google.com/file/d/15-bVEf5r8RR5EPIIkj7wmIwhAqw7LSMr/view?usp=sharing" rel="nofollow">pdf</a></li>
+                        <li>Studying notes on ergodic theory (in Chinese), <a href="https://drive.google.com/file/d/1sF4yZrmMVBfl_ZHYaad8UxYf1Cbke6KK/view?usp=sharing" rel="nofollow">pdf</a></li>
+                        <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), <a href="https://drive.google.com/file/d/1DhsHhmQtGAei-54xjUN1eMzcpU-y9Yme/view?usp=sharing" rel="nofollow">pdf</a></li>
+                        <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, <a href="https://drive.google.com/file/d/17Udl_ViuHnwfDjx0J_ZHaeD_qydChCGE/view?usp=sharing" rel="nofollow">pdf</a></li>
+                        <li>Reading notes on elliptic free boundary problems, <a href="https://drive.google.com/file/d/1AePag5APrSe9PTsOe5YasMGTlRseZCB5/view?usp=sharing" rel="nofollow">pdf</a></li>
+                    </ul>
+                </section>
+
+                <section id="miscellanea" aria-labelledby="miscellanea-heading">
+                    <h2 id="miscellanea-heading">Short Visiting</h2>
+                    <ul>
+                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2025</li>
+                        <li>Capital Normal University, Beijing, PRC, Dec. 2024</li>
+                        <li>Wuhan University, Wuhan, Hubei, PRC, Dec. 2024</li>
+                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2024</li>
+                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Feb. 2024</li>
+                    </ul>
+                    <h2>Honors and Awards</h2>
+                    <ul>
+                        <li>3rd Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024</li>
+                        <li>Excellent Mathematics Graduate Student, Peking University, Beijing, PRC, Oct. 2023</li>
+                        <li>Nomination Award, ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
+                        <li>Outstanding Graduate Student, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
+                        <li>Honored Degree, Chu Kochen College, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
+                    </ul>
+                </section>
             </div>
         </div>
     </div>
 
     <script>
-        // 侧边栏导航点击事件
-        document.querySelectorAll('.sidebar a').forEach(link => {
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        const sections = document.querySelectorAll('section');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+
+        function showSection(targetId) {
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+
+            sidebarLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector(`.sidebar a[href="#${targetId}"]`).classList.add('active');
+
+            window.scrollTo({
+                top: document.getElementById(targetId).offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+
+        sidebarLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
+                showSection(targetId);
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                }
+            });
 
-                document.querySelectorAll('section').forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                targetSection.classList.add('active');
-
-                document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-
-                window.scrollTo({
-                    top: targetSection.offsetTop - 100,
-                    behavior: 'smooth'
-                });
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    showSection(targetId);
+                }
             });
         });
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
     </script>
-</body>
-</html>
