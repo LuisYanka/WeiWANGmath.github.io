@@ -6,397 +6,349 @@
     <title>Wei Wang's Homepage</title>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <style>
-        :root {
-            --primary-color: #333;
-            --link-color: #1a3c66;
-            --hover-bg: #a3c9ff;
-            --active-bg: #2e5c99;
-            --border-color: #a3c9ff;
-            --table-border: #ddd;
-            --gradient-start: #e6f3ff;
-            --gradient-end: #b3d9ff;
-        }
-
+        /* Global Styles */
         body {
-            line-height: 1.6;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.4; /* Reduced from 1.6 for denser text */
+            color: #1c2526;
+            background: linear-gradient(to bottom, #e6f3ff, #d6eaff);
             min-height: 100vh;
-            color: var(--primary-color);
         }
-
-        .wrapper {
-            display: flex;
+        .header-wrapper {
+            background: linear-gradient(to bottom, #3c5a8c, #5b86bf);
+            color: #ecf0f1;
         }
-
-        .sidebar {
-            width: 200px;
-            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
-            position: fixed;
-            height: 100vh;
-            padding-top: 20px;
-            overflow-y: auto;
-            border-right: 1px solid var(--border-color);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .sidebar h2 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin: 10px 0;
-        }
-
-        .sidebar a {
-            color: var(--link-color);
-            text-decoration: none;
-            display: block;
-            padding: 10px 20px;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: var(--hover-bg);
-            color: #fff;
-        }
-
-        .sidebar a.active {
-            background: var(--active-bg);
-            color: white;
-            font-weight: bold;
-        }
-
-        .content {
-            margin-left: 200px;
-            padding: 20px;
-            width: calc(100% - 200px);
-        }
-
-        header {
-            color: var(--primary-color);
-            padding: 20px;
-            text-align: left;
-            margin-left: 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: #ddd;
-            object-fit: cover;
-        }
-
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin-left: 20px;
+            max-width: 900px; /* Increased from 800px to reduce wrapping */
+            margin: 0 auto;
+            padding: 12px; /* Reduced from 18px for tighter layout */
         }
-
-        h1, h2, h3 {
-            color: var(--primary-color);
+        /* Header */
+        header {
+            padding: 24px 0 12px; /* Reduced from 36px/18px */
+            text-align: left;
+            margin-left: 12px; /* Reduced from 18px */
         }
-
+        header h1 {
+            font-size: 2.2rem; /* Slightly smaller for better fit */
+            margin: 0;
+            color: #ecf0f1;
+            hyphens: none; /* Disable hyphenation */
+            max-width: 100%; /* Full width for less wrapping */
+        }
+        header p {
+            margin: 3px 0; /* Reduced from 5px */
+            color: #d6dde5;
+            hyphens: none;
+            max-width: 100%;
+        }
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #5b86bf;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 100;
+            padding: 6px 0; /* Reduced from 9px */
+            margin: 0;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+        }
+        .navbar li {
+            margin: 0 6px; /* Reduced from 9px for tighter spacing */
+        }
+        .navbar a {
+            color: #f5f6f5;
+            text-decoration: none;
+            padding: 4px 8px; /* Reduced horizontal padding from 12px */
+            font-weight: 500;
+            font-size: 0.95rem; /* Slightly smaller for compactness */
+            transition: color 0.3s, background 0.3s;
+            hyphens: none;
+            max-width: none; /* Remove width limit */
+            display: inline-block;
+            white-space: nowrap; /* Prevent link text from wrapping */
+        }
+        .navbar a:hover {
+            color: #1c2526;
+            background: #d6dde5;
+            border-radius: 4px;
+        }
+        .navbar a.active {
+            color: #1c2526;
+            background: #b8c7e0;
+            border-radius: 4px;
+        }
+        /* Divider */
+        .divider {
+            width: 100vw;
+            border-bottom: 1px solid #4682b4;
+            margin: 0;
+            position: relative;
+            left: 0;
+        }
+        /* Sections */
         section {
-            margin-bottom: 30px;
-            padding: 15px;
             display: none;
-            animation: fadeIn 0.5s ease-in;
+            margin-bottom: 24px; /* Reduced from 36px */
         }
-
         section.active {
             display: block;
         }
-
-        section a {
-            color: #1558d6;
-            text-decoration: none;
+        section h2 {
+            font-size: 1.6rem; /* Slightly smaller */
+            color: #2c3e50;
+            border-bottom: 2px solid #4682b4;
+            padding-bottom: 6px; /* Reduced from 9px */
+            margin-bottom: 12px; /* Reduced from 18px */
+            hyphens: none;
+            max-width: 100%;
         }
-
+        section h3 {
+            font-size: 1.3rem; /* Slightly smaller */
+            color: #2c3e50;
+            margin-top: 18px; /* Reduced from 27px */
+            hyphens: none;
+            max-width: 100%;
+        }
+        section p {
+            font-size: 1rem;
+            color: #1c2526;
+            hyphens: none;
+            max-width: 100%;
+            text-align: justify; /* Justify text for clean edges */
+            overflow-wrap: break-word; /* Break long words/URLs */
+        }
+        section li {
+            font-size: 1rem;
+            color: #1c2526;
+            hyphens: none;
+            max-width: 100%;
+        }
+        section a {
+            color: #4682b4;
+            text-decoration: none;
+            word-break: break-all; /* Break long URLs */
+        }
         section a:hover {
             text-decoration: underline;
+            color: #2c3e50;
         }
-
+        /* Lists */
+        ul, ol {
+            padding-left: 16px; /* Reduced from 18px */
+            margin: 12px 0; /* Reduced from 18px */
+        }
+        li {
+            margin-bottom: 6px; /* Reduced from 9px */
+        }
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 12px 0; /* Reduced from 18px */
+            border: 2px solid #b8c7e0; /* Thinner border */
         }
-
         th, td {
-            padding: 10px;
-            border:1px solid var(--table-border);
+            padding: 8px; /* Reduced from 12px */
+            border: 2px solid #b8c7e0;
             text-align: left;
-            vertical-align: top;
+            hyphens: none;
+            max-width: none; /* Remove width limit */
+            overflow-wrap: break-word;
         }
-
         th {
-            background-color: #f2f2f2;
-            color: black;
-            font-weight: bold;
+            background: #d6dde5;
+            font-weight: 600;
+            color: #2c3e50;
         }
-
-        td a {
-            text-decoration: none;
-            color: blue;
-        }
-
-        td a:hover {
-            text-decoration: underline;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: var(--active-bg);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 250px;
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 6px; /* Reduced from 9px */
             }
-
-            .sidebar.open {
-                transform: translateX(0);
+            header {
+                margin-left: 6px; /* Reduced from 9px */
             }
-
-            .content {
-                margin-left: 0;
-                width: 100%;
+            header h1 {
+                font-size: 1.8rem; /* Smaller for mobile */
             }
-
-            .menu-toggle {
-                display: block;
+            header p, section h2, section h3, section p, section li {
+                max-width: 100%;
+                font-size: 0.95rem; /* Slightly smaller for mobile */
             }
-
-            table {
-                display: block;
-                overflow-x: auto;
+            .navbar {
+                margin: 0;
+            }
+            .navbar ul {
+                flex-wrap: wrap; /* Allow wrapping on small screens */
+            }
+            .navbar li {
+                margin: 0 4px; /* Reduced from 6px */
+            }
+            .navbar a {
+                font-size: 0.9rem;
+                padding: 3px 6px; /* Smaller padding for mobile */
+            }
+            th, td {
+                padding: 6px; /* Reduced for mobile */
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
-    <div class="wrapper">
-        <nav class="sidebar" role="navigation" aria-label="Main navigation">
-            <ul>
-                <li><a href="#home" class="active" aria-current="page">Home</a></li>
-                <li><a href="#publications">Research</a></li>
-                <li><a href="#talks">Talks</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#notes">Notes</a></li>
-                <li><a href="#miscellanea">Miscellanea</a></li>
-            </ul>
-        </nav>
-
-        <div class="content" role="main">
+    <div class="header-wrapper">
+        <div class="container">
             <header>
-                <div>
-                    <h1>Wei WANG (王尉)</h1>
-                    <p>Ph.D. Candidate in Theoretical Mathematics</p>
-                </div>
+                <h1>Wei Wang (王尉)</h1>
+                <p>Ph.D. Candidate in Theoretical Mathematics</p>
             </header>
-
-            <div class="container">
-                <section id="home" class="active" aria-labelledby="home-heading">
-                    <h2 id="home-heading">About Me</h2>
-                    <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
-                    <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
-                    <p>View my full <a href="https://drive.google.com/file/d/1pfqYRoakfLS1Uc-UOzC0sCiSf5RdakK5/view?usp=sharing" rel="nofollow">CV</a> (Last updated: Apr. 26, 2025).</p>
-                    <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a></p>
-                    <h2>Contact</h2>
-                    <p>Room 314, 20th Building<br>
-                       Peking University<br>
-                       No. 5 Yiheyuan Road, Haidian District<br>
-                       Beijing, 100871, P.R. China</p>
-                    <p><b>Email:</b> 2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
-                    <h2>Analysis Seminars</h2>
-                    <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
-                </section>
-
-                <section id="publications" aria-labelledby="publications-heading">
-                    <h2 id="publications-heading">Research Interests</h2>
-                    <ul>
-                        <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
-                        <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
-                    </ul>
-                    <h2>Publications</h2>
-                    <ol>
-                        <li>
-                            Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                            Stratification and rectifiability of harmonic map flows via tangent measures<br>
-                            <a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv preprint arXiv: 2504.14880</a>
-                        </li>
-                        <li>
-                            Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                            On the sharp constants in the regional fractional Sobolev inequalities<br>
-                            <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">Partial Differential Equations and Applications, <b>6</b> (2025), 1-20</a><br>
-                            <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv preprint arXiv: 2403.00357</a>
-                        </li>
-                        <li>
-                            Wei Wang, Zhifei Zhang<br>
-                            Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
-                            <a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv preprint arXiv: 2411.16048</a>
-                        </li>
-                        <li>
-                            Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                            Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
-                            <a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv preprint arXiv: 2408.06726</a>
-                        </li>
-                        <li>
-                            Wei Wang, Zhifei Zhang<br>
-                            Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
-                            <a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv preprint arXiv: 2404.00677</a>
-                        </li>
-                        <li>
-                            Wei Wang<br>
-                            Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
-                            <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">Journal of Differential Equations, <b>370</b> (2023), 1-65</a><br>
-                            <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv preprint arXiv: 2211.14614</a>
-                        </li>
-                        <li>
-                            Wei Wang, Ting Zhang<br>
-                            Homogenization theory of elliptic system with lower order terms for dimension two<br>
-                            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">Communications on Pure and Applied Analysis, <b>22</b> (2023), 787-824</a><br>
-                            <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv preprint arXiv: 2210.06329</a>
-                        </li>
-                    </ol>
-                </section>
-
-                <section id="talks" aria-labelledby="talks-heading">
-                    <h2 id="talks-heading">Talks and Presentations</h2>
-                    <ul>
-                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025, <a href="https://drive.google.com/file/d/1dL0pLTnuV3ALqo7U0noU52EprLhsAnzz/view" rel="nofollow">Poster</a></li>
-                        <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024, <a href="https://drive.google.com/file/d/1PI2wVVxWFLjukVqMzIA49HdPf1WCBYcB/view?usp=sharing" rel="nofollow">Slides</a></li>
-                        <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024, <a href="https://drive.google.com/file/d/12UetDQy4wOjhT7MWGxutDTDjMqexMtub/view?usp=sharing" rel="nofollow">Poster</a></li>
-                        <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
-                    </ul>
-                </section>
-
-                <section id="teaching" aria-labelledby="teaching-heading">
-                    <h3 id="teaching-heading">Peking University</h3>
-                    <ul>
-                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025, <a href="https://drive.google.com/file/d/1WINcsh5ZAsS5dapqAWcflRyQyJpgQAPa/view?usp=sharing" rel="nofollow">Lecture Notes</a></li>
-                        <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024, <a href="https://drive.google.com/file/d/1dnJBGP6obeo1HWRfG9k-ODzSG64hxH-C/view?usp=sharing" rel="nofollow">Lecture Notes</a> | <a href="https://drive.google.com/file/d/1ZIqVZweUzkwmrC7X7fgqjIf_achtQSsx/view?usp=sharing" rel="nofollow">Finals Answers (2022-2023)</a></li>
-                        <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024</li>
-                        <li>Teaching Assistant, Harmonic Analysis, Fall 2023 <a href="https://drive.google.com/file/d/1vub3caXLdsMoCcTJ-hkXciNtG3GrIigx/view?usp=sharing" rel="nofollow">Homework Solutions</a></li>
-                        <li>Teaching Assistant, Functional Analysis (I), Spring 2023</li>
-                        <li>Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022</li>
-                    </ul>
-                    <h3>Zhejiang University</h3>
-                    <ul>
-                        <li>Teaching Assistant, Mathematical Analysis (II), Spring 2022</li>
-                        <li>Teaching Assistant, Mathematical Analysis (I), Fall 2021</li>
-                    </ul>
-                </section>
-
-                <section id="notes" aria-labelledby="notes-heading">
-                    <h2 id="notes-heading">Notes and Expository Papers</h2>
-                    <ul>
-                        <li>Notes on bubbling analysis of Ginzburg-Landau model, <a href="https://drive.google.com/file/d/15-bVEf5r8RR5EPIIkj7wmIwhAqw7LSMr/view?usp=sharing" rel="nofollow">pdf</a></li>
-                        <li>Studying notes on ergodic theory (in Chinese), <a href="https://drive.google.com/file/d/1sF4yZrmMVBfl_ZHYaad8UxYf1Cbke6KK/view?usp=sharing" rel="nofollow">pdf</a></li>
-                        <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), <a href="https://drive.google.com/file/d/1DhsHhmQtGAei-54xjUN1eMzcpU-y9Yme/view?usp=sharing" rel="nofollow">pdf</a></li>
-                        <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, <a href="https://drive.google.com/file/d/17Udl_ViuHnwfDjx0J_ZHaeD_qydChCGE/view?usp=sharing" rel="nofollow">pdf</a></li>
-                        <li>Reading notes on elliptic free boundary problems, <a href="https://drive.google.com/file/d/1AePag5APrSe9PTsOe5YasMGTlRseZCB5/view?usp=sharing" rel="nofollow">pdf</a></li>
-                    </ul>
-                </section>
-
-                <section id="miscellanea" aria-labelledby="miscellanea-heading">
-                    <h2 id="miscellanea-heading">Short Visiting</h2>
-                    <ul>
-                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2025</li>
-                        <li>Capital Normal University, Beijing, PRC, Dec. 2024</li>
-                        <li>Wuhan University, Wuhan, Hubei, PRC, Dec. 2024</li>
-                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2024</li>
-                        <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Feb. 2024</li>
-                    </ul>
-                    <h2>Honors and Awards</h2>
-                    <ul>
-                        <li>3rd Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024</li>
-                        <li>Excellent Mathematics Graduate Student, Peking University, Beijing, PRC, Oct. 2023</li>
-                        <li>Nomination Award, ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
-                        <li>Outstanding Graduate Student, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
-                        <li>Honored Degree, Chu Kochen College, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
-                    </ul>
-                </section>
-            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#publications">Research</a></li>
+                    <li><a href="#talks">Talks</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#notes">Notes</a></li>
+                    <li><a href="#miscellanea">Miscellanea</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
-
+    <div class="divider"></div>
+    <div class="container">
+        <section id="home" class="active">
+            <h2>About Me</h2>
+            <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
+            <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
+            <p>View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" rel="nofollow">CV</a> (Last updated: June. 23, 2025).</p>
+            <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a></p>
+            <h2>Contact</h2>
+            <p>Room 314, 20th Building<br>
+               Peking University<br>
+               No. 5 Yiheyuan Road, Haidian District<br>
+               Beijing, 100871, P.R. China</p>
+            <p><b>Email:</b> 2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
+            <h2>Analysis Seminars</h2>
+            <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
+        </section>
+        <section id="publications">
+            <h2>Research Interests</h2>
+            <ul>
+                <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
+                <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
+            </ul>
+            <h2>Publications</h2>
+            <ol reversed>
+                <li>Wei Wang, Wei Wang, and Zhifei Zhang<br>
+                    Existence of weak solutions for two-phase matrix-valued harmonic map flows<br>
+                    <a href="https://arxiv.org/abs/2506.16278" rel="nofollow">arXiv:2506.16278</a></li>
+                <li>Haotong Fu, Wei Wang, Ke Wu, and Zhifei Zhang<br>
+                    Stratification and rectifiability of harmonic map flows via tangent measures<br>
+                    <a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv:2504.14880</a></li>
+                <li>Rupert L. Frank, Tianling Jin, and Wei Wang<br>
+                    On the sharp constants in the regional fractional Sobolev inequalities<br>
+                    <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">Partial Differential Equations and Applications, <b>6</b> (2025), 1-20</a> | <a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv:2403.00357</a></li>
+                <li>Wei Wang, and Zhifei Zhang<br>
+                    Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
+                    <a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv:2411.16048</a></li>
+                <li>Haotong Fu, Wei Wang, and Zhifei Zhang<br>
+                    Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
+                    <a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv:2408.06726</a></li>
+                <li>Wei Wang and Zhifei Zhang<br>
+                    Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
+                    <a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv:2404.00677</a></li>
+                <li>Wei Wang<br>
+                    Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
+                    <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">Journal of Differential Equations, <b>370</b> (2023), 1-65</a> | <a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv:2211.14614</a></li>
+                <li>Wei Wang and Ting Zhang<br>
+                    Homogenization theory of elliptic system with lower order terms for dimension two<br>
+                    <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">Communications on Pure and Applied Analysis, <b>22</b> (2023), 787-824</a> | <a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv:2210.06329</a></li>
+            </ol>
+        </section>
+        <section id="talks">
+            <h2>Talks and Presentations</h2>
+            <ul>
+                <li>Seminar Talk, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025, <a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow">Slides</a></li>
+                <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025, <a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow">Poster</a></li>
+                <li>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024, <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow">Slides</a></li>
+                <li>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024, <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow">Poster</a></li>
+                <li>ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
+            </ul>
+        </section>
+        <section id="teaching">
+            <h2>Teaching</h2>
+            <h3>Peking University</h3>
+            <ul>
+                <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2025, <a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" rel="nofollow">Lecture Notes</a></li>
+                <li>Teaching Assistant, Advanced Mathematics (A) (I), Fall 2024, <a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" rel="nofollow">Lecture Notes</a> | <a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" rel="nofollow">Finals Answers (2022-2023)</a></li>
+                <li>Teaching Assistant, Advanced Mathematics (B) (II), Spring 2024</li>
+                <li>Teaching Assistant, Harmonic Analysis, Fall 2023, <a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" rel="nofollow">Homework Solutions</a></li>
+                <li>Teaching Assistant, Functional Analysis (I), Spring 2023</li>
+                <li>Teaching Assistant, Advanced Mathematics (C) (I), Fall 2022</li>
+            </ul>
+            <h3>Zhejiang University</h3>
+            <ul>
+                <li>Teaching Assistant, Mathematical Analysis (II), Spring 2022</li>
+                <li>Teaching Assistant, Mathematical Analysis (I), Fall 2021</li>
+            </ul>
+        </section>
+        <section id="notes">
+            <h2>Notes and Expository Papers</h2>
+            <ul>
+                <li>Notes on \(\mathcal{A}\)-free measures, <a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow">PDF</a></li>
+                <li>Notes on bubbling analysis of Ginzburg-Landau model, <a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow">PDF</a></li>
+                <li>Studying notes on ergodic theory (in Chinese), <a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" rel="nofollow">PDF</a></li>
+                <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), <a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow">PDF</a></li>
+                <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow">PDF</a></li>
+                <li>Reading notes on elliptic free boundary problems, <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow">PDF</a></li>
+            </ul>
+        </section>
+        <section id="miscellanea">
+            <h2>Short Visits</h2>
+            <ul>
+                <li>University of Science and Technology of China, Hefei, Anhui, PRC, June-July 2025</li>
+                <li>Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025</li>
+                <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2025</li>
+                <li>Wuhan University, Wuhan, Hubei, PRC, Dec. 2024</li>
+                <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2024</li>
+                <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Feb. 2024</li>
+            </ul>
+            <h2>Honors and Awards</h2>
+            <ul>
+                <li>1st Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025</li>
+                <li>3rd Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024</li>
+                <li>Excellent Mathematics Graduate Student, Peking University, Beijing, PRC, Oct. 2023</li>
+                <li>Nomination Award, ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
+                <li>Outstanding Graduate Student, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
+                <li>Honored Degree, Chu Kochen College, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
+            </ul>
+        </section>
+    </div>
     <script>
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-        const sections = document.querySelectorAll('section');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-
-        function showSection(targetId) {
-            sections.forEach(section => section.classList.remove('active'));
-            document.getElementById(targetId).classList.add('active');
-
-            sidebarLinks.forEach(link => link.classList.remove('active'));
-            document.querySelector(`.sidebar a[href="#${targetId}"]`).classList.add('active');
-
-            window.scrollTo({
-                top: document.getElementById(targetId).offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-
-        sidebarLinks.forEach(link => {
+        document.querySelectorAll('.navbar a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
-                showSection(targetId);
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.remove('open');
-                }
+                const targetSection = document.getElementById(targetId);
+                document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+                targetSection.classList.add('active');
+                document.querySelectorAll('.navbar a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             });
-
-            link.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    showSection(targetId);
-                }
-            });
-        });
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-            }
         });
     </script>
+</body>
+</html>
