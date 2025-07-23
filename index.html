@@ -101,22 +101,38 @@
             left: 0;
         }
         
-        /* Navigation styles */
+        /* Navigation styles - 核心修改部分 */
         nav {
             margin: 16px 20px;
         }
         nav ul {
             list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            /* 移除flex布局，改为默认块级排列（纵向） */
             margin: 0;
             padding: 0;
+        }
+        nav li {
+            /* 每个链接占一行，添加方块前缀 */
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px; /* 给方块留出空间 */
+        }
+        nav li::before {
+            /* 小方块样式 */
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #0000FF; /* 蓝色方块，与链接颜色一致 */
+            position: absolute;
+            left: 5px;
+            top: 7px; /* 垂直居中对齐 */
         }
         nav a {
             color: #0000FF;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px; /* 改为h3级别字体大小（原h3为18px） */
+            font-weight: 500; /* 匹配h3的字重 */
         }
         nav a:hover {
             text-decoration: underline;
@@ -169,10 +185,22 @@
                 
                 <h2>Analysis Seminars</h2>
                 <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.</p>
+
             </section>
         </div>
         <div class="divider"></div>
+
+<div class="container">
+<section>
+
+<h3></h3>
+         <p>Click links below to explore more details.</p>
+</section>
+
+</div>
         <nav>
+            
+
             <ul>
                 <li><a href="#" class="nav-link" data-page="research-page">Research</a></li>
                 <li><a href="#" class="nav-link" data-page="teaching-page">Teaching</a></li>
@@ -180,12 +208,7 @@
                 <li><a href="#" class="nav-link" data-page="notes-page">Notes</a></li>
             </ul>
         </nav>
-          <div class="container">
-         <section> 
-             <h3></h3>
-         <p>Click links above to explore details of my research, teaching, talks, and notes.</p>
-         </section>
-          </div>
+<div class="divider"></div>
     </div>
     
     <!-- Research Page -->
@@ -257,7 +280,7 @@
     <div id="teaching-page" class="page">
         <header>
             <div>
-                <h1>Teaching and Teaching Assistant Experiences</h1>
+                <h1>Teaching and Teaching Assistant Experience</h1>
             </div>
         </header>
         <div class="divider"></div>
@@ -403,4 +426,3 @@
     </script>
 </body>
 </html>
-    
