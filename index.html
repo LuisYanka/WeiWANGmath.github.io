@@ -101,38 +101,25 @@
             left: 0;
         }
         
-        /* Navigation styles - 核心修改部分 */
+        /* Navigation styles - 使用标准ul列表样式 */
         nav {
             margin: 16px 20px;
         }
         nav ul {
-            list-style: none;
-            /* 移除flex布局，改为默认块级排列（纵向） */
-            margin: 0;
-            padding: 0;
+            /* 使用标准列表样式 */
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 10px;
         }
         nav li {
-            /* 每个链接占一行，添加方块前缀 */
             margin-bottom: 10px;
-            position: relative;
-            padding-left: 20px; /* 给方块留出空间 */
-        }
-        nav li::before {
-            /* 小方块样式 */
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #0000FF; /* 蓝色方块，与链接颜色一致 */
-            position: absolute;
-            left: 5px;
-            top: 7px; /* 垂直居中对齐 */
+            font-size: 16px; /* 与正文字体大小一致 */
+            color: #3c4043; /* 与正文颜色一致 */
         }
         nav a {
             color: #0000FF;
             text-decoration: none;
-            font-size: 18px; /* 改为h3级别字体大小（原h3为18px） */
-            font-weight: 500; /* 匹配h3的字重 */
+            /* 移除额外的字体样式，继承自li */
         }
         nav a:hover {
             text-decoration: underline;
@@ -171,7 +158,7 @@
         <div class="container">
             <section>
                 <h2>About Me</h2>
-                <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Facuity/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
+                <p>I am a Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Faculty/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.</p>
                 <p>Previously, I earned my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.</p>
                 <p>View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" rel="nofollow">CV</a> (Last updated: July 22, 2025).</p>
                 <p>Profiles: <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a></p>
@@ -199,13 +186,12 @@
 
 </div>
         <nav>
-            
-
             <ul>
                 <li><a href="#" class="nav-link" data-page="research-page">Research</a></li>
                 <li><a href="#" class="nav-link" data-page="teaching-page">Teaching and Teaching Assistant Experiences</a></li>
                 <li><a href="#" class="nav-link" data-page="talks-page">Talks and Presentations</a></li>
                 <li><a href="#" class="nav-link" data-page="notes-page">Notes and Expository Papers</a></li>
+                <li><a href="#" class="nav-link" data-page="miscellanea-page">Miscellanea</a></li>
             </ul>
         </nav>
 <div class="divider"></div>
@@ -221,13 +207,13 @@
         <div class="divider"></div>
         <div class="container">
             <section>
-                <h2>Research Interests</h2>
+                <h3>Research Interests</h3>
                 <ul>
                     <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
                     <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
                 </ul>
                 
-                <h2>Publications</h2>
+                <h3>Publications</h3>
                 <ol reversed>
                     <li>(with Haotong Fu and Huaijie Wang) Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit<br> 
                            [<a href="https://arxiv.org/abs/2507.14955" rel="nofollow">arXiv</a>] preprint, arXiv: 2507.14955
@@ -374,6 +360,42 @@
                     <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), <a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow">PDF</a></li>
                     <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow">PDF</a></li>
                     <li>Reading notes on elliptic free boundary problems, <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow">PDF</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="divider"></div>
+        <a href="#" class="back-link">
+            <i class="fa fa-arrow-left mr-1"></i> Back to my home page
+        </a>
+    </div>
+
+    <div id="miscellanea-page" class="page">
+        <header>
+            <div>
+                <h1>Miscellanea</h1>
+            </div>
+        </header>
+        <div class="divider"></div>
+        <div class="container">
+            <section>          
+                <h3>Short Visits</h3>
+                <ul>
+                    <li>University of Science and Technology of China, Hefei, Anhui, PRC, June-July 2025</li>
+                    <li>Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025</li>
+                    <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2025</li>
+                    <li>Wuhan University, Wuhan, Hubei, PRC, Dec. 2024</li>
+                    <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Apr. 2024</li>
+                    <li>Zhejiang University, Hangzhou, Zhejiang, PRC, Feb. 2024</li>
+                </ul>
+                <div class="divider"></div>
+                <h3>Honors and Awards</h3>
+                <ul>
+                    <li>1st Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025</li>
+                    <li>3rd Prize, Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024</li>
+                    <li>Excellent Mathematics Graduate Student, Peking University, Beijing, PRC, Oct. 2023</li>
+                    <li>Nomination Award, ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022</li>
+                    <li>Outstanding Graduate Student, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
+                    <li>Honored Degree, Chu Kochen College, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2022</li>
                 </ul>
             </section>
         </div>
