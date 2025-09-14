@@ -20,7 +20,7 @@
                         secondary: '#4080FF',
                         light: '#E8F3FF',
                         dark: '#0E42D2',
-                        neutral: '#F9FAFB',
+                        neutral: '#F0F7FF',
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -35,8 +35,10 @@
             .content-auto {
                 content-visibility: auto;
             }
-            .text-balance {
-                text-wrap: balance;
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
             }
         }
         
@@ -46,7 +48,9 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
+            /* 全局文字折断设置 */
+            word-break: break-word;
         }
         
         /* 统一设置标题和段落样式 */
@@ -55,15 +59,16 @@
         }
         
         h2 {
-            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-4 pb-1 border-b border-primary;
+            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-4 pb-1;
+            /* 移除蓝色下划线 */
         }
         
         h3 {
-            @apply text-xl font-semibold mb-3 text-gray-900;
+            @apply text-xl font-semibold mb-3 text-gray-900 pl-0;
         }
 
         h4 {
-            @apply text-lg font-medium mb-3 text-gray-800;
+            @apply text-lg font-medium mb-2 text-gray-800;
         }
 
         p {
@@ -89,7 +94,7 @@
         
         /* 论文列表样式 */
         ol {
-            @apply list-decimal pl-6 my-4 space-y-4;
+            @apply list-decimal pl-8 my-4 space-y-4;
         }
         
         ol li {
@@ -109,10 +114,15 @@
         .paper-item em {
             @apply text-gray-700;
         }
+
+        /* 子栏目缩进样式 */
+        .sub-section {
+            @apply pl-6 md:pl-8;
+        }
     </style>
 </head>
 
-<body class="bg-white font-inter text-gray-800">
+<body class="font-inter text-gray-800">
     <!-- 导航栏 -->
     <header id="navbar" class="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,7 +138,6 @@
                     <a href="#teaching" class="nav-link">Teaching</a>
                     <a href="#talks" class="nav-link">Talks</a>
                     <a href="#notes" class="nav-link">Notes</a>
-                    <a href="#contact" class="nav-link">Contact</a>
                 </nav>
                 
                 <!-- 移动端菜单按钮 -->
@@ -147,21 +156,16 @@
                 <a href="#teaching" class="block nav-link">Teaching</a>
                 <a href="#talks" class="block nav-link">Talks</a>
                 <a href="#notes" class="block nav-link">Notes</a>
-                <a href="#contact" class="block nav-link">Contact</a>
             </div>
         </div>
     </header>
 
     <main>
         <!-- 首页 Hero 区域 -->
-        <section id="home" class="pt-28 pb-12 md:pt-36 md:pb-16 bg-light">
+        <section id="home" class="pt-28 pb-12 md:pt-36 md:pb-16 bg-gradient-to-r from-light to-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                    <!-- 头像 -->
-                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                        <img src="https://github.com/LuisYanka/wwpicture/raw/main/wwpicture.jpg" alt="Wei Wang" class="w-full h-full object-cover">
-                    </div>
-                    
+                                        
                     <!-- 个人简介 -->
                     <div class="text-left">
                         <h1>Wei Wang, Ph.D. Candidate</h1>
@@ -175,8 +179,8 @@
             </div>
         </section>
         
-        <!-- 关于部分 -->
-        <section id="about" class="py-10 md:py-12 bg-white">
+        <!-- 关于部分（包含联系信息） -->
+        <section id="about" class="py-10 md:py-12 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>About Me</h2>
                 
@@ -199,9 +203,35 @@
                         <a href="https://zbmath.org/authors/wang.wei.359" rel="nofollow" class="text-primary hover:underline">zbMATH</a>
                     </p>
                 </div>
-                
-                <div class="mt-5 pt-4 border-t border-gray-100">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Analysis Seminars</h3>
+
+                <!-- 联系信息部分 -->
+<div class="mt-10">
+    <h3>Contact Information</h3>
+    <div class="space-y-4 mt-3"> <!-- 移除了sub-section类，取消缩进 -->
+        <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fa fa-map-marker text-primary" aria-hidden="true"></i>
+            </div>
+            <div>
+                <h4 class="font-medium mb-1 text-gray-900">Office Location</h4>
+                <p>Room 314, 20th Building<br>Peking University<br>No. 5 Yiheyuan Road, Haidian District<br>Beijing, 100871, P. R. China</p>
+            </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fa fa-envelope text-primary" aria-hidden="true"></i>
+            </div>
+            <div>
+                <h4 class="font-medium mb-1 text-gray-900">Email</h4>
+                <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="mt-10">
+                    <h3>Analysis Seminars</h3>
                     <p>
                         I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow" class="text-primary hover:underline">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.
                     </p>
@@ -209,105 +239,113 @@
             </div>
         </section>
         
-<!-- 研究部分 -->
-<section id="research" class="py-10 md:py-12 bg-neutral">
+       <!-- 研究部分 -->
+<section id="research" class="py-10 md:py-12 bg-gradient-to-r from-light to-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <h2>Research</h2>
         
-        <!-- 研究兴趣 -->
-        <div class="mb-6">
+        <!-- 研究兴趣 - 一级子标题（一级缩进） -->
+        <div class="mb-6 pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
             <h3>Research Interests</h3>
             
-            <ul class="list-disc pl-5 space-y-1 text-gray-700 mt-2">
-                <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
-                <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
-            </ul>
+            <!-- 研究兴趣内容 - 二级缩进 -->
+            <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
+                <ul class="list-disc pl-5 space-y-1 text-gray-700 mt-2">
+                    <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
+                    <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
+                </ul>
+            </div>
         </div>
         
-        <!-- 已发表论文 -->
-        <div class="mb-8">
+        <!-- 已发表论文 - 一级子标题（一级缩进） -->
+        <div class="mb-8 pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
             <h3>Published Papers</h3>
             
-            <ol reversed>
-                <li class="paper-item">
-                    On the sharp constants in the regional fractional Sobolev inequalities<br>
-                    Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                    <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20 
-                    <a href="https://arxiv.org/abs/2403.00357" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> | 
-                    <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
-                </li>
-                <li class="paper-item">
-                    Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
-                    Wei Wang<br>
-                    <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65 
-                    <a href="https://arxiv.org/abs/2211.14614" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> |
-                    <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
-                </li>
-                <li class="paper-item">
-                    Homogenization theory of elliptic system with lower order terms for dimension two<br>
-                    Wei Wang, Ting Zhang<br>
-                    <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824 
-                    <a href="https://arxiv.org/abs/2210.06329" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> | 
-                    <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
-                </li>
-            </ol>
+            <!-- 已发表论文内容 - 二级缩进 -->
+            <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
+                <ol reversed>
+                    <li class="paper-item">
+                        Homogenization theory of elliptic system with lower order terms for dimension two<br>
+                        Wei Wang, Ting Zhang<br>
+                        <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824 
+                        <a href="https://arxiv.org/abs/2210.06329" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> | 
+                        <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
+                    </li>
+                    <li class="paper-item">
+                        Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
+                        Wei Wang<br>
+                        <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65 
+                        <a href="https://arxiv.org/abs/2211.14614" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> |
+                        <a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
+                    </li>
+                    <li class="paper-item">
+                        On the sharp constants in the regional fractional Sobolev inequalities<br>
+                        Rupert L. Frank, Tianling Jin, Wei Wang<br>
+                        <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20 
+                        <a href="https://arxiv.org/abs/2403.00357" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a> | 
+                        <a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-external-link text-primary" aria-hidden="true"></i> journal</a>
+                    </li>
+                </ol>
+            </div>
         </div>
         
-        <!-- 预印本 -->
-        <div>
+        <!-- 预印本 - 一级子标题（一级缩进） -->
+        <div class="pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
             <h3>Preprints</h3>
             
-            <ol reversed>
-                <li class="paper-item">
-                    Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects<br> 
-                    Haotong Fu, Huaijie Wang, Wei Wang<br>
-                    arXiv: 2508.01811 <a href="https://arxiv.org/abs/2508.01811" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                </li>
-                <li class="paper-item">
-                    Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit<br> 
-                    Haotong Fu, Huaijie Wang, Wei Wang<br>
-                    arXiv: 2507.14955 <a href="https://arxiv.org/abs/2507.14955" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                </li>
-                <li class="paper-item">
-                    Existence of weak solutions for two-phase matrix-valued harmonic map flows<br>
-                    Wei Wang, Wei Wang, Zhifei Zhang<br>
-                    arXiv: 2506.16278 <a href="https://arxiv.org/abs/2506.16278" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a><br>
-                    Note: The second author Wei Wang (王伟) has the same name as mine in English. 
-                    <a href="https://person.zju.edu.cn/en/wangw07" rel="nofollow" class="text-primary hover:underline">Here</a> is his personal website.
-                </li>
-                <li class="paper-item">
-                    Stratification and rectifiability of harmonic map flows via tangent measures<br>
-                    Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                    arXiv: 2504.14880 <a href="https://arxiv.org/abs/2504.14880" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                </li>
-                </li>
-                <li class="paper-item">
-                    Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
-                    Wei Wang, Zhifei Zhang<br>
-                    arXiv: 2411.16048 <a href="https://arxiv.org/abs/2411.16048" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                </li>
-                <li class="paper-item">
-                    Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
-                    Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                    arXiv: 2408.06726 <a href="https://arxiv.org/abs/2408.06726" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                <li class="paper-item">
-                    Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
-                    Wei Wang, Zhifei Zhang<br>
-                    arXiv: 2404.00677 <a href="https://arxiv.org/abs/2404.00677" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
-                </li> 
-            </ol>
+            <!-- 预印本内容 - 二级缩进 -->
+            <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
+                <ol reversed>
+                    <li class="paper-item">
+                        Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
+                        Wei Wang, Zhifei Zhang<br>
+                        arXiv: 2404.00677 <a href="https://arxiv.org/abs/2404.00677" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                    <li class="paper-item">
+                        Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
+                        Haotong Fu, Wei Wang, Zhifei Zhang<br>
+                        arXiv: 2408.06726 <a href="https://arxiv.org/abs/2408.06726" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                    <li class="paper-item">
+                        Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
+                        Wei Wang, Zhifei Zhang<br>
+                        arXiv: 2411.16048 <a href="https://arxiv.org/abs/2411.16048" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                    <li class="paper-item">
+                        Stratification and rectifiability of harmonic map flows via tangent measures<br>
+                        Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
+                        arXiv: 2504.14880 <a href="https://arxiv.org/abs/2504.14880" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                    <li class="paper-item">
+                        Existence of weak solutions for two-phase matrix-valued harmonic map flows<br>
+                        Wei Wang, Wei Wang, Zhifei Zhang<br>
+                        arXiv: 2506.16278 <a href="https://arxiv.org/abs/2506.16278" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a><br>
+                        Note: The second author Wei Wang (王伟) has the same name as mine in English. 
+                        <a href="https://person.zju.edu.cn/en/wangw07" rel="nofollow" class="text-primary hover:underline">Here</a> is his personal website.
+                    </li>
+                    <li class="paper-item">
+                        Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit<br> 
+                        Haotong Fu, Huaijie Wang, Wei Wang<br>
+                        arXiv: 2507.14955 <a href="https://arxiv.org/abs/2507.14955" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                    <li class="paper-item">
+                        Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects<br> 
+                        Haotong Fu, Huaijie Wang, Wei Wang<br>
+                        arXiv: 2508.01811 <a href="https://arxiv.org/abs/2508.01811" rel="nofollow" class="text-primary hover:underline ml-1"><i class="fa fa-file-pdf-o text-primary" aria-hidden="true"></i> arXiv</a>
+                    </li>
+                </ol>
+            </div>
         </div>
     </div>
 </section>
 
-
         
         <!-- 教学部分 -->
-        <section id="teaching" class="py-10 md:py-12 bg-white">
+        <section id="teaching" class="py-10 md:py-12 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Teaching Experience</h2>
                 
-                <div class="overflow-x-auto">
+                <div class="sub-section overflow-x-auto">
                     <table class="min-w-full">
                         <thead>
                             <tr class="border-b border-gray-200">
@@ -388,195 +426,174 @@
             </div>
         </section>
         
-        <!-- 报告部分 -->
- <section id="talks" class="py-10 md:py-12 bg-neutral">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <h2>Talks and Presentations</h2>
+<!-- 报告部分 -->
+<section id="talks" class="py-10 md:py-12 bg-gradient-to-r from-light to-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <h2>Talks and Presentations</h2>
+        
+        <!-- 会议报告 - 一级子标题（一级缩进） -->
+        <div class="mb-5 pl-4 md:pl-6">
+            <h3>Conference/Workshop Talks</h3>
+            
+            <!-- 会议报告内容 - 二级缩进，使用ul列表（带项目符号） -->
+            <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                <li>
+                    <p>Conference on Theory and Computation of Quasi Crystals, NanKai University, Tianjin, PRC, Aug. 2025  
+                        <a href="https://github.com/LuisYanka/SlidesLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
+                        </a>
+                    </p>
+                </li>
                 
-                <!-- 会议报告 -->
-                <div class="mb-5">
-                    <h3>Conference/Workshop Talks</h3>
-                    
-                    <div class="pl-4 space-y-3 mt-2">
-                        <div>
-                            <p>Conference on Theory and Computation of Quasi Crystals, NanKai University, Tianjin, PRC, Aug. 2025  
-<a href="https://github.com/LuisYanka/SlidesLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
-                                </a>
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <p>Defense of ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022  
-<a href="https://github.com/LuisYanka/ICCMppt/raw/main/ICCM%20ppt.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <li>
+                    <p>Defense of ICCM Creative Undergraduate Thesis, Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022  
+                        <a href="https://github.com/LuisYanka/ICCMppt/raw/main/ICCM%20ppt.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
+                        </a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 研讨会报告 - 一级子标题（一级缩进） -->
+        <div class="mb-5 pl-4 md:pl-6">
+            <h3>Seminar/Colloquium Talks</h3>
+            
+            <!-- 研讨会报告内容 - 二级缩进，使用ul列表（带项目符号） -->
+            <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                <li>
+                    <p>PDE and geometry Seminar, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025  
+                        <a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
+                        </a>
+                    </p>
+                </li>
                 
-                <!-- 研讨会报告 -->
-                <div class="mb-5">
-                    <h3>Seminar/Colloquium Talks</h3>
-                    
-                    <div class="pl-4 space-y-3 mt-2">
-                        <div>
-                            <p>PDE and geometry Seminar, Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025  
-<a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
-                                </a>
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <p>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024  
-<a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <li>
+                    <p>PDE Seminar, Peking University, Beijing, PRC, Dec. 2024  
+                        <a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Slides
+                        </a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 海报展示 - 一级子标题（一级缩进） -->
+        <div class="pl-4 md:pl-6">
+            <h3>Poster Presentations</h3>
+            
+            <!-- 海报展示内容 - 二级缩进，使用ul列表（带项目符号） -->
+            <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                <li>
+                    <p>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025  
+                        <a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Poster
+                        </a>
+                    </p>
+                </li>
                 
-                <!-- 海报展示 -->
-                <div>
-                    <h3>Poster Presentations</h3>
-                    
-                    <div class="pl-4 space-y-3 mt-2">
-                        <div>
-                            <p>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2025  
-<a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Poster
-                                </a>
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <p>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024  
-<a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Poster
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <li>
+                    <p>Graduate Research Exhibition, Peking University, Beijing, PRC, Apr. 2024  
+                        <a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline ml-2 flex items-center gap-1 inline-flex">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Poster
+                        </a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+    
         
         <!-- 笔记部分 -->
-        <section id="notes" class="py-10 md:py-12 bg-white">
+        <section id="notes" class="py-10 md:py-12 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Notes and Expository Papers</h2>
                 
-                <ul class="space-y-2 mt-3">
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Notes on the Alt-Phillips problem</span>
-                            <a href="https://github.com/LuisYanka/FreeBoundary/raw/main/FreeBoundaryNote.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Notes on A-free measures</span>
-                            <a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Notes on bubbling analysis of Ginzburg-Landau model</span>
-                            <a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Studying notes on ergodic theory (in Chinese)</span>
-                            <a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Notes on recent progress of obstacle problems (with Yuxuan Chen)</span>
-                            <a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Notes on Schoen-Uhlenbeck theory for harmonic maps</span>
-                            <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
-                        <div>
-                            <span class="text-gray-900">Reading notes on elliptic free boundary problems</span>
-                            <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
-                                <i class="fa fa-download" aria-hidden="true"></i> PDF
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        
-        <!-- 联系部分 -->
-        <section id="contact" class="py-10 md:py-12 bg-neutral">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <h2>Contact</h2>
-                
-                <div class="mt-3 space-y-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fa fa-map-marker text-primary" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium mb-1 text-gray-900">Office Location</h4>
-                            <p>Room 314, 20th Building<br>Peking University<br>No. 5 Yiheyuan Road, Haidian District<br>Beijing, 100871, P. R. China</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fa fa-envelope text-primary" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium mb-1 text-gray-900">Email</h4>
-                            <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
-                        </div>
-                    </div>
+                <div class="sub-section">
+                    <ul class="space-y-2 mt-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Notes on the Alt-Phillips problem</span>
+                                <a href="https://github.com/LuisYanka/FreeBoundary/raw/main/FreeBoundaryNote.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Notes on A-free measures</span>
+                                <a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Notes on bubbling analysis of Ginzburg-Landau model</span>
+                                <a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Studying notes on ergodic theory (in Chinese)</span>
+                                <a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Notes on recent progress of obstacle problems (with Yuxuan Chen)</span>
+                                <a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Notes on Schoen-Uhlenbeck theory for harmonic maps</span>
+                                <a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-file-text-o text-primary mt-1" aria-hidden="true"></i>
+                            <div>
+                                <span class="text-gray-900">Reading notes on elliptic free boundary problems</span>
+                                <a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow" class="ml-2 text-primary hover:underline text-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i> PDF
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
     </main>
     
     <!-- 页脚 -->
-    <footer class="bg-gray-100 py-5 mt-6">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-2 md:mb-0">
-                    <p class="text-sm text-gray-900">© 2025 Wei Wang. All rights reserved.</p>
+                <div class="mb-6 md:mb-0">
+                    <p class="text-lg font-bold">Wei Wang</p>
+                    <p class="text-gray-400 mt-1">Ph.D. Candidate in Theoretical Mathematics</p>
                 </div>
                 
-                <div>
-                    <p class="text-xs text-gray-900">School of Mathematical Sciences, Peking University</p>
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="text-gray-400 text-sm">© 2025 Wei Wang. All rights reserved.</p>
+                    <p class="text-gray-500 text-xs mt-2">School of Mathematical Sciences, Peking University</p>
                 </div>
             </div>
         </div>
@@ -647,7 +664,3 @@
     </script>
 </body>
 </html>
-    
-
-
-
