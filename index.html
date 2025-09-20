@@ -59,13 +59,13 @@
             word-break: break-word;
         }
         
-        /* 统一标题段落样式 */
+        /* 统一标题段落样式 - 移除h2标签的灰色横线（border-b） */
         h1 {
             @apply text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight;
         }
         
         h2 {
-            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-4 pb-1 border-b border-gray-200;
+            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-4; /* 移除 pb-1 border-b border-gray-200 */
         }
         
         h3 {
@@ -184,8 +184,8 @@
         </div>
     </header>
 
-    <!-- 主页内容 -->
-    <div id="home-page" class="page active pt-24">
+    <!-- 主页内容 - 将pt-24改为pt-16，消除导航栏与内容的空隙（导航栏高度为h-16） -->
+    <div id="home-page" class="page active pt-16">
         <!-- Home区域 -->
         <section class="pt-8 pb-12 md:pt-16 md:pb-20 bg-gradient-to-r from-light to-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -265,8 +265,8 @@
         </section>
     </div>
     
-    <!-- 研究页面（修改后） -->
-    <div id="research-page" class="page pt-24">
+    <!-- 研究页面 - 将pt-24改为pt-16 -->
+    <div id="research-page" class="page pt-16">
         <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Research</h2>
@@ -367,8 +367,8 @@
         </section>
     </div>
     
-    <!-- 教学页面（修改后） -->
-    <div id="teaching-page" class="page pt-24">
+    <!-- 教学页面 - 将pt-24改为pt-16 -->
+    <div id="teaching-page" class="page pt-16">
         <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Teaching Experience</h2>
@@ -455,8 +455,8 @@
         </section>
     </div>
     
-    <!-- 演讲页面（修改后） -->
-    <div id="talks-page" class="page pt-24">
+    <!-- 演讲页面 - 将pt-24改为pt-16 -->
+    <div id="talks-page" class="page pt-16">
         <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Talks and Presentations</h2>
@@ -521,8 +521,8 @@
         </section>
     </div>
     
-    <!-- 笔记页面（保持原样） -->
-    <div id="notes-page" class="page pt-24">
+    <!-- 笔记页面 - 将pt-24改为pt-16 -->
+    <div id="notes-page" class="page pt-16">
         <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Notes and Expository Papers</h2>
