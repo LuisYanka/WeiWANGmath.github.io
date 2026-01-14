@@ -10,21 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind配置 -->
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: '#165DFF',
                         secondary: '#4080FF',
                         light: '#E8F3FF',
-                        dark: '#0E42D2',
+                        darkBlue: '#0E42D2',
                         neutral: '#F0F7FF',
+                        bgDark: '#0f172a',
+                        cardDark: '#1e293b',
                     },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
                 }
             }
         }
@@ -32,264 +40,158 @@
     
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-gradient {
-                background-clip: text;
-                -webkit-background-clip: text;
-                color: transparent;
-            }
-            .page-transition {
-                transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            }
-            .page-fade-enter {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+            .page-transition { transition: all 0.3s ease-in-out; }
         }
+        html { scroll-behavior: smooth; }
+        body { @apply font-inter transition-colors duration-300 bg-white dark:bg-bgDark text-gray-800 dark:text-gray-300; }
+        h1 { @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight; }
+        h2 { @apply text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b pb-2 border-gray-100 dark:border-gray-800; }
+        h3 { @apply text-xl font-semibold mb-3 text-gray-900 dark:text-blue-400 mt-8; }
+        h4 { @apply text-lg font-medium mb-2 text-gray-800 dark:text-gray-200; }
+        p { @apply text-gray-700 dark:text-gray-400 mb-2; }
+        .nav-link { @apply relative px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm font-medium; }
+        .nav-link.active { @apply text-primary font-semibold; }
+        .nav-link::after { content: ''; @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300; }
+        .nav-link:hover::after, .nav-link.active::after { @apply w-full; }
+        .paper-item { @apply pb-6 border-b border-gray-100 dark:border-gray-800 last:border-0 last:pb-0; }
+        .paper-title { @apply font-semibold text-gray-900 dark:text-gray-100 block mb-1 text-lg; }
+        a { @apply text-primary hover:underline transition-colors; }
+        .page { display: none; }
+        .page.active { display: block; animation: pageFadeIn 0.4s ease-out; }
+        @keyframes pageFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .teaching-table th { @apply px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-800; }
+        .teaching-table td { @apply px-4 py-4 text-sm border-b border-gray-100 dark:border-gray-800; }
+        #search-results { @apply absolute top-full right-0 mt-2 w-72 md:w-96 bg-white dark:bg-cardDark shadow-xl rounded-lg border border-gray-100 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-[60]; }
+        .search-item { @apply p-3 border-b border-gray-50 dark:border-gray-800 hover:bg-light dark:hover:bg-gray-800 cursor-pointer; }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            word-break: break-word;
-        }
-        
-        /* 统一标题段落样式 - 移除h2标签的灰色横线（border-b） */
-        h1 {
-            @apply text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight;
-        }
-        
-        h2 {
-            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-4; /* 移除 pb-1 border-b border-gray-200 */
-        }
-        
-        h3 {
-            @apply text-xl font-semibold mb-3 text-gray-900 pl-0;
-        }
+        /* 修复1：论文逆序自动编号对齐问题 - 使用 outside 悬挂缩进 */
+        ol[reversed] { display: flex; flex-direction: column; counter-reset: section; padding-left: 1.5rem; }
+        ol[reversed] > li { counter-increment: section -1; display: list-item; list-style-position: outside; margin-bottom: 1rem; }
+        ol[reversed] > li::marker { content: counter(section) ". "; font-weight: bold; }
 
-        h4 {
-            @apply text-lg font-medium mb-2 text-gray-800;
+        /* 搜索高亮动画 (蓝色) */
+        .search-highlight-active {
+            animation: highlightFade 2s ease-out;
+            border-radius: 4px;
         }
-
-        p {
-            @apply text-gray-700 mb-2;
-        }
-        
-        .nav-link {
-            @apply relative px-3 py-2 text-gray-600 hover:text-primary transition-colors duration-300 cursor-pointer;
-        }
-        
-        .nav-link::after {
-            content: '';
-            @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
-        }
-        
-        .nav-link:hover::after, .nav-link.active::after {
-            @apply w-full;
-        }
-        
-        .nav-link.active {
-            @apply text-primary font-medium;
-        }
-        
-        /* 论文列表样式 */
-        ol {
-            @apply list-decimal pl-8 my-4 space-y-4;
-        }
-        
-        ol li {
-            @apply pl-2 text-gray-800;
-        }
-        
-        .paper-item {
-            @apply pb-3 border-b border-gray-100 last:border-0 last:pb-0;
-        }
-        
-        /* 链接样式 */
-        a {
-            @apply text-primary hover:underline;
-        }
-        
-        /* 期刊斜体样式 */
-        em {
-            @apply text-gray-700;
-        }
-
-        /* 子栏目缩进样式 */
-        .sub-section {
-            @apply pl-6 md:pl-8;
-        }
-        
-        /* 页面显示控制 */
-        .page {
-            display: none;
-        }
-        
-        .page.active {
-            display: block;
-            animation: pageFadeIn 0.5s ease-out;
-        }
-        
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes highlightFade {
+            0% { background-color: rgba(22, 93, 255, 0.3); } 
+            100% { background-color: transparent; }
         }
     </style>
 </head>
 
-<body class="font-inter text-gray-800">
-    <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+<body>
+    <header id="navbar" class="fixed w-full bg-white/90 dark:bg-bgDark/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo/姓名 -->
-                <div class="text-lg font-bold text-primary nav-logo cursor-pointer">Wei Wang</div>
+                <div class="text-xl font-bold text-primary cursor-pointer nav-logo shrink-0">Wei Wang</div>
                 
-                <!-- 桌面导航 -->
-                <nav class="hidden md:flex space-x-1">
-                    <div class="nav-link active" data-page="home-page">Home</div>
-                    <div class="nav-link" data-page="research-page">Research</div>
-                    <div class="nav-link" data-page="teaching-page">Teaching</div>
-                    <div class="nav-link" data-page="talks-page">Talks</div>
-                    <div class="nav-link" data-page="notes-page">Notes</div>
-                </nav>
-                
-                <!-- 移动端菜单按钮 -->
-                <button id="menu-toggle" class="md:hidden text-gray-600 hover:text-primary focus:outline-none">
-                    <i class="fa fa-bars text-xl" aria-hidden="true"></i>
-                </button>
+                <div class="flex items-center space-x-1 md:space-x-4 flex-1 justify-end">
+                    <div class="relative max-w-xs w-full group ml-4">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa fa-search text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                        </div>
+                        <input type="text" id="global-search" 
+                               class="block w-full pl-10 pr-3 py-1.5 border border-gray-200 dark:border-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm" 
+                               placeholder="Search (Case Sensitive)...">
+                        <div id="search-results"></div>
+                    </div>
+
+                    <nav class="hidden lg:flex space-x-1">
+                        <div class="nav-link active" data-page="home-page">Home</div>
+                        <div class="nav-link" data-page="research-page">Research</div>
+                        <div class="nav-link" data-page="teaching-page">Teaching</div>
+                        <div class="nav-link" data-page="talks-page">Talks</div>
+                        <div class="nav-link" data-page="notes-page">Notes</div>
+                    </nav>
+
+                    <div class="flex items-center border-l dark:border-gray-800 pl-2">
+                        <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all">
+                            <i id="theme-icon" class="fa fa-moon-o text-lg"></i>
+                        </button>
+                        <button id="menu-toggle" class="lg:hidden p-2 text-gray-600 dark:text-gray-400 ml-1">
+                            <i class="fa fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="container mx-auto px-4 py-2 space-y-1">
-                <div class="block nav-link active" data-page="home-page">Home</div>
-                <div class="block nav-link" data-page="research-page">Research</div>
-                <div class="block nav-link" data-page="teaching-page">Teaching</div>
-                <div class="block nav-link" data-page="talks-page">Talks</div>
-                <div class="block nav-link" data-page="notes-page">Notes</div>
-            </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-bgDark border-t dark:border-gray-800 px-4 py-4 space-y-2">
+            <div class="nav-link active block" data-page="home-page">Home</div>
+            <div class="nav-link block" data-page="research-page">Research</div>
+            <div class="nav-link block" data-page="teaching-page">Teaching</div>
+            <div class="nav-link block" data-page="talks-page">Talks</div>
+            <div class="nav-link block" data-page="notes-page">Notes</div>
         </div>
     </header>
 
-    <!-- 主页内容 - 将pt-24改为pt-16，消除导航栏与内容的空隙（导航栏高度为h-16） -->
-    <div id="home-page" class="page active pt-16">
-        <!-- Home区域 -->
-        <section class="pt-8 pb-12 md:pt-16 md:pb-20 bg-gradient-to-r from-light to-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
-                    <!-- 个人简介 -->
-                    <div class="text-left">
-                        <h1>Wei Wang, Ph.D. Candidate</h1>
-                        <p class="text-lg text-gray-600 mb-1">Theoretical Mathematics</p>
-                        <p class="text-gray-700">
-                            Peking University<br>
-                            Research in Geometric Variational Problems and Partial Differential Equations
-                        </p>
+    <main id="home-page" class="page active pt-16 searchable">
+        <section class="py-12 md:py-20 bg-gradient-to-br from-light/50 dark:from-blue-900/20 to-transparent">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h1>Wei Wang (王尉)</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Ph.D. Candidate in Theoretical Mathematics</p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mt-2">Peking University</p>
+             </div>
+        </section>
+
+        <section class="py-12 container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-2 space-y-6">
+                    <h2>About Me</h2>
+                    <p>I am a four-year Ph.D. candidate in Theoretical Mathematics at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/">Peking University</a>, supervised by <a href="http://english.math.pku.edu.cn//Faculty/Faculty/ALL/old_site_Faculty_ALL_2_128.htm">Prof. Zhifei Zhang</a>.</p>
+                    <p>Previously, I obtained my Bachelor's degree in Mathematics and Applied Mathematics from <a href="http://www.math.zju.edu.cn/mathen/">Zhejiang University</a> in 2022, where I was advised by <a href="https://person.zju.edu.cn/en/zhangting">Prof. Ting Zhang</a>. </p>
+                    <p><a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" class="px-6 py-2 bg-primary text-white rounded-md no-underline font-medium hover:bg-darkBlue shadow-lg shadow-primary/20 transition-all">Download my CV</a> (Last updated: Nov. 30, 2025).
+                    <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/">analysis seminars</a> at Peking University, focusing on PDEs and geometric measure theory.</p>
+                    
+                    <h3 class="text-lg">Academic Profiles</h3>
+                    <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                        <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en">Google Scholar</a> | 
+                        <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566">MathSciNet</a> | 
+                        <a href="https://orcid.org/0000-0002-7483-4310">ORCID</a> | 
+                        <a href="https://www.researchgate.net/profile/Wei-Wang-1293">ResearchGate</a> | 
+                        <a href="https://zbmath.org/authors/wang.wei.359">zbMATH</a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-cardDark p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                    <h3 class="mt-0">Contact Information</h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-3">
+                            <i class="fa fa-map-marker text-primary mt-1"></i>
+                            <p>Room 314, 20th Building, Peking University<br>No. 5 Yiheyuan Road, Haidian District<br>Beijing, 100871, P. R. China</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa fa-envelope text-primary mt-1"></i>
+                            <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- About Me区域 -->
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <h2>About Me</h2>
-                
-                <div class="space-y-3">
-                    <p>
-                        My name is Wei Wang (王尉). I am currently a four-year Ph.D. candidate in Theoretical Mathematics under the supervision of Prof. <a href="http://english.math.pku.edu.cn//Faculty/Faculty/ALL/old_site_Faculty_ALL_2_128.htm" rel="nofollow">Zhifei Zhang</a> at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/" rel="nofollow">Peking University</a>.
-                    </p>
-                    <p>
-                        Previously, I obtained my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences at <a href="http://www.math.zju.edu.cn/mathen/" rel="nofollow">Zhejiang University</a> in 2022, advised by Prof. <a href="https://person.zju.edu.cn/en/zhangting" rel="nofollow">Ting Zhang</a>.
-                    </p>
-                    <p>
-                        View my full <a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" rel="nofollow">CV</a> (Last updated: Nov. 30, 2025).
-                    </p>
-                    <p>
-                        Academic Profiles: 
-                        <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en" rel="nofollow">Google Scholar</a> | 
-                        <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566" rel="nofollow">MathSciNet</a> | 
-                        <a href="https://orcid.org/0000-0002-7483-4310" rel="nofollow">ORCID</a> | 
-                        <a href="https://www.researchgate.net/profile/Wei-Wang-1293" rel="nofollow">ResearchGate</a> | 
-                        <a href="https://zbmath.org/authors/wang.wei.359" rel="nofollow">zbMATH</a>
-                    </p>
-                </div>
 
-                <!-- 联系信息 -->
-                <div class="mt-10">
-                    <h3>Contact Information</h3>
-                    <div class="space-y-4 mt-3">
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fa fa-map-marker text-primary" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1 text-gray-900">Office Location</h4>
-                                <p>Room 314, 20th Building<br>Peking University<br>No. 5 Yiheyuan Road, Haidian District<br>Beijing, 100871, P. R. China</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-light rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fa fa-envelope text-primary" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1 text-gray-900">Email</h4>
-                                <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    </main>
 
-                <!-- 研讨会组织 -->
-                <div class="mt-10">
-                    <h3>Analysis Seminars</h3>
-                    <p>
-                        I co-organize long-term <a href="https://luisyanka.github.io/GMT/" rel="nofollow">analysis seminars</a> at Peking University, focusing on partial differential equations and geometric measure theory.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- 研究页面 - 将pt-24改为pt-16 -->
-    <div id="research-page" class="page pt-16">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
+    <main id="research-page" class="page pt-16 searchable">
+        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Research</h2>
                 
-                <!-- 研究兴趣 - 一级子标题（一级缩进） -->
-                <div class="mb-6 pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
+                <div class="mb-6 pl-4 md:pl-6">
                     <h3>Research Interests</h3>
                     
-                    <!-- 研究兴趣内容 - 二级缩进 -->
-                    <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mt-2">
+                    <div class="pl-4 md:pl-6">
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-400 mt-2">
                             <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
                             <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
                         </ul>
                     </div>
                 </div>
                 
-                <!-- 已发表论文 - 一级子标题（一级缩进） -->
-                <div class="mb-8 pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
+                <div class="mb-8 pl-4 md:pl-6">
                     <h3>Published Papers</h3>
                     
-                    <!-- 已发表论文内容 - 二级缩进 -->
-                    <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
+                    <div class="pl-4 md:pl-6">
                         <ol reversed>
                             <li class="paper-item">
                                 On the sharp constants in the regional fractional Sobolev inequalities<br>
@@ -316,12 +218,10 @@
                     </div>
                 </div>
                 
-                <!-- 预印本 - 一级子标题（一级缩进） -->
-                <div class="pl-4 md:pl-6"> <!-- 为子标题添加一级缩进 -->
+                <div class="pl-4 md:pl-6">
                     <h3>Preprints</h3>
                     
-                    <!-- 预印本内容 - 二级缩进 -->
-                    <div class="pl-4 md:pl-6"> <!-- 在子标题基础上再增加一级缩进 -->
+                    <div class="pl-4 md:pl-6">
                         <ol reversed>
                             <li class="paper-item">
                                 Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects<br> 
@@ -365,185 +265,160 @@
                 </div>
             </div>
         </section>
-    </div>
-    
-    <!-- 教学页面 - 将pt-24改为pt-16 -->
-    <div id="teaching-page" class="page pt-16">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <h2>Teaching Experience</h2>
-                
-                <div class="sub-section overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr class="border-b border-gray-200">
-                                <th scope="col" class="px-2 py-2 text-left text-sm font-medium text-gray-700">Institution</th>
-                                <th scope="col" class="px-2 py-2 text-left text-sm font-medium text-gray-700">Course</th>
-                                <th scope="col" class="px-2 py-2 text-left text-sm font-medium text-gray-700">Semester</th>
-                                <th scope="col" class="px-2 py-2 text-left text-sm font-medium text-gray-700">Role</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">
-                                    Real Analysis (Graduate Course)
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Spring 2026</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">
-                                    Advanced Mathematics (C) (I)<br>
-                                    [<a href="https://github.com/LuisYanka/Calculus-C-Midterm/raw/main/Calculus_C__Review_of_the_Midterm.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Review of the Midterm: Lecture Notes</a>] | [<a href="https://github.com/LuisYanka/Calculus-C-Midterm-ppt/raw/main/Calculus_C_Review_of_Midterm_ppt.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Review of the Midterm: Slides</a>]
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Fall 2025</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">
-                                    Advanced Mathematics (B) (II)<br>
-                                    [<a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Lecture Notes</a>]
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Spring 2025</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">
-                                    Advanced Mathematics (A) (I)<br>
-                                    [<a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Lecture Notes</a>] |
-                                    [<a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Finals Answers</a>]
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Fall 2024</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">Advanced Mathematics (B) (II)</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Spring 2024</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">
-                                    Harmonic Analysis (Graduate Course)<br>
-                                    [<a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf" target="_blank" rel="nofollow" class="text-primary text-xs">Homework Solutions</a>]
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Fall 2023</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">Functional Analysis (I)</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Spring 2023</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Peking University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">Advanced Mathematics (C) (I)</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Fall 2022</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Zhejiang University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">Mathematical Analysis (II)</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Spring 2022</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                            <tr class="hover:bg-neutral transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-700">Zhejiang University</td>
-                                <td class="px-2 py-2 text-sm text-gray-700">Mathematical Analysis (I)</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Fall 2021</td>
-                                <td class="px-2 py-2 text-sm text-gray-600">Teaching Assistant</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+    </main>
+
+    <main id="teaching-page" class="page pt-16 searchable">
+        <section class="py-12 container mx-auto px-4 max-w-6xl">
+            <h2>Teaching Experience</h2>
+            <div class="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm mt-8">
+                <table class="w-full teaching-table">
+                    <thead>
+                        <tr>
+                            <th>Institution</th>
+                            <th>Course</th>
+                            <th>Semester</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-cardDark">
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Real Analysis (Graduate Course)</td>
+                            <td>Spring 2026</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Advanced Mathematics (C) (I) <br>
+                                <span class="text-xs">[<a href="https://github.com/LuisYanka/Calculus-C-Midterm/raw/main/Calculus_C__Review_of_the_Midterm.pdf">Lecture Notes</a>] | [<a href="https://github.com/LuisYanka/Calculus-C-Midterm-ppt/raw/main/Calculus_C_Review_of_Midterm_ppt.pdf">Slides</a>]</span>
+                            </td>
+                            <td>Fall 2025</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Advanced Mathematics (B) (II) <br>
+                                <span class="text-xs">[<a href="https://github.com/LuisYanka/AdvanceMathB/raw/main/ProblemSolvingClassAdvancedMathB.pdf">Lecture Notes</a>]</span>
+                            </td>
+                            <td>Spring 2025</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Advanced Mathematics (A) (I) <br>
+                                <span class="text-xs">[<a href="https://github.com/LuisYanka/Calculus-A-notes/raw/main/Calculus%20A.pdf">Lecture Notes</a>] | [<a href="https://github.com/LuisYanka/FinalAns/raw/main/Final2223.pdf">Finals Answers</a>]</span>
+                            </td>
+                            <td>Fall 2024</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Advanced Mathematics (B) (II)</td>
+                            <td>Spring 2024</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Harmonic Analysis (Graduate Course) <br>
+                                <span class="text-xs">[<a href="https://github.com/LuisYanka/Solutions-of-HA/raw/main/Some_questions_of_harmonic_analysis.pdf">Homework Solutions</a>]</span>
+                            </td>
+                            <td>Fall 2023</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Functional Analysis (I)</td>
+                            <td>Spring 2023</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Peking University</td>
+                            <td>Advanced Mathematics (C) (I)</td>
+                            <td>Fall 2022</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Zhejiang University</td>
+                            <td>Mathematical Analysis (II)</td>
+                            <td>Spring 2022</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                        <tr>
+                            <td>Zhejiang University</td>
+                            <td>Mathematical Analysis (I)</td>
+                            <td>Fall 2021</td>
+                            <td>Teaching Assistant</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
-    </div>
-    
-    <!-- 演讲页面 - 将pt-24改为pt-16 -->
-    <div id="talks-page" class="page pt-16">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
+
+    </main>
+
+    <main id="talks-page" class="page pt-16 searchable">
+        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Talks and Presentations</h2>
                 
-                <!-- 会议报告 - 一级子标题（一级缩进） -->
                 <div class="mb-5 pl-4 md:pl-6">
                     <h3>Conference/Workshop Talks</h3>
-                    
-                    <!-- 会议报告内容 - 二级缩进，使用ul列表（带项目符号） -->
-                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
                             <p>Academic Workshop on Fluid Dynamics Equations [<a href="https://github.com/LuisYanka/pkufluid/raw/main/pkufluid.png" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Peking University, Beijing, PRC, Jan. 2026 [<a href="https://github.com/LuisYanka/pptLineDefects/raw/main/ppt_line_defects.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Landau-de Gennes Model with Sextic Potentials: Asymptotic Behavior of Minimizers</em>
                             </p>
                         </li>
-                        
                         <li>
                             <p>Jinhua Conference on Harmonic Analysis and Its Applications [<a href="https://github.com/LuisYanka/jinhua/raw/main/jinhua.png" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Zhejiang Normal University, Jinhua, Zhejiang, PRC, Nov. 29 [<a href="https://github.com/LuisYanka/pptHarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Stratification for Harmonic Map Flows via Tangent Measures: Rectifiability and Regularity</em>
                             </p>
                         </li>
-                        
                         <li>
                             <p>The 3rd National Academic Exchange Forum for Doctoral Students in Frontier Mathematics [<a href="https://github.com/LuisYanka/3rdMathForum/raw/main/3rdMathForum.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Peking University, Beijing, PRC, Nov. 1 [<a href="https://github.com/LuisYanka/pptLineDefectLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Vanishing Elasticity Limit and Defect Analysis in the Landau-de Gennes Model</em>
                             </p>
                         </li>
-                        
                         <li>
                             <p>Conference on Theory and Computation of Quasi Crystals [<a href="https://github.com/LuisYanka/nankai/raw/main/nankai.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Nankai University, Tianjin, PRC, Aug. 2025 [<a href="https://github.com/LuisYanka/SlidesLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Improved Convergence of Landau-de Gennes Minimizers in the Vanishing Elasticity Limit</em>
                             </p>
                         </li>
-
                         <li>
                             <p>Year-End Workshop of the PDE Group<br>
                                 Peking University, Beijing, PRC, Dec. 2024 [<a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Semilinear Elliptic Equation with Singular Nonlinearity: Regularity and Singularity</em>
                             </p>
                         </li>
-                        
                         <li>
                             <p>Exhibition of ICCM Creative Undergraduate Thesis [<a href="https://github.com/LuisYanka/ICCM/raw/main/ICCM.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022 [<a href="https://github.com/LuisYanka/ICCMppt/raw/main/ICCM%20ppt.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Homogenization of Elliptic Systems with Lower Order Terms</em>
                             </p>
                         </li>
-                        
                     </ul>
                 </div>
                 
-                <!-- 研讨会报告 - 一级子标题（一级缩进） -->
                 <div class="mb-5 pl-4 md:pl-6">
                     <h3>Seminar/Colloquium Talks</h3>
-                    
-                    <!-- 研讨会报告内容 - 二级缩进，使用ul列表（带项目符号） -->
-                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
                             <p>PDE and Geometry Seminar [<a href="https://github.com/LuisYanka/zjutalk/raw/main/zjutalk.png" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025 [<a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
                                 Title: <em>Rectifiability of the Stratification for Harmonic Map Flows via Tangent Measures</em>
                             </p>
                         </li>
-                        
-                        
                     </ul>
                 </div>
 
-                <!-- 保留原有的Poster部分（与用户提供内容不冲突） -->
                 <div class="pl-4 md:pl-6">
                     <h3>Poster Presentations</h3>
-                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2">
+                    <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
                             <p>2025 Graduate Research Exhibition of the School of Mathematical Sciences [<a href="https://github.com/LuisYanka/Exhibition2/raw/main/Exhibition2.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
                                 Peking University, Beijing, PRC, Apr. 2025 [<a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">poster</a>]<br>
@@ -560,16 +435,14 @@
                 </div>
             </div>
         </section>
-    </div>
-    
-    <!-- 笔记页面 - 将pt-24改为pt-16 -->
-    <div id="notes-page" class="page pt-16">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light">
+    </main>
+
+    <main id="notes-page" class="page pt-16 searchable">
+        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <h2>Notes and Expository Papers</h2>
-                
                 <div class="space-y-6">
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-400">
                         <li>Notes on the Alt-Phillips problem, [<a href="https://github.com/LuisYanka/FreeBoundary/raw/main/FreeBoundaryNote.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
                         <li>Notes on A-free measures, [<a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
                         <li>Notes on bubbling analysis of Ginzburg-Landau model, [<a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
@@ -581,115 +454,103 @@
                 </div>
             </div>
         </section>
-    </div>
-    
-    <!-- 页脚 -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <p class="text-lg font-bold">Wei Wang</p>
-                    <p class="text-gray-400 mt-1">Ph.D. Candidate in Theoretical Mathematics</p>
-                </div>
-                
-                <div class="flex flex-col items-center md:items-end">
-                    <p class="text-gray-400 text-sm">© 2026 Wei Wang. All rights reserved.</p>
-                    <p class="text-gray-500 text-xs mt-2">School of Mathematical Sciences, Peking University</p>
-                </div>
-            </div>
-        </div>
+
+    </main>
+
+    <footer class="mt-20 py-12 border-t border-gray-100 dark:border-gray-800 text-center">
+        <p class="text-sm text-gray-500">&copy; 2026 Wei Wang. Built with PKU Mathematical Sciences Template.</p>
     </footer>
 
     <script>
-        // 页面导航功能 - 单页面内切换显示内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有导航链接、页面和相关元素
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuToggle = document.getElementById('menu-toggle');
-            const navLogo = document.querySelector('.nav-logo');
-            
-            // 移动端菜单切换
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // 导航栏滚动阴影效果
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                navbar.classList.toggle('shadow-sm', window.scrollY > 50);
-            });
-            
-            // 初始化导航栏状态
-            window.dispatchEvent(new Event('scroll'));
-            
-            // 导航链接点击事件 - 切换页面
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // 获取目标页面ID
-                    const targetPageId = this.getAttribute('data-page');
-                    
-                    // 隐藏所有页面
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                    });
-                    
-                    // 显示目标页面
-                    document.getElementById(targetPageId).classList.add('active');
-                    
-                    // 更新导航链接激活状态
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 关闭移动端菜单
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                    
-                    // 滚动到页面顶部
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            });
-            
-            // Logo点击返回首页
-            navLogo.addEventListener('click', function() {
-                // 隐藏所有页面
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // 显示首页
-                document.getElementById('home-page').classList.add('active');
-                
-                // 更新导航链接激活状态
-                navLinks.forEach(l => l.classList.remove('active'));
-                document.querySelector('.nav-link[data-page="home-page"]').classList.add('active');
-                
-                // 关闭移动端菜单
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-                
-                // 滚动到页面顶部
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        // --- Theme Toggle ---
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            themeIcon.className = html.classList.contains('dark') ? 'fa fa-sun-o text-lg' : 'fa fa-moon-o text-lg';
         });
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            themeIcon.classList.replace('fa-moon-o', 'fa-sun-o');
+        }
+
+        // --- Navigation Logic ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function switchPage(pageId, targetElementId = null) {
+            pages.forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId)?.classList.add('active');
+            navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === pageId));
+            mobileMenu.classList.add('hidden');
+            
+            if (targetElementId) {
+                setTimeout(() => {
+                    const el = document.querySelector(`[data-search-id="${targetElementId}"]`);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        el.classList.add('search-highlight-active');
+                        setTimeout(() => el.classList.remove('search-highlight-active'), 2000);
+                    }
+                }, 150);
+            } else {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        navLinks.forEach(link => link.addEventListener('click', () => switchPage(link.getAttribute('data-page'))));
+        document.querySelector('.nav-logo').addEventListener('click', () => switchPage('home-page'));
+        document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // --- Global Search Logic (Case Sensitive & Jump to Line) ---
+        const searchInput = document.getElementById('global-search');
+        const searchResults = document.getElementById('search-results');
+
+        function initializePage() {
+            let idCounter = 0;
+            document.querySelectorAll('.searchable h1, .searchable h2, .searchable h3, .searchable h4, .searchable p, .searchable li, .searchable tr').forEach(el => {
+                el.setAttribute('data-search-id', 'idx-' + (idCounter++));
+            });
+
+            document.querySelectorAll('ol[reversed]').forEach(ol => {
+                const count = ol.querySelectorAll('li').length;
+                ol.style.counterReset = "section " + (count + 1);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (!query) { searchResults.style.display = 'none'; return; }
+
+            const matches = [];
+            document.querySelectorAll('[data-search-id]').forEach(el => {
+                if (el.innerText.includes(query)) {
+                    matches.push({
+                        id: el.getAttribute('data-search-id'),
+                        pageId: el.closest('.page').id,
+                        text: el.innerText.substring(0, 80).replace(/\n/g, ' ') + '...'
+                    });
+                }
+            });
+
+            searchResults.innerHTML = matches.length ? matches.slice(0, 10).map(m => `
+                <div class="search-item" onclick="switchPage('${m.pageId}', '${m.id}')">
+                    <div class="text-[10px] text-primary font-bold uppercase tracking-tighter">${m.pageId.split('-')[0]}</div>
+                    <div class="text-xs text-gray-700 dark:text-gray-300 line-clamp-2 italic">"...${m.text}"</div>
+                </div>
+            `).join('') : '<div class="p-3 text-xs text-center">No matches (Case Sensitive)</div>';
+            searchResults.style.display = 'block';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
