@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wei Wang - Academic Profile</title>
+
+    <!-- Frameworks and fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- MathJax -->
     <script>
         window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
             svg: { fontCache: 'global' }
         };
     </script>
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <!-- Tailwind theme -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -30,53 +37,164 @@
                         darkBlue: '#0E42D2',
                         neutral: '#F0F7FF',
                         bgDark: '#0f172a',
-                        cardDark: '#1e293b',
+                        cardDark: '#1e293b'
                     },
-                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
                 }
             }
-        }
+        };
     </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .page-transition { transition: all 0.3s ease-in-out; }
-        }
-        html { scroll-behavior: smooth; }
-        body { @apply font-inter transition-colors duration-300 bg-white dark:bg-bgDark text-gray-800 dark:text-gray-300; }
-        h1 { @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight; }
-        h2 { @apply text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b pb-2 border-gray-100 dark:border-gray-800; }
-        h3 { @apply text-xl font-semibold mb-3 text-gray-900 dark:text-blue-400 mt-8; }
-        h4 { @apply text-lg font-medium mb-2 text-gray-800 dark:text-gray-200; }
-        p { @apply text-gray-700 dark:text-gray-400 mb-2; }
-        .nav-link { @apply relative px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm font-medium; }
-        .nav-link.active { @apply text-primary font-semibold; }
-        .nav-link::after { content: ''; @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300; }
-        .nav-link:hover::after, .nav-link.active::after { @apply w-full; }
-        .paper-item { @apply pb-6 border-b border-gray-100 dark:border-gray-800 last:border-0 last:pb-0; }
-        .paper-title { @apply font-semibold text-gray-900 dark:text-gray-100 block mb-1 text-lg; }
-        a { @apply text-primary hover:underline transition-colors; }
-        .page { display: none; }
-        .page.active { display: block; animation: pageFadeIn 0.4s ease-out; }
-        @keyframes pageFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .teaching-table th { @apply px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-800; }
-        .teaching-table td { @apply px-4 py-4 text-sm border-b border-gray-100 dark:border-gray-800; }
-        #search-results { @apply absolute top-full right-0 mt-2 w-72 md:w-96 bg-white dark:bg-cardDark shadow-xl rounded-lg border border-gray-100 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-[60]; }
-        .search-item { @apply p-3 border-b border-gray-50 dark:border-gray-800 hover:bg-light dark:hover:bg-gray-800 cursor-pointer; }
-        
-        /* 修复1：论文逆序自动编号对齐问题 - 使用 outside 悬挂缩进 */
-        ol[reversed] { display: flex; flex-direction: column; counter-reset: section; padding-left: 1.5rem; }
-        ol[reversed] > li { counter-increment: section -1; display: list-item; list-style-position: outside; margin-bottom: 1rem; }
-        ol[reversed] > li::marker { content: counter(section) ". "; font-weight: bold; }
 
-        /* 搜索高亮动画 (蓝色) */
+    <style type="text/tailwindcss">
+        @layer base {
+            html { scroll-behavior: smooth; }
+
+            body {
+                @apply font-inter bg-white dark:bg-bgDark text-gray-800 dark:text-gray-300 transition-colors duration-300;
+            }
+
+            h1 {
+                @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight;
+            }
+
+            h2 {
+                @apply text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b pb-2 border-gray-100 dark:border-gray-800;
+            }
+
+            h3 {
+                @apply text-xl font-semibold mb-3 mt-8 text-gray-900 dark:text-blue-400;
+            }
+
+            h4 {
+                @apply text-lg font-medium mb-2 text-gray-800 dark:text-gray-200;
+            }
+
+            p {
+                @apply text-gray-700 dark:text-gray-400 mb-2;
+            }
+
+            a {
+                @apply text-primary hover:underline transition-colors;
+            }
+        }
+
+        @layer components {
+            .page {
+                display: none;
+            }
+
+            .page.active {
+                display: block;
+                animation: pageFadeIn 0.35s ease-out;
+            }
+
+            .section-soft {
+                @apply py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50;
+            }
+
+            .section-inner {
+                @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
+            }
+
+            .nav-link {
+                @apply relative px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary transition-colors cursor-pointer;
+            }
+
+            .nav-link.active {
+                @apply text-primary font-semibold;
+            }
+
+            .nav-link::after {
+                content: '';
+                @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+            }
+
+            .nav-link:hover::after,
+            .nav-link.active::after {
+                @apply w-full;
+            }
+
+            .card {
+                @apply bg-gray-50 dark:bg-cardDark p-6 rounded-2xl border border-gray-100 dark:border-gray-800;
+            }
+
+            .content-indent {
+                @apply pl-4 md:pl-6;
+            }
+
+            .paper-list {
+                counter-reset: paper-counter;
+                @apply pl-6 md:pl-7;
+            }
+
+            .paper-list > li {
+                counter-increment: paper-counter -1;
+                list-style-position: outside;
+                @apply pb-3.5 mb-3.5 border-b border-gray-100 dark:border-gray-800 leading-relaxed text-gray-700 dark:text-gray-400;
+            }
+
+            .paper-list > li:last-child {
+                @apply border-0 pb-0 mb-0;
+            }
+
+            .paper-list > li::marker {
+                content: counter(paper-counter) ". ";
+                font-weight: 700;
+                color: currentColor;
+            }
+
+            .paper-title {
+                @apply font-semibold text-gray-900 dark:text-gray-100;
+            }
+
+            .teaching-table th {
+                @apply px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-800;
+            }
+
+            .teaching-table td {
+                @apply px-4 py-4 text-sm border-b border-gray-100 dark:border-gray-800;
+            }
+
+            #search-results {
+                @apply absolute top-full right-0 mt-2 w-72 md:w-96 bg-white dark:bg-cardDark shadow-xl rounded-lg border border-gray-100 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-[60];
+            }
+
+            .search-item {
+                @apply p-3 border-b border-gray-50 dark:border-gray-800 hover:bg-light dark:hover:bg-gray-800 cursor-pointer;
+            }
+        }
+
+        @layer utilities {
+            .page-transition {
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .search-highlight-active {
             animation: highlightFade 2s ease-out;
             border-radius: 4px;
         }
+
         @keyframes highlightFade {
-            0% { background-color: rgba(22, 93, 255, 0.3); } 
-            100% { background-color: transparent; }
+            0% {
+                background-color: rgba(22, 93, 255, 0.3);
+            }
+            100% {
+                background-color: transparent;
+            }
         }
     </style>
 </head>
@@ -85,16 +203,20 @@
     <header id="navbar" class="fixed w-full bg-white/90 dark:bg-bgDark/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="text-xl font-bold text-primary cursor-pointer nav-logo shrink-0">Wei Wang</div>
-                
+                <div class="nav-logo shrink-0 text-xl font-bold text-primary cursor-pointer">Wei Wang</div>
+
                 <div class="flex items-center space-x-1 md:space-x-4 flex-1 justify-end">
                     <div class="relative max-w-xs w-full group ml-4">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fa fa-search text-gray-400 group-focus-within:text-primary transition-colors"></i>
                         </div>
-                        <input type="text" id="global-search" 
-                               class="block w-full pl-10 pr-3 py-1.5 border border-gray-200 dark:border-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm" 
-                               placeholder="Search (Case Sensitive)...">
+                        <input
+                            type="text"
+                            id="global-search"
+                            class="block w-full pl-10 pr-3 py-1.5 border border-gray-200 dark:border-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
+                            placeholder="Search (Case Sensitive)..."
+                            autocomplete="off"
+                        >
                         <div id="search-results"></div>
                     </div>
 
@@ -107,16 +229,17 @@
                     </nav>
 
                     <div class="flex items-center border-l dark:border-gray-800 pl-2">
-                        <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all">
+                        <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all" aria-label="Toggle dark mode">
                             <i id="theme-icon" class="fa fa-moon-o text-lg"></i>
                         </button>
-                        <button id="menu-toggle" class="lg:hidden p-2 text-gray-600 dark:text-gray-400 ml-1">
+                        <button id="menu-toggle" class="lg:hidden p-2 text-gray-600 dark:text-gray-400 ml-1" aria-label="Toggle menu">
                             <i class="fa fa-bars text-xl"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-bgDark border-t dark:border-gray-800 px-4 py-4 space-y-2">
             <div class="nav-link active block" data-page="home-page">Home</div>
             <div class="nav-link block" data-page="research-page">Research</div>
@@ -132,7 +255,7 @@
                 <h1>Wei Wang (王尉)</h1>
                 <p class="text-xl text-gray-600 dark:text-gray-400">Ph.D. Candidate in Theoretical Mathematics</p>
                 <p class="text-lg text-gray-700 dark:text-gray-300 mt-2">Peking University</p>
-             </div>
+            </div>
         </section>
 
         <section class="py-12 container mx-auto px-4 max-w-6xl">
@@ -141,20 +264,20 @@
                     <h2>About Me</h2>
                     <p>I am a four-year Ph.D. candidate in Theoretical Mathematics at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/">Peking University</a>, supervised by <a href="http://english.math.pku.edu.cn//Faculty/Faculty/ALL/old_site_Faculty_ALL_2_128.htm">Prof. Zhifei Zhang</a>.</p>
                     <p>Previously, I obtained my Bachelor's degree in Mathematics and Applied Mathematics from <a href="http://www.math.zju.edu.cn/mathen/">Zhejiang University</a> in 2022, where I was advised by <a href="https://person.zju.edu.cn/en/zhangting">Prof. Ting Zhang</a>. </p>
-                    <p><a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" class="px-6 py-2 bg-primary text-white rounded-md no-underline font-medium hover:bg-darkBlue shadow-lg shadow-primary/20 transition-all">Download my CV</a> (Last updated: Nov. 30, 2025).
+                    <p><a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" class="px-6 py-2 bg-primary text-white rounded-md no-underline font-medium hover:bg-darkBlue shadow-lg shadow-primary/20 transition-all">Download my CV</a> (Last updated: Nov. 30, 2025).</p>
                     <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/">analysis seminars</a> at Peking University, focusing on PDEs and geometric measure theory.</p>
-                    
+
                     <h3 class="text-lg">Academic Profiles</h3>
                     <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                        <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en">Google Scholar</a> | 
-                        <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566">MathSciNet</a> | 
-                        <a href="https://orcid.org/0000-0002-7483-4310">ORCID</a> | 
-                        <a href="https://www.researchgate.net/profile/Wei-Wang-1293">ResearchGate</a> | 
+                        <a href="https://scholar.google.com/citations?user=B4MyT2gAAAAJ&hl=en">Google Scholar</a> |
+                        <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1548566">MathSciNet</a> |
+                        <a href="https://orcid.org/0000-0002-7483-4310">ORCID</a> |
+                        <a href="https://www.researchgate.net/profile/Wei-Wang-1293">ResearchGate</a> |
                         <a href="https://zbmath.org/authors/wang.wei.359">zbMATH</a>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-cardDark p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                <aside class="card">
                     <h3 class="mt-0">Contact Information</h3>
                     <div class="space-y-4 text-sm">
                         <div class="flex items-start gap-3">
@@ -166,111 +289,106 @@
                             <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
                         </div>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
-
     </main>
 
     <main id="research-page" class="page pt-16 searchable">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <section class="section-soft">
+            <div class="section-inner">
                 <h2>Research</h2>
-                
-                <div class="mb-6 pl-4 md:pl-6">
+
+                <div class="mb-6 content-indent">
                     <h3>Research Interests</h3>
-                    
-                    <div class="pl-4 md:pl-6">
+                    <div class="content-indent">
                         <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-400 mt-2">
                             <li><b>Research areas:</b> Geometric variational problems, elliptic equations, parabolic equations</li>
                             <li><b>Selected topics:</b> Homogenization theory, semilinear elliptic and parabolic equations, harmonic maps, liquid crystal theory, nonlocal Laplacian operators</li>
                         </ul>
                     </div>
                 </div>
-                
-                <div class="mb-8 pl-4 md:pl-6">
+
+                <div class="mb-8 content-indent">
                     <h3>Published Papers</h3>
-                    
-                    <div class="pl-4 md:pl-6">
-                        <ol reversed>
-                            <li class="paper-item">
-                                On the sharp constants in the regional fractional Sobolev inequalities<br>
+                    <div class="content-indent">
+                        <ol class="paper-list" reversed>
+                            <li>
+                                <span class="paper-title">On the sharp constants in the regional fractional Sobolev inequalities</span><br>
                                 Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                                <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20<br> 
-                                [<a href="https://arxiv.org/abs/2403.00357" rel="nofollow" class="text-primary hover:underline">arXiv</a>] | 
-                                [<a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow" class="text-primary hover:underline">journal</a>]
+                                <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20<br>
+                                [<a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv</a>] |
+                                [<a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">journal</a>]
                             </li>
-                            <li class="paper-item">
-                                Uniform estimates of resolvents in homogenization theory of elliptic systems<br>
+                            <li>
+                                <span class="paper-title">Uniform estimates of resolvents in homogenization theory of elliptic systems</span><br>
                                 Wei Wang<br>
-                                <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65<br> 
-                                [<a href="https://arxiv.org/abs/2211.14614" rel="nofollow" class="text-primary hover:underline">arXiv</a>] |
-                                [<a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow" class="text-primary hover:underline">journal</a>]
+                                <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65<br>
+                                [<a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>] |
+                                [<a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">journal</a>]
                             </li>
-                            <li class="paper-item">
-                                Homogenization theory of elliptic system with lower order terms for dimension two<br>
+                            <li>
+                                <span class="paper-title">Homogenization theory of elliptic system with lower order terms for dimension two</span><br>
                                 Wei Wang, Ting Zhang<br>
                                 <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824<br>
-                                [<a href="https://arxiv.org/abs/2210.06329" rel="nofollow" class="text-primary hover:underline">arXiv</a>] | 
-                                [<a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow" class="text-primary hover:underline">journal</a>]
+                                [<a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>] |
+                                [<a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">journal</a>]
                             </li>
                         </ol>
                     </div>
                 </div>
-                
-                <div class="pl-4 md:pl-6">
+
+                <div class="content-indent">
                     <h3>Preprints</h3>
-                    
-                    <div class="pl-4 md:pl-6">
-                        <ol reversed>
-                            <li class="paper-item">
-                                Asymptotics of minimizers for Ginzburg--Landau-type functionals in high dimensions<br> 
+                    <div class="content-indent">
+                        <ol class="paper-list" reversed>
+                            <li>
+                                <span class="paper-title">Asymptotics of minimizers for Ginzburg--Landau-type functionals in high dimensions</span><br>
                                 Giacomo Canevari, Haotong Fu, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2605.04442" rel="nofollow" class="text-primary hover:underline">arXiv: 2605.04442</a>]
+                                [<a href="https://arxiv.org/abs/2605.04442" rel="nofollow">arXiv: 2605.04442</a>]
                             </li>
-                            <li class="paper-item">
-                                Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects<br> 
+                            <li>
+                                <span class="paper-title">Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects</span><br>
                                 Haotong Fu, Huaijie Wang, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2508.01811" rel="nofollow" class="text-primary hover:underline">arXiv: 2508.01811</a>]
+                                [<a href="https://arxiv.org/abs/2508.01811" rel="nofollow">arXiv: 2508.01811</a>]
                             </li>
-                            <li class="paper-item">
-                                Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit<br> 
+                            <li>
+                                <span class="paper-title">Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit</span><br>
                                 Haotong Fu, Huaijie Wang, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2507.14955" rel="nofollow" class="text-primary hover:underline">arXiv: 2507.14955</a>]
+                                [<a href="https://arxiv.org/abs/2507.14955" rel="nofollow">arXiv: 2507.14955</a>]
                             </li>
-                            <li class="paper-item">
-                                Existence of weak solutions for two-phase matrix-valued harmonic map flows<br>
+                            <li>
+                                <span class="paper-title">Existence of weak solutions for two-phase matrix-valued harmonic map flows</span><br>
                                 Wei Wang, Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2506.16278" rel="nofollow" class="text-primary hover:underline">arXiv: 2506.16278</a>]<br>
-                                Note: The second author Wei Wang (王伟) has the same name as mine in English. 
-                                <a href="https://person.zju.edu.cn/en/wangw07" rel="nofollow" class="text-primary hover:underline">Here</a> is his personal website.
+                                [<a href="https://arxiv.org/abs/2506.16278" rel="nofollow">arXiv: 2506.16278</a>]<br>
+                                Note: The second author Wei Wang (王伟) has the same name as mine in English.
+                                <a href="https://person.zju.edu.cn/en/wangw07" rel="nofollow">Here</a> is his personal website.
                             </li>
-                            <li class="paper-item">
-                                Stratification and rectifiability of harmonic map flows via tangent measures<br>
+                            <li>
+                                <span class="paper-title">Stratification and rectifiability of harmonic map flows via tangent measures</span><br>
                                 Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2504.14880" rel="nofollow" class="text-primary hover:underline">arXiv: 2504.14880</a>]
+                                [<a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv: 2504.14880</a>]
                             </li>
-                            <li class="paper-item">
-                                Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity<br>
+                            <li>
+                                <span class="paper-title">Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity</span><br>
                                 Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2411.16048" rel="nofollow" class="text-primary hover:underline">arXiv: 2411.16048</a>]
+                                [<a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv: 2411.16048</a>]
                             </li>
-                            <li class="paper-item">
-                                Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations<br>
+                            <li>
+                                <span class="paper-title">Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations</span><br>
                                 Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2408.06726" rel="nofollow" class="text-primary hover:underline">arXiv: 2408.06726</a>]
+                                [<a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv: 2408.06726</a>]
                             </li>
-                            <li class="paper-item">
-                                Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers<br>
+                            <li>
+                                <span class="paper-title">Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers</span><br>
                                 Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2404.00677" rel="nofollow" class="text-primary hover:underline">arXiv: 2404.00677</a>]
+                                [<a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv: 2404.00677</a>]
                             </li>
                         </ol>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <main id="teaching-page" class="page pt-16 searchable">
@@ -359,80 +477,79 @@
                 </table>
             </div>
         </section>
-
     </main>
 
     <main id="talks-page" class="page pt-16 searchable">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <section class="section-soft">
+            <div class="section-inner">
                 <h2>Talks and Presentations</h2>
-                
-                <div class="mb-5 pl-4 md:pl-6">
+
+                <div class="mb-5 content-indent">
                     <h3>Conference/Workshop Talks</h3>
                     <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
-                            <p>Academic Workshop on Fluid Dynamics Equations [<a href="https://github.com/LuisYanka/talkpkufluids/raw/main/pkutalkfluids.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Peking University, Beijing, PRC, Jan. 2026 [<a href="https://github.com/LuisYanka/pptLineDefects/raw/main/ppt_line_defects.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>Academic Workshop on Fluid Dynamics Equations [<a href="https://github.com/LuisYanka/talkpkufluids/raw/main/pkutalkfluids.pdf" rel="nofollow">details</a>]<br>
+                                Peking University, Beijing, PRC, Jan. 2026 [<a href="https://github.com/LuisYanka/pptLineDefects/raw/main/ppt_line_defects.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Landau-de Gennes Model with Sextic Potentials: Asymptotic Behavior of Minimizers</em>
                             </p>
                         </li>
                         <li>
-                            <p>Jinhua Conference on Harmonic Analysis and Its Applications [<a href="https://github.com/LuisYanka/jinhua/raw/main/jinhua.png" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Zhejiang Normal University, Jinhua, Zhejiang, PRC, Nov. 29 [<a href="https://github.com/LuisYanka/pptHarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>Jinhua Conference on Harmonic Analysis and Its Applications [<a href="https://github.com/LuisYanka/jinhua/raw/main/jinhua.png" rel="nofollow">details</a>]<br>
+                                Zhejiang Normal University, Jinhua, Zhejiang, PRC, Nov. 29 [<a href="https://github.com/LuisYanka/pptHarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Stratification for Harmonic Map Flows via Tangent Measures: Rectifiability and Regularity</em>
                             </p>
                         </li>
                         <li>
-                            <p>The 3rd National Academic Exchange Forum for Doctoral Students in Frontier Mathematics [<a href="https://github.com/LuisYanka/3rdMathForum/raw/main/3rdMathForum.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Peking University, Beijing, PRC, Nov. 1 [<a href="https://github.com/LuisYanka/pptLineDefectLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>The 3rd National Academic Exchange Forum for Doctoral Students in Frontier Mathematics [<a href="https://github.com/LuisYanka/3rdMathForum/raw/main/3rdMathForum.jpg" rel="nofollow">details</a>]<br>
+                                Peking University, Beijing, PRC, Nov. 1 [<a href="https://github.com/LuisYanka/pptLineDefectLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Vanishing Elasticity Limit and Defect Analysis in the Landau-de Gennes Model</em>
                             </p>
                         </li>
                         <li>
-                            <p>Conference on Theory and Computation of Quasi Crystals [<a href="https://github.com/LuisYanka/nankai/raw/main/nankai.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Nankai University, Tianjin, PRC, Aug. 2025 [<a href="https://github.com/LuisYanka/SlidesLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>Conference on Theory and Computation of Quasi Crystals [<a href="https://github.com/LuisYanka/nankai/raw/main/nankai.jpg" rel="nofollow">details</a>]<br>
+                                Nankai University, Tianjin, PRC, Aug. 2025 [<a href="https://github.com/LuisYanka/SlidesLandaudeGennes/raw/main/pptLandau%20de-Gennes.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Improved Convergence of Landau-de Gennes Minimizers in the Vanishing Elasticity Limit</em>
                             </p>
                         </li>
                         <li>
                             <p>Year-End Workshop of the PDE Group<br>
-                                Peking University, Beijing, PRC, Dec. 2024 [<a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                                Peking University, Beijing, PRC, Dec. 2024 [<a href="https://github.com/LuisYanka/ppt202412/raw/main/202412.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Semilinear Elliptic Equation with Singular Nonlinearity: Regularity and Singularity</em>
                             </p>
                         </li>
                         <li>
-                            <p>Exhibition of ICCM Creative Undergraduate Thesis [<a href="https://github.com/LuisYanka/ICCM/raw/main/ICCM.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022 [<a href="https://github.com/LuisYanka/ICCMppt/raw/main/ICCM%20ppt.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>Exhibition of ICCM Creative Undergraduate Thesis [<a href="https://github.com/LuisYanka/ICCM/raw/main/ICCM.jpg" rel="nofollow">details</a>]<br>
+                                Southeast University, Nanjing, Jiangsu, PRC, Aug. 2022 [<a href="https://github.com/LuisYanka/ICCMppt/raw/main/ICCM%20ppt.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Homogenization of Elliptic Systems with Lower Order Terms</em>
                             </p>
                         </li>
                     </ul>
                 </div>
-                
-                <div class="mb-5 pl-4 md:pl-6">
+
+                <div class="mb-5 content-indent">
                     <h3>Seminar/Colloquium Talks</h3>
                     <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
-                            <p>PDE and Geometry Seminar [<a href="https://github.com/LuisYanka/zjutalk/raw/main/zjutalk.png" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025 [<a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">slides</a>]<br>
+                            <p>PDE and Geometry Seminar [<a href="https://github.com/LuisYanka/zjutalk/raw/main/zjutalk.png" rel="nofollow">details</a>]<br>
+                                Zhejiang University, Hangzhou, Zhejiang, PRC, June 2025 [<a href="https://github.com/LuisYanka/HarmonicMapFlows/raw/main/HarmonicMapFlow.pdf" rel="nofollow">slides</a>]<br>
                                 Title: <em>Rectifiability of the Stratification for Harmonic Map Flows via Tangent Measures</em>
                             </p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="pl-4 md:pl-6">
+                <div class="content-indent">
                     <h3>Poster Presentations</h3>
                     <ul class="list-disc pl-6 md:pl-8 space-y-3 mt-2 text-gray-700 dark:text-gray-400">
                         <li>
-                            <p>2025 Graduate Research Exhibition of the School of Mathematical Sciences [<a href="https://github.com/LuisYanka/Exhibition2/raw/main/Exhibition2.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Peking University, Beijing, PRC, Apr. 2025 [<a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">poster</a>]<br>
+                            <p>2025 Graduate Research Exhibition of the School of Mathematical Sciences [<a href="https://github.com/LuisYanka/Exhibition2/raw/main/Exhibition2.jpg" rel="nofollow">details</a>]<br>
+                                Peking University, Beijing, PRC, Apr. 2025 [<a href="https://github.com/LuisYanka/FineStructurePoster/raw/main/FineStructurePoster.pdf" rel="nofollow">poster</a>]<br>
                                 Title: <em>Fine Structure of Rupture Set for Semilinear Elliptic Equation with Singular Nonlinearity</em>
                             </p>
                         </li>
                         <li>
-                            <p>2024 Graduate Research Exhibition of the School of Mathematical Sciences [<a href="https://github.com/LuisYanka/Exhibition1/raw/main/Exhibition1.jpg" rel="nofollow" class="text-primary hover:text-dark hover:underline">details</a>]<br>
-                                Peking University, Beijing, PRC, Apr. 2024 [<a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow" class="text-primary hover:text-dark hover:underline">poster</a>]<br>
+                            <p>2024 Graduate Research Exhibition of the School of Mathematical Sciences [<a href="https://github.com/LuisYanka/Exhibition1/raw/main/Exhibition1.jpg" rel="nofollow">details</a>]<br>
+                                Peking University, Beijing, PRC, Apr. 2024 [<a href="https://github.com/LuisYanka/poster20244/raw/main/poster.pdf" rel="nofollow">poster</a>]<br>
                                 Title: <em>Landau-de Gennes Model with Sextic Potentials: Asymptotics of Minimizers and Defects</em>
                             </p>
                         </li>
@@ -443,23 +560,22 @@
     </main>
 
     <main id="notes-page" class="page pt-16 searchable">
-        <section class="py-10 md:py-16 bg-gradient-to-r from-white to-light dark:from-bgDark dark:to-bgDark/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <section class="section-soft">
+            <div class="section-inner">
                 <h2>Notes and Expository Papers</h2>
                 <div class="space-y-6">
                     <ul class="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-400">
-                        <li>Notes on the Alt-Phillips problem, [<a href="https://github.com/LuisYanka/FreeBoundary/raw/main/FreeBoundaryNote.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Notes on A-free measures, [<a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Notes on bubbling analysis of Ginzburg-Landau model, [<a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Studying notes on ergodic theory (in Chinese), [<a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), [<a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, [<a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
-                        <li>Reading notes on elliptic free boundary problems, [<a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow" class="text-primary hover:underline">pdf</a>]</li>
+                        <li>Notes on the Alt-Phillips problem, [<a href="https://github.com/LuisYanka/FreeBoundary/raw/main/FreeBoundaryNote.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Notes on A-free measures, [<a href="https://github.com/LuisYanka/Afree/raw/main/Afreemeasures.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Notes on bubbling analysis of Ginzburg-Landau model, [<a href="https://github.com/LuisYanka/NotesonGL/raw/main/Nonlinear_analysis_report.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Studying notes on ergodic theory (in Chinese), [<a href="https://github.com/LuisYanka/ErgodicTheory/raw/main/%E9%81%8D%E5%8E%86%E8%AE%BA.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Notes on recent progress of obstacle problems (with Yuxuan Chen), [<a href="https://github.com/LuisYanka/ChenWang/raw/main/Topics%20on%20PDE%20and%20analysis.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Notes on Schoen-Uhlenbeck theory for harmonic maps, [<a href="https://github.com/LuisYanka/SU82notes/raw/main/ReviewofABreifProof.pdf" rel="nofollow">pdf</a>]</li>
+                        <li>Reading notes on elliptic free boundary problems, [<a href="https://github.com/LuisYanka/RemarkLin/raw/main/Remarks%20on%20Lin's%20notes.pdf" rel="nofollow">pdf</a>]</li>
                     </ul>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="mt-20 py-12 border-t border-gray-100 dark:border-gray-800 text-center">
@@ -467,96 +583,154 @@
     </footer>
 
     <script>
-        // --- Theme Toggle ---
-        const html = document.documentElement;
-        const themeIcon = document.getElementById('theme-icon');
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-            themeIcon.className = html.classList.contains('dark') ? 'fa fa-sun-o text-lg' : 'fa fa-moon-o text-lg';
-        });
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-            themeIcon.classList.replace('fa-moon-o', 'fa-sun-o');
+        const SELECTORS = {
+            html: document.documentElement,
+            pages: document.querySelectorAll('.page'),
+            navLinks: document.querySelectorAll('.nav-link'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            searchInput: document.getElementById('global-search'),
+            searchResults: document.getElementById('search-results'),
+            themeIcon: document.getElementById('theme-icon')
+        };
+
+        function setTheme(isDark) {
+            SELECTORS.html.classList.toggle('dark', isDark);
+            SELECTORS.themeIcon.className = isDark ? 'fa fa-sun-o text-lg' : 'fa fa-moon-o text-lg';
+            localStorage.theme = isDark ? 'dark' : 'light';
         }
 
-        // --- Navigation Logic ---
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
-        const mobileMenu = document.getElementById('mobile-menu');
+        function initializeTheme() {
+            const savedTheme = localStorage.theme;
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+        }
 
         function switchPage(pageId, targetElementId = null) {
-            pages.forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId)?.classList.add('active');
-            navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === pageId));
-            mobileMenu.classList.add('hidden');
-            
-            if (targetElementId) {
-                setTimeout(() => {
-                    const el = document.querySelector(`[data-search-id="${targetElementId}"]`);
-                    if (el) {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        el.classList.add('search-highlight-active');
-                        setTimeout(() => el.classList.remove('search-highlight-active'), 2000);
-                    }
-                }, 150);
-            } else {
-                window.scrollTo(0, 0);
+            SELECTORS.pages.forEach(page => page.classList.remove('active'));
+
+            const nextPage = document.getElementById(pageId);
+            if (!nextPage) return;
+
+            nextPage.classList.add('active');
+
+            SELECTORS.navLinks.forEach(link => {
+                link.classList.toggle('active', link.dataset.page === pageId);
+            });
+
+            SELECTORS.mobileMenu.classList.add('hidden');
+            SELECTORS.searchResults.style.display = 'none';
+
+            if (!targetElementId) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
             }
+
+            setTimeout(() => {
+                const target = document.querySelector(`[data-search-id="${targetElementId}"]`);
+                if (!target) return;
+
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.classList.add('search-highlight-active');
+                setTimeout(() => target.classList.remove('search-highlight-active'), 2000);
+            }, 120);
         }
 
-        navLinks.forEach(link => link.addEventListener('click', () => switchPage(link.getAttribute('data-page'))));
-        document.querySelector('.nav-logo').addEventListener('click', () => switchPage('home-page'));
-        document.getElementById('menu-toggle').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // --- Global Search Logic (Case Sensitive & Jump to Line) ---
-        const searchInput = document.getElementById('global-search');
-        const searchResults = document.getElementById('search-results');
-
-        function initializePage() {
+        function initializeSearchIndex() {
             let idCounter = 0;
-            document.querySelectorAll('.searchable h1, .searchable h2, .searchable h3, .searchable h4, .searchable p, .searchable li, .searchable tr').forEach(el => {
-                el.setAttribute('data-search-id', 'idx-' + (idCounter++));
+            const searchableElements = document.querySelectorAll(
+                '.searchable h1, .searchable h2, .searchable h3, .searchable h4, .searchable p, .searchable li, .searchable tr'
+            );
+
+            searchableElements.forEach(element => {
+                element.dataset.searchId = `idx-${idCounter++}`;
             });
 
-            document.querySelectorAll('ol[reversed]').forEach(ol => {
-                const count = ol.querySelectorAll('li').length;
-                ol.style.counterReset = "section " + (count + 1);
+            document.querySelectorAll('.paper-list[reversed]').forEach(list => {
+                const count = list.querySelectorAll('li').length;
+                list.style.counterReset = `paper-counter ${count + 1}`;
             });
         }
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.trim();
-            if (!query) { searchResults.style.display = 'none'; return; }
+        function renderSearchResults(matches) {
+            const results = SELECTORS.searchResults;
+            results.innerHTML = '';
 
-            const matches = [];
-            document.querySelectorAll('[data-search-id]').forEach(el => {
-                if (el.innerText.includes(query)) {
-                    matches.push({
-                        id: el.getAttribute('data-search-id'),
-                        pageId: el.closest('.page').id,
-                        text: el.innerText.substring(0, 80).replace(/\n/g, ' ') + '...'
-                    });
-                }
+            if (!matches.length) {
+                const empty = document.createElement('div');
+                empty.className = 'p-3 text-xs text-center';
+                empty.textContent = 'No matches (Case Sensitive)';
+                results.appendChild(empty);
+                results.style.display = 'block';
+                return;
+            }
+
+            matches.slice(0, 10).forEach(match => {
+                const item = document.createElement('div');
+                item.className = 'search-item';
+                item.addEventListener('click', () => switchPage(match.pageId, match.id));
+
+                const label = document.createElement('div');
+                label.className = 'text-[10px] text-primary font-bold uppercase tracking-tighter';
+                label.textContent = match.pageId.split('-')[0];
+
+                const text = document.createElement('div');
+                text.className = 'text-xs text-gray-700 dark:text-gray-300 line-clamp-2 italic';
+                text.textContent = `"${match.text}"`;
+
+                item.append(label, text);
+                results.appendChild(item);
             });
 
-            searchResults.innerHTML = matches.length ? matches.slice(0, 10).map(m => `
-                <div class="search-item" onclick="switchPage('${m.pageId}', '${m.id}')">
-                    <div class="text-[10px] text-primary font-bold uppercase tracking-tighter">${m.pageId.split('-')[0]}</div>
-                    <div class="text-xs text-gray-700 dark:text-gray-300 line-clamp-2 italic">"...${m.text}"</div>
-                </div>
-            `).join('') : '<div class="p-3 text-xs text-center">No matches (Case Sensitive)</div>';
-            searchResults.style.display = 'block';
-        });
+            results.style.display = 'block';
+        }
 
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                searchResults.style.display = 'none';
+        function handleSearchInput(event) {
+            const query = event.target.value.trim();
+
+            if (!query) {
+                SELECTORS.searchResults.style.display = 'none';
+                return;
             }
-        });
 
-        window.addEventListener('DOMContentLoaded', initializePage);
+            const matches = Array.from(document.querySelectorAll('[data-search-id]'))
+                .filter(element => element.innerText.includes(query))
+                .map(element => ({
+                    id: element.dataset.searchId,
+                    pageId: element.closest('.page').id,
+                    text: `${element.innerText.substring(0, 80).replace(/\n/g, ' ')}...`
+                }));
+
+            renderSearchResults(matches);
+        }
+
+        function bindEvents() {
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                setTheme(!SELECTORS.html.classList.contains('dark'));
+            });
+
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                SELECTORS.mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelector('.nav-logo').addEventListener('click', () => switchPage('home-page'));
+
+            SELECTORS.navLinks.forEach(link => {
+                link.addEventListener('click', () => switchPage(link.dataset.page));
+            });
+
+            SELECTORS.searchInput.addEventListener('input', handleSearchInput);
+
+            document.addEventListener('click', event => {
+                const clickedSearch = SELECTORS.searchInput.contains(event.target) || SELECTORS.searchResults.contains(event.target);
+                if (!clickedSearch) SELECTORS.searchResults.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            initializeSearchIndex();
+            bindEvents();
+        });
     </script>
 </body>
 </html>
-
