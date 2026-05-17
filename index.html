@@ -95,7 +95,7 @@
             }
 
             .section-inner {
-                @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
+                @apply container mx-auto px-4 sm:px-6 lg:px-8;
             }
 
             .nav-link {
@@ -121,18 +121,18 @@
             }
 
             .content-indent {
-                @apply pl-4 md:pl-6;
+                @apply pl-0;
             }
 
             .paper-list {
                 counter-reset: paper-counter;
-                @apply pl-6 md:pl-7;
+                @apply pl-5 md:pl-6;
             }
 
             .paper-list > li {
                 counter-increment: paper-counter -1;
                 list-style-position: outside;
-                @apply pb-3.5 mb-3.5 border-b border-gray-100 dark:border-gray-800 leading-relaxed text-gray-700 dark:text-gray-400;
+                @apply pb-2 mb-2 border-b border-gray-100 dark:border-gray-800 leading-snug text-sm md:text-base text-gray-700 dark:text-gray-400;
             }
 
             .paper-list > li:last-child {
@@ -146,7 +146,24 @@
             }
 
             .paper-title {
-                @apply font-semibold text-gray-900 dark:text-gray-100;
+                @apply font-normal text-gray-900 dark:text-gray-100;
+            }
+
+            .paper-meta {
+                @apply text-gray-600 dark:text-gray-400;
+            }
+
+            .paper-note {
+                @apply text-xs md:text-sm text-gray-500 dark:text-gray-500;
+            }
+
+            .collaborator-list {
+                @apply text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-400;
+            }
+
+            .collaborator-list a,
+            .nowrap-email {
+                white-space: nowrap;
             }
 
             .teaching-table th {
@@ -251,18 +268,18 @@
 
     <main id="home-page" class="page active pt-16 searchable">
         <section class="py-12 md:py-20 bg-gradient-to-br from-light/50 dark:from-blue-900/20 to-transparent">
-            <div class="container mx-auto px-4 max-w-6xl">
+            <div class="section-inner">
                 <h1>Wei Wang (王尉)</h1>
                 <p class="text-xl text-gray-600 dark:text-gray-400">Ph.D. Candidate in Theoretical Mathematics</p>
                 <p class="text-lg text-gray-700 dark:text-gray-300 mt-2">Peking University</p>
             </div>
         </section>
 
-        <section class="py-12 container mx-auto px-4 max-w-6xl">
+        <section class="py-12 section-inner">
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="md:col-span-2 space-y-6">
                     <h2>About Me</h2>
-                    <p>I am a four-year Ph.D. candidate in Theoretical Mathematics at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/">Peking University</a>, supervised by <a href="http://english.math.pku.edu.cn//Faculty/Faculty/ALL/old_site_Faculty_ALL_2_128.htm">Prof. Zhifei Zhang</a>.</p>
+                    <p>I am a four-year Ph.D. candidate in Theoretical Mathematics at the School of Mathematical Sciences, <a href="http://english.math.pku.edu.cn/">Peking University</a>, supervised by <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/703192">Prof. Zhifei Zhang</a>.</p>
                     <p>Previously, I obtained my Bachelor's degree in Mathematics and Applied Mathematics from <a href="http://www.math.zju.edu.cn/mathen/">Zhejiang University</a> in 2022, where I was advised by <a href="https://person.zju.edu.cn/en/zhangting">Prof. Ting Zhang</a>. </p>
                     <p><a href="https://github.com/LuisYanka/CVofWW/raw/main/cv.pdf?response-content-disposition=attachment" class="px-6 py-2 bg-primary text-white rounded-md no-underline font-medium hover:bg-darkBlue shadow-lg shadow-primary/20 transition-all">Download my CV</a> (Last updated: Nov. 30, 2025).</p>
                     <p>I co-organize long-term <a href="https://luisyanka.github.io/GMT/">analysis seminars</a> at Peking University, focusing on PDEs and geometric measure theory.</p>
@@ -286,7 +303,7 @@
                         </div>
                         <div class="flex items-start gap-3">
                             <i class="fa fa-envelope text-primary mt-1"></i>
-                            <p>gjmtamag [at] gmail [dot] com<br>2201110024 [at] stu [dot] pku [dot] edu [dot] cn</p>
+                            <p>gjmtamag [at] gmail [dot] com<br><span class="nowrap-email">2201110024 [at] stu [dot] pku [dot] edu [dot] cn</span></p>
                         </div>
                     </div>
                 </aside>
@@ -310,30 +327,29 @@
                 </div>
 
                 <div class="mb-8 content-indent">
+                    <h3>Collaborators</h3>
+                    <div class="content-indent">
+                        <p class="collaborator-list">
+                            Haotong Fu (5) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/703192" rel="nofollow">Zhifei Zhang</a> (5) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/Wang%2C%20Huaijie" rel="nofollow">Huaijie Wang</a> (2) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/Canevari%2C%20Giacomo" rel="nofollow">Giacomo Canevari</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/728268" rel="nofollow">Rupert L. Frank</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/878128" rel="nofollow">Tianling Jin</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/Zhang%2C%20Ting" rel="nofollow">Ting Zhang</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/1354183" rel="nofollow">Wei Wang (王伟)</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/1423398" rel="nofollow">Ke Wu</a> (1)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-8 content-indent">
                     <h3>Published Papers</h3>
                     <div class="content-indent">
                         <ol class="paper-list" reversed>
-                            <li>
-                                <span class="paper-title">On the sharp constants in the regional fractional Sobolev inequalities</span><br>
-                                Rupert L. Frank, Tianling Jin, Wei Wang<br>
-                                <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20<br>
-                                [<a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv</a>] |
-                                [<a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">journal</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Uniform estimates of resolvents in homogenization theory of elliptic systems</span><br>
-                                Wei Wang<br>
-                                <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65<br>
-                                [<a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>] |
-                                [<a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">journal</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Homogenization theory of elliptic system with lower order terms for dimension two</span><br>
-                                Wei Wang, Ting Zhang<br>
-                                <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824<br>
-                                [<a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>] |
-                                [<a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">journal</a>]
-                            </li>
+                            <li><span class="paper-title">On the sharp constants in the regional fractional Sobolev inequalities</span>, <span class="paper-meta">(with Rupert L. Frank, Tianling Jin), <em>Partial Differential Equations and Applications</em>, <b>6</b> (2025), 1-20, arXiv: 2403.00357 [<a href="https://arxiv.org/abs/2403.00357" rel="nofollow">arXiv</a>] | [<a href="https://doi.org/10.1007/s42985-025-00317-2" rel="nofollow">journal</a>]</span></li>
+                            <li><span class="paper-title">Uniform estimates of resolvents in homogenization theory of elliptic systems</span>, <span class="paper-meta">(single-authored), <em>Journal of Differential Equations</em>, <b>370</b> (2023), 1-65, arXiv: 2211.14614 [<a href="https://arxiv.org/abs/2211.14614" rel="nofollow">arXiv</a>] | [<a href="https://doi.org/10.1016/j.jde.2023.06.015" rel="nofollow">journal</a>]</span></li>
+                            <li><span class="paper-title">Homogenization theory of elliptic system with lower order terms for dimension two</span>, <span class="paper-meta">(with Ting Zhang), <em>Communications on Pure and Applied Analysis</em>, <b>22</b> (2023), 787-824, arXiv: 2210.06329 [<a href="https://arxiv.org/abs/2210.06329" rel="nofollow">arXiv</a>] | [<a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2023010" rel="nofollow">journal</a>]</span></li>
                         </ol>
                     </div>
                 </div>
@@ -342,48 +358,14 @@
                     <h3>Preprints</h3>
                     <div class="content-indent">
                         <ol class="paper-list" reversed>
-                            <li>
-                                <span class="paper-title">Asymptotics of minimizers for Ginzburg--Landau-type functionals in high dimensions</span><br>
-                                Giacomo Canevari, Haotong Fu, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2605.04442" rel="nofollow">arXiv: 2605.04442</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects</span><br>
-                                Haotong Fu, Huaijie Wang, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2508.01811" rel="nofollow">arXiv: 2508.01811</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit</span><br>
-                                Haotong Fu, Huaijie Wang, Wei Wang<br>
-                                [<a href="https://arxiv.org/abs/2507.14955" rel="nofollow">arXiv: 2507.14955</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Existence of weak solutions for two-phase matrix-valued harmonic map flows</span><br>
-                                Wei Wang, Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2506.16278" rel="nofollow">arXiv: 2506.16278</a>]<br>
-                                Note: The second author Wei Wang (王伟) has the same name as mine in English.
-                                <a href="https://person.zju.edu.cn/en/wangw07" rel="nofollow">Here</a> is his personal website.
-                            </li>
-                            <li>
-                                <span class="paper-title">Stratification and rectifiability of harmonic map flows via tangent measures</span><br>
-                                Haotong Fu, Wei Wang, Ke Wu, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv: 2504.14880</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity</span><br>
-                                Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv: 2411.16048</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations</span><br>
-                                Haotong Fu, Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv: 2408.06726</a>]
-                            </li>
-                            <li>
-                                <span class="paper-title">Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers</span><br>
-                                Wei Wang, Zhifei Zhang<br>
-                                [<a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv: 2404.00677</a>]
-                            </li>
+                            <li><span class="paper-title">Asymptotics of minimizers for Ginzburg--Landau-type functionals in high dimensions</span>, <span class="paper-meta">(with Giacomo Canevari, Haotong Fu), arXiv: 2605.04442 [<a href="https://arxiv.org/abs/2605.04442" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Uniform estimates of Landau-de Gennes minimizers in the vanishing elasticity limit with line defects</span>, <span class="paper-meta">(with Haotong Fu, Huaijie Wang), arXiv: 2508.01811 [<a href="https://arxiv.org/abs/2508.01811" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Improved convergence of Landau-de Gennes minimizers in the vanishing elasticity limit</span>, <span class="paper-meta">(with Haotong Fu, Huaijie Wang), arXiv: 2507.14955 [<a href="https://arxiv.org/abs/2507.14955" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Existence of weak solutions for two-phase matrix-valued harmonic map flows</span>, <span class="paper-meta">(with Wei Wang (王伟), Zhifei Zhang), arXiv: 2506.16278 [<a href="https://arxiv.org/abs/2506.16278" rel="nofollow">arXiv</a>]. <span class="paper-note">Here Wei Wang (王伟) refers to the ZJU collaborator with the same English name.</span></span></li>
+                            <li><span class="paper-title">Stratification and rectifiability of harmonic map flows via tangent measures</span>, <span class="paper-meta">(with Haotong Fu, Ke Wu, Zhifei Zhang), arXiv: 2504.14880 [<a href="https://arxiv.org/abs/2504.14880" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Fine structure of rupture set for semilinear elliptic equation with singular nonlinearity</span>, <span class="paper-meta">(with Zhifei Zhang), arXiv: 2411.16048 [<a href="https://arxiv.org/abs/2411.16048" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Quantitative stratification and sharp regularity estimates for supercritical semilinear elliptic equations</span>, <span class="paper-meta">(with Haotong Fu, Zhifei Zhang), arXiv: 2408.06726 [<a href="https://arxiv.org/abs/2408.06726" rel="nofollow">arXiv</a>]</span></li>
+                            <li><span class="paper-title">Landau-de Gennes model with sextic potentials: asymptotic behavior of minimizers</span>, <span class="paper-meta">(with Zhifei Zhang), arXiv: 2404.00677 [<a href="https://arxiv.org/abs/2404.00677" rel="nofollow">arXiv</a>]</span></li>
                         </ol>
                     </div>
                 </div>
@@ -392,7 +374,7 @@
     </main>
 
     <main id="teaching-page" class="page pt-16 searchable">
-        <section class="py-12 container mx-auto px-4 max-w-6xl">
+        <section class="py-12 section-inner">
             <h2>Teaching Experience</h2>
             <div class="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm mt-8">
                 <table class="w-full teaching-table">
