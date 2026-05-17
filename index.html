@@ -125,13 +125,12 @@
             }
 
             .paper-list {
-                counter-reset: paper-counter;
+                list-style-type: decimal;
+                list-style-position: outside;
                 @apply pl-5 md:pl-6;
             }
 
             .paper-list > li {
-                counter-increment: paper-counter -1;
-                list-style-position: outside;
                 @apply pb-2 mb-2 border-b border-gray-100 dark:border-gray-800 leading-snug text-sm md:text-base text-gray-700 dark:text-gray-400;
             }
 
@@ -139,11 +138,6 @@
                 @apply border-0 pb-0 mb-0;
             }
 
-            .paper-list > li::marker {
-                content: counter(paper-counter) ". ";
-                font-weight: 700;
-                color: currentColor;
-            }
 
             .paper-title {
                 @apply font-normal text-gray-900 dark:text-gray-100 leading-snug;
@@ -337,7 +331,7 @@
                             Haotong Fu (5) ·
                             <a href="https://mathscinet.ams.org/mathscinet/author?authorId=703192" rel="nofollow">Zhifei Zhang</a> (5) ·
                             <a href="https://mathscinet.ams.org/mathscinet/author?authorId=1622718" rel="nofollow">Huaijie Wang</a> (2) ·
-                            <a href="https://mathscinet.ams.org/mathscinet/author?authorId=975616" rel="nofollow">Giacomo Canevari</a> (1) ·
+                            <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/Canevari%2C%20Giacomo" rel="nofollow">Giacomo Canevari</a> (1) ·
                             <a href="https://mathscinet.ams.org/mathscinet/author?authorId=728268" rel="nofollow">Rupert L. Frank</a> (1) ·
                             <a href="https://mathscinet.ams.org/mathscinet/author?authorId=878128" rel="nofollow">Tianling Jin</a> (1) ·
                             <a href="https://mathscinet.ams.org/mathscinet/author?authorId=740741" rel="nofollow">Ting Zhang</a> (1) ·
@@ -664,10 +658,6 @@
                 element.dataset.searchId = `idx-${idCounter++}`;
             });
 
-            document.querySelectorAll('.paper-list[reversed]').forEach(list => {
-                const count = list.querySelectorAll('li').length;
-                list.style.counterReset = `paper-counter ${count + 1}`;
-            });
         }
 
         function renderSearchResults(matches) {
